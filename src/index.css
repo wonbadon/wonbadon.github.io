@@ -491,6 +491,42 @@
     @apply grid gap-5 md:grid-cols-2 xl:grid-cols-4;
   }
 
+  .home-tool-groups {
+    @apply space-y-5;
+  }
+
+  .home-tool-group {
+    @apply rounded-[28px] border border-slate-200 bg-white/90 p-6;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .home-tool-group-title {
+    @apply text-2xl font-extrabold tracking-[-0.04em] text-slate-950;
+  }
+
+  .home-tool-library-grid {
+    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .home-tool-library-card {
+    @apply block rounded-[24px] border border-slate-200 bg-slate-50/90 p-5 transition duration-200;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+  }
+
+  .home-tool-library-card:hover {
+    @apply border-sky-200 bg-white;
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .home-tool-library-title {
+    @apply text-xl font-extrabold leading-tight text-slate-950;
+  }
+
+  .home-tool-library-desc {
+    @apply text-sm leading-7 text-slate-500;
+  }
+
   .home-directory-support-card {
     @apply relative block overflow-hidden rounded-[28px] border border-slate-200 bg-white/90 p-6 transition duration-200;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -608,6 +644,22 @@
 
     .home-directory-support-card {
       @apply rounded-[22px] p-5;
+    }
+
+    .home-tool-group {
+      @apply rounded-[22px] p-5;
+    }
+
+    .home-tool-group-title {
+      font-size: 1.55rem;
+    }
+
+    .home-tool-library-card {
+      @apply rounded-[20px] p-4;
+    }
+
+    .home-tool-library-title {
+      font-size: 1.1rem;
     }
 
     .home-directory-support-title {

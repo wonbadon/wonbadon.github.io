@@ -1,24 +1,19 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { contentCatalog, featuredTools, toolCatalog } from '../data/toolCatalog'
 
-const toolLinks = [
-  { to: '/overtime', label: '算加班費', desc: '平日、休息日、國定假日 / 休假日出勤金額。' },
-  { to: '/annual-leave', label: '算特休天數', desc: '依到職日推算法定特休與下一個門檻。' },
-  { to: '/severance', label: '算資遣費', desc: '拆開新舊制年資，先抓合理金額區間。' },
-  { to: '/labor-pension', label: '算勞退', desc: '確認提繳級距、自提比例與長期累積。' },
-]
+const toolLinks = toolCatalog.map(({ to, shortLabel, footerDesc }) => ({
+  to,
+  label: shortLabel,
+  desc: footerDesc,
+}))
 
-const contentLinks = [
-  { to: '/guide', label: '新手指南', desc: '第一次使用本站時，先看情境怎麼分、資料怎麼備。' },
-  { to: '/scenarios', label: '情境比較', desc: '快速判斷平日、休息日、國定假日與離職場景差異。' },
-  { to: '/faq', label: '常見問題', desc: '整理最常被問到的計算口徑、法條與適用邊界。' },
-  { to: '/about', label: '關於本站', desc: '說明資料來源、更新邊界、免責定位與站點角色。' },
-]
+const contentLinks = contentCatalog.map(({ to, label, desc }) => ({ to, label, desc }))
 
 const navLinks = [
   { to: '/', label: '首頁' },
   { to: '/guide', label: '新手指南' },
-  ...toolLinks.map(({ to, label }) => ({ to, label })),
+  ...featuredTools.map(({ to, shortLabel }) => ({ to, label: shortLabel })),
 ]
 
 const ownerName = 'wonbadon'

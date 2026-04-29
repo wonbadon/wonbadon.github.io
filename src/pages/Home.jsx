@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import usePageMeta from '../hooks/usePageMeta'
+import { contentCatalog, featuredTools, secondaryTools } from '../data/toolCatalog'
 
 function IconBase({ children, className = 'h-5 w-5' }) {
   return (
@@ -64,92 +65,26 @@ function ArrowIcon() {
   )
 }
 
-const tools = [
-  {
-    to: '/overtime',
-    icon: OvertimeIcon,
-    category: '工時計算',
-    badge: '核心工具',
-    law: '第 24 條 / 第 39 條',
-    title: '加班費計算機',
-    desc: '依勞基法口徑，整理平日、休息日、國定假日與休假日出勤金額。',
-    suitable: '平日延長工時、休息日出勤、國定假日加班。',
-    inputs: ['月薪或時薪', '加班時數', '假別'],
-    output: '應給金額、倍率口徑、常見錯用法條提醒。',
-  },
-  {
-    to: '/annual-leave',
-    icon: LeaveIcon,
-    category: '假勤權益',
-    badge: '年資門檻',
-    law: '第 38 條',
-    title: '特休天數計算',
-    desc: '依勞基法第 38 條，從到職日推算目前法定特休資格與下一個門檻。',
-    suitable: '剛滿 6 個月、滿 1 年前後，或想確認特休資格時。',
-    inputs: ['到職日期', '查詢日期'],
-    output: '法定特休天數、目前年資狀態、下一個里程碑。',
-  },
-  {
-    to: '/severance',
-    icon: SeveranceIcon,
-    category: '離職權益',
-    badge: '新舊制拆算',
-    law: '第 17 條 / 勞退條例第 12 條',
-    title: '資遣費計算機',
-    desc: '依平均工資與年資拆算新制、舊制資遣費，避免把兩套制度混在一起。',
-    suitable: '收到資遣通知、非自願離職，或要先抓合理金額區間時。',
-    inputs: ['平均工資', '新制年資', '舊制年資'],
-    output: '新舊制分開結果、上限差異與試算總額。',
-  },
-  {
-    to: '/labor-pension',
-    icon: PensionIcon,
-    category: '退休規劃',
-    badge: '級距試算',
-    law: '勞工退休金條例',
-    title: '勞退退休金試算',
-    desc: '依最新提繳級距估算雇主提撥、自提金額，以及長期累積結果。',
-    suitable: '想確認目前提繳級距、自提比例與退休帳戶成長差異時。',
-    inputs: ['月薪', '自提比例', '年限'],
-    output: '提繳級距、每月提撥金額、長期累積試算。',
-  },
-]
+const iconMap = {
+  overtime: OvertimeIcon,
+  leave: LeaveIcon,
+  severance: SeveranceIcon,
+  pension: PensionIcon,
+}
 
-const resources = [
-  {
-    to: '/guide',
-    eyebrow: '第一次使用',
-    title: '新手指南',
-    desc: '先分情境、再準備資料，讓第一次使用的人可以快速進入正確工具。',
-    points: ['先選工具', '整理輸入欄位', '知道哪些地方要人工覆核'],
-  },
-  {
-    to: '/scenarios',
-    eyebrow: '快速判斷',
-    title: '熱門情境比較',
-    desc: '把最容易混淆的加班、離職與假勤情境拆開比對，不用邊查邊猜。',
-    points: ['平日 vs 休息日', '國定假日 vs 例假日', '資遣 vs 自請離職'],
-  },
-  {
-    to: '/faq',
-    eyebrow: '集中解答',
-    title: '常見問題',
-    desc: '整理站內最常見的法條口徑、結果差異與輸入誤區。',
-    points: ['為什麼公司算的不一樣', '特休沒休完怎麼算', '平均工資怎麼看'],
-  },
-  {
-    to: '/about',
-    eyebrow: '站點說明',
-    title: '關於本站',
-    desc: '說清楚資料來源、更新邊界與免責定位，避免把試算站當成官方認定。',
-    points: ['資料來源範圍', '不涵蓋的複雜情況', '使用前後要注意什麼'],
-  },
-]
+const toolGroups = secondaryTools.reduce((grouped, tool) => {
+  if (!grouped[tool.category]) {
+    grouped[tool.category] = []
+  }
+
+  grouped[tool.category].push(tool)
+  return grouped
+}, {})
 
 export default function Home() {
   usePageMeta(
     '首頁與試算工具',
-    '台灣勞工權益計算器首頁，整理加班費、特休、資遣費、勞退與新手指南、常見問題、情境比較等入口。',
+    '台灣勞工權益計算器首頁，整理加班、特休、資遣、勞退、保費、親職、職災、退休與勞資爭議等完整工具入口。',
   )
 
   return (
@@ -175,7 +110,10 @@ export default function Home() {
         </div>
 
         <section className="home-directory-grid mt-8 sm:mt-10">
-          {tools.map(({ to, icon: Icon, category, badge, law, title, desc, suitable, inputs, output }) => (
+          {featuredTools.map(({ to, iconKey, category, badge, law, title, desc, suitable, inputs, output }) => {
+            const Icon = iconMap[iconKey]
+
+            return (
             <Link key={to} to={to} className="home-directory-card">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <span className="home-directory-icon" aria-hidden="true">
@@ -218,7 +156,57 @@ export default function Home() {
                 <ArrowIcon />
               </div>
             </Link>
-          ))}
+            )
+          })}
+        </section>
+
+        <section className="home-directory-section mt-14 sm:mt-16">
+          <div className="max-w-3xl">
+            <p className="home-directory-kicker">完整工具庫</p>
+            <h2 className="home-directory-section-title mt-3">剩下的工具，依情境分組放在這裡</h2>
+            <p className="home-directory-section-desc mt-3 sm:mt-4">
+              你不一定每次都從加班或資遣進來。像薪資單、勞健保、產假、職災、退休與爭議整理，現在都已經補成可直接使用的頁面。
+            </p>
+          </div>
+
+          <div className="home-tool-groups mt-6 sm:mt-8">
+            {Object.entries(toolGroups).map(([category, tools]) => (
+              <div key={category} className="home-tool-group">
+                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="home-directory-kicker">{category}</p>
+                    <h3 className="home-tool-group-title mt-2">{tools.length} 個工具</h3>
+                  </div>
+                  <p className="text-sm leading-7 text-slate-500">每個工具都維持單一主題，避免把不同法條混在同一頁。</p>
+                </div>
+
+                <div className="home-tool-library-grid mt-5">
+                  {tools.map(({ to, title, desc, badge, law, inputs }) => (
+                    <Link key={to} to={to} className="home-tool-library-card">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <span className="home-directory-tag home-directory-tag-primary">{badge}</span>
+                        <span className="home-directory-tag">{law}</span>
+                      </div>
+
+                      <h4 className="home-tool-library-title mt-4">{title}</h4>
+                      <p className="home-tool-library-desc mt-3">{desc}</p>
+
+                      <div className="home-directory-chip-wrap mt-4">
+                        {inputs.slice(0, 3).map((item) => (
+                          <span key={item} className="home-directory-chip">{item}</span>
+                        ))}
+                      </div>
+
+                      <div className="home-directory-cta mt-5">
+                        開啟工具
+                        <ArrowIcon />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="home-directory-section mt-14 sm:mt-16">
@@ -231,7 +219,7 @@ export default function Home() {
           </div>
 
           <div className="home-directory-support-grid mt-6 sm:mt-8">
-            {resources.map(({ to, eyebrow, title, desc, points }) => (
+            {contentCatalog.map(({ to, eyebrow, title, desc, points }) => (
               <Link key={to} to={to} className="home-directory-support-card">
                 <p className="home-directory-support-eyebrow">{eyebrow}</p>
                 <h3 className="home-directory-support-title mt-3">{title}</h3>

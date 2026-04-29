@@ -5,6 +5,19 @@ import Overtime from './pages/Overtime'
 import AnnualLeave from './pages/AnnualLeave'
 import Severance from './pages/Severance'
 import LaborPension from './pages/LaborPension'
+import SalarySlip from './pages/SalarySlip'
+import InsurancePremium from './pages/InsurancePremium'
+import InsuranceBrackets from './pages/InsuranceBrackets'
+import WageConverter from './pages/WageConverter'
+import YearEndBonus from './pages/YearEndBonus'
+import NoticePeriod from './pages/NoticePeriod'
+import ParentalLeave from './pages/ParentalLeave'
+import OccupationalAccident from './pages/OccupationalAccident'
+import TyphoonWorkday from './pages/TyphoonWorkday'
+import RightsCheck from './pages/RightsCheck'
+import SalaryCompare from './pages/SalaryCompare'
+import DisputeChecker from './pages/DisputeChecker'
+import RetirementPlanner from './pages/RetirementPlanner'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -24,6 +37,19 @@ export default function App() {
         <Route path="/annual-leave" element={<AnnualLeave />} />
         <Route path="/severance" element={<Severance />} />
         <Route path="/labor-pension" element={<LaborPension />} />
+        <Route path="/salary-slip" element={<SalarySlip />} />
+        <Route path="/insurance-premium" element={<InsurancePremium />} />
+        <Route path="/insurance-brackets" element={<InsuranceBrackets />} />
+        <Route path="/wage-converter" element={<WageConverter />} />
+        <Route path="/year-end-bonus" element={<YearEndBonus />} />
+        <Route path="/notice-period" element={<NoticePeriod />} />
+        <Route path="/parental-leave" element={<ParentalLeave />} />
+        <Route path="/occupational-accident" element={<OccupationalAccident />} />
+        <Route path="/typhoon-workday" element={<TyphoonWorkday />} />
+        <Route path="/rights-check" element={<RightsCheck />} />
+        <Route path="/salary-compare" element={<SalaryCompare />} />
+        <Route path="/dispute-checker" element={<DisputeChecker />} />
+        <Route path="/retirement-planner" element={<RetirementPlanner />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import usePageMeta from '../hooks/usePageMeta'
+import { featuredTools } from '../data/toolCatalog'
 
 const steps = [
   {
@@ -21,29 +22,6 @@ const steps = [
     label: 'Step 4',
     title: '碰到制度細節時，一定要回頭人工覆核',
     desc: '獎金、津貼、輪班、變形工時、非典型排班與爭議事實，不一定能被單頁試算完整覆蓋。',
-  },
-]
-
-const toolLinks = [
-  {
-    to: '/overtime',
-    title: '加班與假日出勤',
-    desc: '適合先分平日延長工時、休息日出勤、國定假日 / 休假日出勤。',
-  },
-  {
-    to: '/annual-leave',
-    title: '特休資格與門檻',
-    desc: '適合確認到職多久能拿幾天，以及下一個法定門檻在哪。',
-  },
-  {
-    to: '/severance',
-    title: '資遣費與新舊制拆算',
-    desc: '適合收到資遣通知後先抓大致金額與制度差異。',
-  },
-  {
-    to: '/labor-pension',
-    title: '勞退級距與累積',
-    desc: '適合確認提撥級距、自提比例與長期退休金變化。',
   },
 ]
 
@@ -102,14 +80,14 @@ export default function Guide() {
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {toolLinks.map(({ to, title, desc }) => (
+          {featuredTools.map(({ to, title, guideDesc }) => (
             <Link
               key={to}
               to={to}
               className="metric-tile block transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
             >
               <p className="text-lg font-extrabold text-slate-950">{title}</p>
-              <p className="mt-2 text-sm leading-7 text-slate-600">{desc}</p>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{guideDesc}</p>
               <p className="mt-4 text-sm font-semibold text-sky-700">直接進入試算 →</p>
             </Link>
           ))}
