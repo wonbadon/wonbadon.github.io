@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AdSlot from './AdSlot'
 import SupportCta from './SupportCta'
@@ -84,6 +84,11 @@ export default function Layout({ children }) {
     : isToolPage
       ? '工具頁贊助廣告'
       : '內容頁贊助廣告'
+
+  useEffect(() => {
+    setMenuOpen(false)
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   const desktopNavClass = (to) => {
     return pathname === to

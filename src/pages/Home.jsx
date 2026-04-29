@@ -81,6 +81,11 @@ const toolGroups = secondaryTools.reduce((grouped, tool) => {
   return grouped
 }, {})
 
+const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
+  category,
+  count: tools.length,
+}))
+
 export default function Home() {
   usePageMeta(
     '首頁與試算工具',
@@ -109,7 +114,71 @@ export default function Home() {
           </p>
         </div>
 
-        <section className="home-directory-grid mt-8 sm:mt-10">
+        <section className="home-directory-intro-grid">
+          <div className="home-directory-summary-card">
+            <p className="home-directory-kicker">快速開始</p>
+            <h2 className="home-directory-section-title mt-3">先從常用入口下手，不用一開始就翻完整工具庫</h2>
+            <p className="home-directory-section-desc mt-3">
+              你如果是第一次進站，通常先從加班、特休、資遣或勞退開始就夠了。下面四個入口保留完整說明卡，其餘工具整合成一塊多欄總覽，不再切成很多段。
+            </p>
+
+            <div className="home-directory-stat-grid mt-6">
+              <div className="home-directory-stat-card">
+                <p className="home-directory-stat-value">{featuredTools.length}</p>
+                <p className="home-directory-stat-label">最常用核心工具</p>
+              </div>
+              <div className="home-directory-stat-card">
+                <p className="home-directory-stat-value">{featuredTools.length + secondaryTools.length}</p>
+                <p className="home-directory-stat-label">目前可直接試算頁面</p>
+              </div>
+              <div className="home-directory-stat-card">
+                <p className="home-directory-stat-value">{contentCatalog.length}</p>
+                <p className="home-directory-stat-label">導覽與補充內容頁</p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="home-directory-detail-label">常用入口</p>
+              <div className="home-directory-chip-wrap mt-3">
+                {featuredTools.map(({ to, shortLabel }) => (
+                  <Link key={to} to={to} className="home-directory-chip home-directory-chip-link">
+                    {shortLabel}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <aside className="home-directory-rail">
+            <div className="home-directory-rail-card">
+              <p className="home-directory-kicker">新手入口</p>
+              <div className="mt-4 space-y-3">
+                {contentCatalog.map(({ to, eyebrow, title, desc }) => (
+                  <Link key={to} to={to} className="home-directory-mini-link">
+                    <p className="home-directory-mini-link-eyebrow">{eyebrow}</p>
+                    <h2 className="home-directory-mini-link-title">{title}</h2>
+                    <p className="home-directory-mini-link-desc">{desc}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="home-directory-rail-card">
+              <p className="home-directory-kicker">工具分類</p>
+              <p className="mt-3 text-sm leading-7 text-slate-500">保費、薪酬、離職、假勤、工時、職災與退休相關工具現在都集中在同一塊總覽裡。</p>
+              <div className="home-tool-pill-wrap mt-4">
+                {categorySummary.map(({ category, count }) => (
+                  <span key={category} className="home-tool-pill">
+                    {category}
+                    <span className="home-tool-pill-count">{count}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section className="home-featured-grid mt-8 sm:mt-10">
           {featuredTools.map(({ to, iconKey, category, badge, law, title, desc, suitable, inputs, output }) => {
             const Icon = iconMap[iconKey]
 
@@ -163,76 +232,41 @@ export default function Home() {
         <section className="home-directory-section mt-14 sm:mt-16">
           <div className="max-w-3xl">
             <p className="home-directory-kicker">完整工具庫</p>
-            <h2 className="home-directory-section-title mt-3">剩下的工具，依情境分組放在這裡</h2>
+            <h2 className="home-directory-section-title mt-3">剩下的試算工具改成單一總覽，不再分很多區塊往下拉</h2>
             <p className="home-directory-section-desc mt-3 sm:mt-4">
-              你不一定每次都從加班或資遣進來。像薪資單、勞健保、產假、職災、退休與爭議整理，現在都已經補成可直接使用的頁面。
+              薪資單、保費、親職、職災、退休與勞資爭議等工具，現在全部集中在同一塊多欄卡片裡。桌機會自動排成兩到三欄，首頁長度會比原本短很多。
             </p>
           </div>
 
-          <div className="home-tool-groups mt-6 sm:mt-8">
-            {Object.entries(toolGroups).map(([category, tools]) => (
-              <div key={category} className="home-tool-group">
-                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                  <div>
-                    <p className="home-directory-kicker">{category}</p>
-                    <h3 className="home-tool-group-title mt-2">{tools.length} 個工具</h3>
-                  </div>
-                  <p className="text-sm leading-7 text-slate-500">每個工具都維持單一主題，避免把不同法條混在同一頁。</p>
-                </div>
-
-                <div className="home-tool-library-grid mt-5">
-                  {tools.map(({ to, title, desc, badge, law, inputs }) => (
-                    <Link key={to} to={to} className="home-tool-library-card">
-                      <div className="flex flex-wrap items-start justify-between gap-3">
-                        <span className="home-directory-tag home-directory-tag-primary">{badge}</span>
-                        <span className="home-directory-tag">{law}</span>
-                      </div>
-
-                      <h4 className="home-tool-library-title mt-4">{title}</h4>
-                      <p className="home-tool-library-desc mt-3">{desc}</p>
-
-                      <div className="home-directory-chip-wrap mt-4">
-                        {inputs.slice(0, 3).map((item) => (
-                          <span key={item} className="home-directory-chip">{item}</span>
-                        ))}
-                      </div>
-
-                      <div className="home-directory-cta mt-5">
-                        開啟工具
-                        <ArrowIcon />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+          <div className="home-tool-pill-wrap mt-6 sm:mt-8">
+            {categorySummary.map(({ category, count }) => (
+              <span key={category} className="home-tool-pill">
+                {category}
+                <span className="home-tool-pill-count">{count}</span>
+              </span>
             ))}
           </div>
-        </section>
 
-        <section className="home-directory-section mt-14 sm:mt-16">
-          <div className="max-w-3xl">
-            <p className="home-directory-kicker">把工具站補成完整網站</p>
-            <h2 className="home-directory-section-title mt-3">如果你還不確定該先算什麼，先從這幾頁進來</h2>
-            <p className="home-directory-section-desc mt-3 sm:mt-4">
-              首頁不只放入口，也把新手導覽、情境拆解、常見問題與站點邊界整理好，讓你不用一進站就直接掉進法條細節。
-            </p>
-          </div>
+          <div className="home-tool-library-grid mt-6 sm:mt-8">
+            {secondaryTools.map(({ to, title, desc, category, badge, law, inputs }) => (
+              <Link key={to} to={to} className="home-tool-library-card">
+                <div className="flex flex-wrap items-start gap-2">
+                  <span className="home-directory-tag home-directory-tag-primary">{category}</span>
+                  <span className="home-directory-tag">{badge}</span>
+                </div>
 
-          <div className="home-directory-support-grid mt-6 sm:mt-8">
-            {contentCatalog.map(({ to, eyebrow, title, desc, points }) => (
-              <Link key={to} to={to} className="home-directory-support-card">
-                <p className="home-directory-support-eyebrow">{eyebrow}</p>
-                <h3 className="home-directory-support-title mt-3">{title}</h3>
-                <p className="home-directory-support-desc mt-3 sm:mt-4">{desc}</p>
+                <h3 className="home-tool-library-title mt-4">{title}</h3>
+                <p className="home-tool-library-desc mt-3">{desc}</p>
+                <p className="home-tool-library-law mt-4">法源｜{law}</p>
 
-                <ul className="home-directory-support-list mt-4 sm:mt-5">
-                  {points.map((item) => (
-                    <li key={item}>{item}</li>
+                <div className="home-directory-chip-wrap mt-4">
+                  {inputs.slice(0, 2).map((item) => (
+                    <span key={item} className="home-directory-chip">{item}</span>
                   ))}
-                </ul>
+                </div>
 
-                <div className="home-directory-cta mt-6 sm:mt-7">
-                  查看內容
+                <div className="home-directory-cta mt-5">
+                  開啟工具
                   <ArrowIcon />
                 </div>
               </Link>
