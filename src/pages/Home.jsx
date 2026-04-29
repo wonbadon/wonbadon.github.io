@@ -1,11 +1,73 @@
 import { Link } from 'react-router-dom'
 
+function IconBase({ children, className = 'h-5 w-5' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      {children}
+    </svg>
+  )
+}
+
+function OvertimeIcon() {
+  return (
+    <IconBase>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.8v4.7l3 1.8" />
+    </IconBase>
+  )
+}
+
+function LeaveIcon() {
+  return (
+    <IconBase>
+      <rect x="4.5" y="5.5" width="15" height="14" rx="2.5" />
+      <path d="M8 3.8v3.4M16 3.8v3.4M4.5 9.5h15" />
+    </IconBase>
+  )
+}
+
+function SeveranceIcon() {
+  return (
+    <IconBase>
+      <path d="M6.5 19.5h11a1.8 1.8 0 0 0 1.8-1.8V8.8a1.8 1.8 0 0 0-1.8-1.8h-11a1.8 1.8 0 0 0-1.8 1.8v8.9a1.8 1.8 0 0 0 1.8 1.8Z" />
+      <path d="M9 7V5.8A2.8 2.8 0 0 1 11.8 3h.4A2.8 2.8 0 0 1 15 5.8V7M9.3 12h5.4" />
+    </IconBase>
+  )
+}
+
+function PensionIcon() {
+  return (
+    <IconBase>
+      <path d="M12 4.2c-3.9 0-7 1.8-7 4.1 0 1.8 1.9 3.1 4.6 3.7v2.8c0 .9.8 1.7 1.7 1.7h1.4c.9 0 1.7-.8 1.7-1.7V12c2.7-.6 4.6-1.9 4.6-3.7 0-2.3-3.1-4.1-7-4.1Z" />
+      <path d="M12 16.5v3.3M9.7 19.8h4.6" />
+    </IconBase>
+  )
+}
+
+function ArrowIcon() {
+  return (
+    <IconBase className="home-tool-arrow">
+      <path d="M7 17 17 7M9 7h8v8" />
+    </IconBase>
+  )
+}
+
 const tools = [
   {
     to: '/overtime',
     code: '01',
     tag: '最常用',
     tone: 'home-tool-card-overtime',
+    icon: OvertimeIcon,
     law: '第24條 / 第39條',
     title: '加班與假日出勤工資',
     desc: '平日延長工時、休息日出勤、國定假日與休假日出勤，一次換成具體金額。',
@@ -17,6 +79,7 @@ const tools = [
     code: '02',
     tag: '最容易算錯',
     tone: 'home-tool-card-leave',
+    icon: LeaveIcon,
     law: '第38條',
     title: '特休資格與年資門檻',
     desc: '以滿整月年資計算，不會提前把未滿一個月的時間算進特休資格。',
@@ -28,6 +91,7 @@ const tools = [
     code: '03',
     tag: '離職前必看',
     tone: 'home-tool-card-severance',
+    icon: SeveranceIcon,
     law: '第17條 / 勞退條例第12條',
     title: '資遣費新舊制拆算',
     desc: '同時處理 2005/7/1 前後的年資段，避免把舊制錯套成新制上限。',
@@ -39,6 +103,7 @@ const tools = [
     code: '04',
     tag: '長期規劃',
     tone: 'home-tool-card-pension',
+    icon: PensionIcon,
     law: '勞工退休金條例',
     title: '勞退提撥與累積試算',
     desc: '把月提繳工資級距、雇主 6% 提撥與自願提撥，整理成長期累積結果。',
@@ -86,11 +151,14 @@ const faqs = [
 export default function Home() {
   return (
     <div className="space-y-8 md:space-y-10">
-      <section className="section-card">
+      <section className="home-hero-panel">
         <div className="max-w-3xl">
-          <p className="page-eyebrow">工具總覽</p>
-          <h1 className="page-title mt-4">勞工權益試算工具</h1>
-          <p className="page-subtitle mt-4 max-w-2xl">
+          <p className="home-eyebrow">工具總覽</p>
+          <h1 className="home-hero-title mt-4">
+            <span className="block whitespace-nowrap">勞工權益</span>
+            <span className="block whitespace-nowrap text-sky-600">試算工具</span>
+          </h1>
+          <p className="home-hero-subtitle mt-4 max-w-2xl">
             把最常用的四個工具放在同一頁。先選你要處理的是加班、特休、資遣，還是勞退，再進去做對應試算。
           </p>
         </div>
@@ -103,35 +171,40 @@ export default function Home() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        {tools.map(({ to, code, tag, tone, law, title, desc, audience, prepare }) => (
+        {tools.map(({ to, tag, tone, icon: Icon, law, title, desc, audience, prepare }) => (
           <Link key={to} to={to} className={`home-tool-card ${tone}`}>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="tool-code">{code}</span>
-              <span className="home-tool-law">{law}</span>
+            <div className="flex items-start justify-between gap-3">
+              <span className="home-tool-icon">
+                <Icon />
+              </span>
               <span className="home-tool-tag">{tag}</span>
             </div>
 
-            <h2 className="mt-4 text-2xl font-extrabold text-white">{title}</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-300">{desc}</p>
+            <p className="home-tool-law mt-4">{law}</p>
+            <h2 className="home-tool-title mt-2">{title}</h2>
+            <p className="home-tool-desc mt-3">{desc}</p>
 
-            <div className="mt-4 space-y-2 text-sm leading-7 text-slate-300">
-              <p><span className="font-semibold text-white">適合：</span>{audience}</p>
-              <p><span className="font-semibold text-white">需要：</span>{prepare}</p>
+            <div className="home-tool-meta mt-4 space-y-2">
+              <p><span className="font-semibold text-slate-950">適合：</span>{audience}</p>
+              <p><span className="font-semibold text-slate-950">需要：</span>{prepare}</p>
             </div>
 
-            <div className="home-tool-cta mt-5">開始試算</div>
+            <div className="home-tool-cta mt-5">
+              開始試算
+              <ArrowIcon />
+            </div>
           </Link>
         ))}
       </section>
 
-      <section className="section-card">
+      <section className="home-section-panel">
         <div className="grid gap-6 lg:grid-cols-[0.88fr,1.12fr] lg:items-start">
           <div>
-            <p className="page-eyebrow">使用前提醒</p>
-            <h2 className="mt-4 text-3xl font-extrabold text-white md:text-4xl">
+            <p className="home-eyebrow">使用前提醒</p>
+            <h2 className="mt-4 text-3xl font-extrabold text-slate-950 md:text-5xl">
               先分對工具，再開始輸入。
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300 md:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500 md:text-base">
               首頁只做導覽，不把每個工具頁的完整說明全部塞在這裡。
               如果你碰到平均工資、公司制度、特殊排班或收益率假設，再到對應工具頁看完整邊界說明。
             </p>
@@ -139,27 +212,27 @@ export default function Home() {
 
           <div className="grid gap-3 md:grid-cols-3">
             {reminders.map(({ title, desc }) => (
-              <div key={title} className="metric-tile">
-                <p className="text-sm font-semibold text-white">{title}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">{desc}</p>
+              <div key={title} className="home-reminder-card">
+                <p className="text-sm font-semibold text-slate-950">{title}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-500">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-card">
-        <p className="page-eyebrow">常見問題</p>
-        <h2 className="mt-4 text-3xl font-extrabold text-white md:text-4xl">
+      <section className="home-section-panel">
+        <p className="home-eyebrow">常見問題</p>
+        <h2 className="mt-4 text-3xl font-extrabold text-slate-950 md:text-5xl">
           先看這三個最常見的問題。
         </h2>
         <div className="mt-5 space-y-3">
           {faqs.map(({ q, a }) => (
-            <details key={q} className="rounded-[22px] border border-white/10 bg-white/5 p-4 transition open:bg-white/10">
-              <summary className="cursor-pointer pr-8 text-sm font-semibold text-white">
+            <details key={q} className="home-faq-item">
+              <summary className="cursor-pointer pr-8 text-sm font-semibold text-slate-950">
                 {q}
               </summary>
-              <p className="mt-3 text-sm leading-7 text-slate-300">{a}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-500">{a}</p>
             </details>
           ))}
         </div>
