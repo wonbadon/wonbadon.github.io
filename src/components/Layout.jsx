@@ -1,9 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AdSlot from './AdSlot'
 import SupportCta from './SupportCta'
 import { adsConfig } from '../config/ads'
 import { contentCatalog, featuredTools, toolCatalog } from '../data/toolCatalog'
+
+let scrollBehaviorResetTimerId = null
+let originalHtmlScrollBehavior = ''
+let originalBodyScrollBehavior = ''
+
+function forceInstantScrollMode() {
+  const root = document.documentElement
+  const body = document.body
+
+  if (scrollBehaviorResetTimerId === null) {
+    originalHtmlScrollBehavior = root.style.scrollBehavior
+    originalBodyScrollBehavior = body.style.scrollBehavior
+  } else {
+    window.clearTimeout(scrollBehaviorResetTimerId)
+  }
+
+  root.style.scrollBehavior = 'auto'
+  body.style.scrollBehavior = 'auto'
+
+  scrollBehaviorResetTimerId = window.setTimeout(() => {
+    root.style.scrollBehavior = originalHtmlScrollBehavior
+    body.style.scrollBehavior = originalBodyScrollBehavior
+    originalHtmlScrollBehavior = ''
+    originalBodyScrollBehavior = ''
+    scrollBehaviorResetTimerId = null
+  }, 80)
+}
+
+function resetScrollPosition() {
+  forceInstantScrollMode()
+  window.scrollTo(0, 0)
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+}
 
 const toolLinks = toolCatalog.map(({ to, shortLabel, footerDesc }) => ({
   to,
@@ -86,8 +120,35 @@ export default function Layout({ children }) {
       : '內容頁贊助廣告'
 
   useEffect(() => {
+    if (!('scrollRestoration' in window.history)) {
+      return undefined
+    }
+
+    const previousValue = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+
+    return () => {
+      window.history.scrollRestoration = previousValue
+    }
+  }, [])
+
+  useLayoutEffect(() => {
     setMenuOpen(false)
-    window.scrollTo(0, 0)
+
+    resetScrollPosition()
+
+    const frameId = window.requestAnimationFrame(() => {
+      resetScrollPosition()
+    })
+
+    const timeoutId = window.setTimeout(() => {
+      resetScrollPosition()
+    }, 0)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      window.clearTimeout(timeoutId)
+    }
   }, [pathname])
 
   const desktopNavClass = (to) => {
