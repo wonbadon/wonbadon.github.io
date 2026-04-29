@@ -89,7 +89,7 @@ const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
 export default function Home() {
   usePageMeta(
     '首頁與試算工具',
-    '台灣勞工權益計算器首頁，整理加班、特休、資遣、勞退、保費、親職、職災、退休與勞資爭議等完整工具入口。',
+    '台灣勞工權益計算器首頁，整理全部試算工具與新手導覽內容。',
   )
 
   return (
@@ -117,9 +117,9 @@ export default function Home() {
         <section className="home-directory-intro-grid">
           <div className="home-directory-summary-card">
             <p className="home-directory-kicker">快速開始</p>
-            <h2 className="home-directory-section-title mt-3">先從常用入口下手，不用一開始就翻完整工具庫</h2>
+            <h2 className="home-directory-section-title mt-3">先看常用入口，再往下找完整工具總覽</h2>
             <p className="home-directory-section-desc mt-3">
-              你如果是第一次進站，通常先從加班、特休、資遣或勞退開始就夠了。下面四個入口保留完整說明卡，其餘工具整合成一塊多欄總覽，不再切成很多段。
+              首頁先整理常用入口，下方同時保留新手導覽、情境拆解、常見問題與站點說明。
             </p>
 
             <div className="home-directory-stat-grid mt-6">
@@ -165,7 +165,7 @@ export default function Home() {
 
             <div className="home-directory-rail-card">
               <p className="home-directory-kicker">工具分類</p>
-              <p className="mt-3 text-sm leading-7 text-slate-500">保費、薪酬、離職、假勤、工時、職災與退休相關工具現在都集中在同一塊總覽裡。</p>
+              <p className="mt-3 text-sm leading-7 text-slate-500">每個工具維持單一主題，依分類直接找到需要的頁面即可。</p>
               <div className="home-tool-pill-wrap mt-4">
                 {categorySummary.map(({ category, count }) => (
                   <span key={category} className="home-tool-pill">
@@ -232,9 +232,9 @@ export default function Home() {
         <section className="home-directory-section mt-14 sm:mt-16">
           <div className="max-w-3xl">
             <p className="home-directory-kicker">完整工具庫</p>
-            <h2 className="home-directory-section-title mt-3">剩下的試算工具改成單一總覽，不再分很多區塊往下拉</h2>
+            <h2 className="home-directory-section-title mt-3">其餘工具集中在同一區，直接選頁面進入</h2>
             <p className="home-directory-section-desc mt-3 sm:mt-4">
-              薪資單、保費、親職、職災、退休與勞資爭議等工具，現在全部集中在同一塊多欄卡片裡。桌機會自動排成兩到三欄，首頁長度會比原本短很多。
+              其餘試算工具集中在下方多欄卡片，桌機會自動排成兩到三欄，方便直接切到需要的主題頁。
             </p>
           </div>
 
