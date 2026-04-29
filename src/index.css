@@ -249,168 +249,65 @@
     @apply text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400;
   }
 
-  .home-hero-panel {
-    @apply relative overflow-hidden rounded-[30px] border border-slate-200 bg-white px-6 py-7 md:px-8 md:py-9;
-    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+  .home-directory-page {
+    @apply w-full;
   }
 
-  .home-hero-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at top right, rgba(56, 189, 248, 0.14) 0%, transparent 28%),
-      linear-gradient(180deg, rgba(248, 250, 252, 0.92) 0%, rgba(255, 255, 255, 1) 55%);
+  .home-directory-wrap {
+    @apply mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14;
   }
 
-  .home-hero-panel > * {
-    position: relative;
-    z-index: 1;
+  .home-breadcrumb {
+    @apply text-sm text-slate-500;
   }
 
-  .home-section-panel {
-    @apply rounded-[28px] border border-slate-200 bg-white p-6 md:p-8;
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+  .home-breadcrumb-link {
+    @apply text-slate-500;
   }
 
-  .home-eyebrow {
-    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-slate-400;
+  .home-directory-title {
+    @apply text-4xl font-extrabold tracking-[-0.04em] text-slate-950 md:text-[3.5rem];
   }
 
-  .home-hero-title {
-    @apply text-[2.15rem] font-extrabold leading-[0.95] text-slate-950 sm:text-[4.25rem] md:text-6xl;
+  .home-directory-subtitle {
+    @apply text-lg leading-8 text-slate-500;
   }
 
-  .home-hero-subtitle {
-    @apply text-sm leading-7 text-slate-500 md:text-base;
+  .home-directory-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
   }
 
-  .home-chip {
-    @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-600;
+  .home-directory-card {
+    @apply block rounded-[28px] border border-slate-200 bg-white p-8 transition duration-200;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
   }
 
-  .home-tool-card {
-    @apply relative block overflow-hidden rounded-[26px] border border-slate-200 bg-white p-5 transition duration-200;
-    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.1);
+  .home-directory-card:hover {
+    @apply border-slate-300;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    transform: translateY(-2px);
   }
 
-  .home-tool-card:hover {
-    @apply -translate-y-1 border-slate-300;
-    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.14);
+  .home-directory-card:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.22);
+    outline-offset: 4px;
   }
 
-  .home-tool-card:focus-visible {
-    outline: 3px solid rgba(59, 130, 246, 0.28);
-    outline-offset: 3px;
+  .home-directory-icon {
+    @apply inline-flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[22px] border border-sky-100 bg-sky-50 text-sky-600;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
-  .home-tool-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 4px;
-    pointer-events: none;
+  .home-directory-icon svg {
+    @apply h-7 w-7;
   }
 
-  .home-tool-card-overtime {
-    background: linear-gradient(180deg, rgba(240, 249, 255, 0.88) 0%, #ffffff 32%);
+  .home-directory-card-title {
+    @apply text-[2rem] font-extrabold leading-tight text-slate-950;
   }
 
-  .home-tool-card-overtime::before {
-    background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
-  }
-
-  .home-tool-card-leave {
-    background: linear-gradient(180deg, rgba(236, 253, 245, 0.88) 0%, #ffffff 32%);
-  }
-
-  .home-tool-card-leave::before {
-    background: linear-gradient(90deg, #059669 0%, #34d399 100%);
-  }
-
-  .home-tool-card-severance {
-    background: linear-gradient(180deg, rgba(255, 251, 235, 0.92) 0%, #ffffff 32%);
-  }
-
-  .home-tool-card-severance::before {
-    background: linear-gradient(90deg, #d97706 0%, #fbbf24 100%);
-  }
-
-  .home-tool-card-pension {
-    background: linear-gradient(180deg, rgba(236, 254, 255, 0.92) 0%, #ffffff 32%);
-  }
-
-  .home-tool-card-pension::before {
-    background: linear-gradient(90deg, #0891b2 0%, #22d3ee 100%);
-  }
-
-  .home-tool-icon {
-    @apply inline-flex h-12 w-12 items-center justify-center rounded-2xl border text-slate-700;
-    background: rgba(255, 255, 255, 0.88);
-  }
-
-  .home-tool-card-overtime .home-tool-icon {
-    @apply border-sky-200 text-sky-600;
-    box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.08);
-  }
-
-  .home-tool-card-leave .home-tool-icon {
-    @apply border-emerald-200 text-emerald-600;
-    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.08);
-  }
-
-  .home-tool-card-severance .home-tool-icon {
-    @apply border-amber-200 text-amber-600;
-    box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.08);
-  }
-
-  .home-tool-card-pension .home-tool-icon {
-    @apply border-cyan-200 text-cyan-600;
-    box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.08);
-  }
-
-  .home-tool-law {
-    @apply text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400;
-  }
-
-  .home-tool-tag {
-    @apply inline-flex items-center rounded-full bg-slate-950 px-3 py-1 text-[11px] font-bold text-white;
-  }
-
-  .home-tool-title {
-    @apply text-[1.75rem] font-extrabold leading-tight text-slate-950 md:text-[2rem];
-  }
-
-  .home-tool-desc {
-    @apply text-sm leading-7 text-slate-500;
-  }
-
-  .home-tool-meta {
-    @apply text-sm leading-7 text-slate-500;
-  }
-
-  .home-tool-cta {
-    @apply inline-flex items-center gap-2 text-sm font-extrabold text-slate-950;
-  }
-
-  .home-tool-arrow {
-    @apply h-4 w-4 transition duration-200;
-  }
-
-  .home-tool-card:hover .home-tool-arrow {
-    transform: translate(2px, -2px);
-  }
-
-  .home-reminder-card {
-    @apply rounded-[22px] border border-slate-200 bg-slate-50 p-4;
-  }
-
-  .home-faq-item {
-    @apply rounded-[22px] border border-slate-200 bg-white p-4 transition open:bg-slate-50;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  .home-directory-card-desc {
+    @apply text-base leading-8 text-slate-500;
   }
 
   .notice-card {
