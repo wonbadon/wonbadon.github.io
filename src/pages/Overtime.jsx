@@ -96,10 +96,11 @@ export default function Overtime() {
             <input
               type="number"
               className="input-field"
-              placeholder="例：183（法定基本時薪）"
+              placeholder="例：196（2026 年法定最低時薪）"
               value={form.hourlyRateInput}
               onChange={e => set('hourlyRateInput', e.target.value)}
             />
+            <p className="fine-print mt-2">2026 年起法定最低工資為月薪 29,500 元、時薪 196 元。</p>
           </div>
         )}
 

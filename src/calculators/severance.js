@@ -3,7 +3,7 @@
 // 最高發給6個月平均工資
 
 // 勞退舊制（2005/7/1前）：
-// 每工作滿1年，給1個月平均工資；未滿1年按比例；最高6個月
+// 每工作滿1年，給1個月平均工資；未滿1年按比例
 
 export function calcSeverance({ avgSalary, yearsNew, yearsOld }) {
   const yN = Number(yearsNew) || 0

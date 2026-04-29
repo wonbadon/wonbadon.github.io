@@ -36,14 +36,14 @@ export default function Severance() {
         <p className="page-eyebrow">離職與補償</p>
         <h1 className="page-title">資遣費新舊制拆算</h1>
         <p className="page-subtitle">
-          依《勞動基準法》第17條及《勞工退休金條例》第12條試算。這頁只處理資遣費，不等同預告工資、非自願離職證明或失業給付資格審查。
+          依《勞動基準法》第17條、《勞工退休金條例》第12條與平均工資定義試算。這頁只處理資遣費，不等同預告工資、非自願離職證明或失業給付資格審查。
         </p>
       </section>
 
       <div className="section-card space-y-6">
         <div>
           <label className="mb-2 block text-sm font-semibold text-slate-200">
-            離職前6個月平均工資（元）
+            一個月平均工資（元）
           </label>
           <input
             type="number"
@@ -52,7 +52,7 @@ export default function Severance() {
             value={form.avgSalary}
             onChange={e => set('avgSalary', e.target.value)}
           />
-          <p className="fine-print mt-2">平均工資 = 離職前 6 個月薪資總額 ÷ 6。若有獎金、津貼是否列入的爭議，請另行確認。</p>
+          <p className="fine-print mt-2">本工具不代算平均工資本身。請先依勞基法第2條第4款確認口徑：原則上是事由發生前 6 個月工資總額除以該期間總日數；工作未滿 6 個月者則按實際工作期間計算。</p>
         </div>
 
         <div className="rounded-[22px] border border-sky-300/20 bg-sky-400/10 p-4">
@@ -97,7 +97,7 @@ export default function Severance() {
         </div>
 
         <div className="rounded-[22px] border border-amber-300/20 bg-amber-400/10 p-4 text-sm leading-7 text-amber-50/95">
-          本工具以「年資小數」比例試算。若有未滿 1 個月依法以 1 個月計、停職期間是否計入、或平均工資認定爭議，請再人工確認。
+          本工具以「年資小數」比例試算，並假設你輸入的是已確認的一個月平均工資。若有未滿 1 個月進位、停職期間是否計入、或平均工資認定爭議，請再人工確認。
         </div>
 
         {error && <p className="text-sm text-rose-300">{error}</p>}

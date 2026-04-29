@@ -36,7 +36,7 @@ export default function LaborPension() {
         <p className="page-eyebrow">退休與長期累積</p>
         <h1 className="page-title">勞退提撥與累積試算</h1>
         <p className="page-subtitle">
-          依《勞工退休金條例》整理雇主 6% 提撥、自願提撥與長期複利結果。這裡是規劃工具，不是基金保證收益或正式核定金額。
+          依《勞工退休金條例》與 115/01/01 生效月提繳分級表整理雇主 6% 提撥、自願提撥與長期複利結果。這裡是規劃工具，不是基金保證收益或正式核定金額。
         </p>
       </section>
 
@@ -50,7 +50,7 @@ export default function LaborPension() {
             value={form.salary}
             onChange={e => set('salary', e.target.value)}
           />
-          <p className="fine-print mt-2">系統會自動對應站內月提繳工資級距表，方便快速試算。</p>
+          <p className="fine-print mt-2">系統會自動依 115/01/01 生效官方月提繳分級表對應級距，方便快速試算。</p>
         </div>
 
         <div>
@@ -110,7 +110,7 @@ export default function LaborPension() {
           <h2 className="mt-3 text-2xl font-extrabold text-white">{form.years} 年後的估算累積</h2>
 
           <div className="metric-tile mb-4 mt-5 text-sm text-slate-300">
-            月提繳工資級距：<span className="font-semibold text-white">{fmt(result.base)} 元</span>
+            適用月提繳工資級距：<span className="font-semibold text-white">{fmt(result.base)} 元</span>
           </div>
 
           <div className="space-y-2 mb-5">
@@ -160,11 +160,11 @@ export default function LaborPension() {
         <div className="mt-5 space-y-3 text-sm leading-7 text-slate-300">
           <div className="metric-tile">
             <p className="font-medium text-white mb-1">雇主強制提撥（6%）</p>
-            <p>依法，雇主每月須提撥不低於勞工月薪 6% 的金額至個人勞退帳戶，費用由雇主負擔，不從薪資扣除。</p>
+            <p>依法，雇主每月須按申報的月提繳工資提繳不低於 6% 至個人勞退帳戶，費用由雇主負擔，不從薪資扣除。</p>
           </div>
           <div className="metric-tile">
             <p className="font-medium text-white mb-1">自願提撥（最高 6%）</p>
-            <p>勞工可自願提撥，每月上限為薪資 6%。自願提撥金額可全額列為當年度個人所得扣除額，有效節稅！</p>
+            <p>勞工可依月提繳工資在 6% 範圍內自願提撥。自願提撥金額可全額列為當年度個人所得扣除額，但仍應以申報級距為準。</p>
           </div>
           <div className="metric-tile">
             <p className="font-medium text-white mb-1">何時可以領？</p>
@@ -172,13 +172,13 @@ export default function LaborPension() {
           </div>
           <div className="metric-tile">
             <p className="font-medium text-white mb-1">自願提撥節稅試算</p>
-            <p>假設月薪 4 萬、自願提撥 6%（2,400元/月），全年 28,800 元可申報扣除，</p>
-            <p>適用 12% 稅率可節省 <span className="font-bold text-white">3,456 元</span> 所得稅。</p>
+            <p>假設月薪 4 萬，對應月提繳工資級距為 40,100 元，自願提撥 6% 時每月約 2,406 元，全年約 28,872 元可申報扣除。</p>
+            <p>若適用 12% 稅率，約可節省 <span className="font-bold text-white">3,465 元</span> 所得稅。</p>
           </div>
           <div className="rounded-[22px] border border-amber-300/20 bg-amber-400/10 p-4">
             <p className="font-medium text-amber-100 mb-1">站內免責聲明</p>
             <p className="text-amber-50/90">
-              站內級距表與收益率是假設情境，目的是協助你比較提撥策略，而不是預測保證報酬。若你要作為退休規劃決策依據，建議再交叉比對官方試算工具與個人帳戶資料。
+              站內已套用 115/01/01 生效官方級距表；但收益率仍屬規劃假設，目的是協助你比較提撥策略，而不是預測保證報酬。若你要作為退休規劃決策依據，建議再交叉比對官方試算工具與個人帳戶資料。
             </p>
           </div>
         </div>
