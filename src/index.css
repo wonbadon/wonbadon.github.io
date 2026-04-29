@@ -121,6 +121,104 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 
+  .result-hero {
+    @apply relative overflow-hidden rounded-[28px] border border-sky-200 p-5 md:p-6;
+    background: linear-gradient(135deg, rgba(239, 246, 255, 0.98) 0%, rgba(255, 255, 255, 0.98) 50%, rgba(224, 242, 254, 0.92) 100%);
+    box-shadow: 0 16px 36px rgba(56, 189, 248, 0.12);
+  }
+
+  .result-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top right, rgba(125, 211, 252, 0.26) 0%, transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 34%);
+  }
+
+  .result-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .result-hero-warning {
+    @apply border-amber-200;
+    background: linear-gradient(135deg, rgba(255, 251, 235, 0.98) 0%, rgba(255, 255, 255, 0.98) 54%, rgba(254, 243, 199, 0.92) 100%);
+    box-shadow: 0 16px 36px rgba(245, 158, 11, 0.12);
+  }
+
+  .result-hero-warning::before {
+    background:
+      radial-gradient(circle at top right, rgba(253, 186, 116, 0.24) 0%, transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 34%);
+  }
+
+  .result-hero-label {
+    @apply text-[11px] font-bold uppercase tracking-[0.24em] text-sky-700;
+  }
+
+  .result-hero-warning .result-hero-label {
+    color: #b45309;
+  }
+
+  .result-hero-value-row {
+    @apply mt-4 flex items-end gap-2;
+  }
+
+  .result-hero-value {
+    @apply text-[2.6rem] font-extrabold leading-none text-slate-950 md:text-[3.25rem];
+  }
+
+  .result-hero-unit {
+    @apply mb-1 text-sm font-semibold text-slate-500;
+  }
+
+  .result-hero-note {
+    @apply mt-4 max-w-2xl text-sm leading-7 text-slate-600;
+  }
+
+  .result-meta-grid {
+    @apply mt-5 grid gap-3;
+  }
+
+  .result-meta-card {
+    @apply rounded-[22px] border border-white/70 bg-white/80 p-4;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  }
+
+  .result-meta-label {
+    @apply text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400;
+  }
+
+  .result-meta-value {
+    @apply mt-2 text-xl font-extrabold text-slate-950;
+  }
+
+  .result-meta-subtext {
+    @apply mt-1 text-sm leading-6 text-slate-600;
+  }
+
+  .result-breakdown {
+    @apply mt-5 space-y-3;
+  }
+
+  .result-breakdown-row {
+    @apply flex flex-col gap-3 rounded-[22px] border border-slate-200 bg-white/90 px-4 py-4 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .result-breakdown-title {
+    @apply text-sm font-semibold text-slate-950;
+  }
+
+  .result-breakdown-note {
+    @apply mt-1 text-xs leading-6 text-slate-500;
+  }
+
+  .result-breakdown-value {
+    @apply text-lg font-extrabold text-slate-950 sm:text-right;
+  }
+
   .btn-primary {
     @apply inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-extrabold text-white transition duration-200;
     background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
@@ -442,6 +540,84 @@
     height: 0.38rem;
     border-radius: 999px;
     background: #38bdf8;
+  }
+
+  @media (max-width: 640px) {
+    .home-directory-wrap {
+      @apply px-4 py-8;
+    }
+
+    .home-directory-title {
+      font-size: 2.65rem;
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .home-directory-subtitle {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      max-width: 28rem;
+    }
+
+    .home-directory-card {
+      @apply rounded-[24px] p-6;
+    }
+
+    .home-directory-icon {
+      @apply h-14 w-14 rounded-[18px];
+    }
+
+    .home-directory-icon svg {
+      @apply h-6 w-6;
+    }
+
+    .home-directory-card-title {
+      font-size: 1.45rem;
+    }
+
+    .home-directory-card-desc {
+      font-size: 0.94rem;
+      line-height: 1.8;
+    }
+
+    .home-directory-detail-grid {
+      @apply gap-3 pt-5;
+    }
+
+    .home-directory-detail-text {
+      line-height: 1.65;
+    }
+
+    .home-directory-chip {
+      @apply px-2.5 py-1 text-[11px];
+    }
+
+    .home-directory-section {
+      @apply pt-10;
+    }
+
+    .home-directory-section-title {
+      font-size: 2rem;
+      line-height: 1.04;
+    }
+
+    .home-directory-section-desc {
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    .home-directory-support-card {
+      @apply rounded-[22px] p-5;
+    }
+
+    .home-directory-support-title {
+      font-size: 1.35rem;
+    }
+
+    .home-directory-support-desc,
+    .home-directory-support-list li {
+      line-height: 1.7;
+    }
   }
 
   .notice-card {

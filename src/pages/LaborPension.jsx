@@ -115,43 +115,66 @@ export default function LaborPension() {
           <p className="page-eyebrow">試算結果</p>
           <h2 className="mt-3 text-2xl font-extrabold text-slate-950">{form.years} 年後的估算累積</h2>
 
-          <div className="metric-tile mb-4 mt-5 text-sm text-slate-600">
-            適用月提繳工資級距：<span className="font-semibold text-slate-950">{fmt(result.base)} 元</span>
+          <div className="result-hero mt-5">
+            <p className="result-hero-label">{form.years} 年後估算累積</p>
+            <div className="result-hero-value-row">
+              <span className="result-hero-value">{fmt(result.totalAccumulated)}</span>
+              <span className="result-hero-unit">元</span>
+            </div>
+            <p className="result-hero-note">
+              以年化 {form.annualReturnRate}%、每月固定提撥與月複利方式估算，用來比較提撥策略，不代表保證收益。
+            </p>
+
+            <div className="result-meta-grid md:grid-cols-2">
+              <div className="result-meta-card">
+                <p className="result-meta-label">月提繳級距</p>
+                <p className="result-meta-value">{fmt(result.base)} 元</p>
+                <p className="result-meta-subtext">已依 115/01/01 官方分級表對應</p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">每月合計提撥</p>
+                <p className="result-meta-value">{fmt(result.totalMonthly)} 元</p>
+                <p className="result-meta-subtext">
+                  雇主 6%{result.voluntaryMonthly > 0 ? ` + 自提 ${form.voluntaryRate}%` : '，目前未含自提'}
+                </p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">本金合計</p>
+                <p className="result-meta-value">{fmt(result.totalContributed)} 元</p>
+                <p className="result-meta-subtext">{form.years} 年內實際提撥累計</p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">試算收益</p>
+                <p className="result-meta-value">{fmt(result.earnings)} 元</p>
+                <p className="result-meta-subtext">依年化 {form.annualReturnRate}% 月複利估算</p>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-2 mb-5">
-            <div className="flex items-center justify-between border-b border-slate-200 py-3 text-sm">
-              <span className="text-slate-600">雇主每月提撥（6%）</span>
-              <span className="font-semibold text-slate-950">{fmt(result.employerMonthly)} 元</span>
+          <div className="result-breakdown">
+            <div className="result-breakdown-row">
+              <div>
+                <p className="result-breakdown-title">雇主每月提撥</p>
+                <p className="result-breakdown-note">依法固定按月提繳工資級距的 6%</p>
+              </div>
+              <span className="result-breakdown-value">{fmt(result.employerMonthly)} 元</span>
             </div>
             {result.voluntaryMonthly > 0 && (
-              <div className="flex items-center justify-between border-b border-slate-200 py-3 text-sm">
-                <span className="text-slate-600">自願提撥（{form.voluntaryRate}%）</span>
-                <span className="font-semibold text-slate-950">{fmt(result.voluntaryMonthly)} 元</span>
+              <div className="result-breakdown-row">
+                <div>
+                  <p className="result-breakdown-title">自願提撥</p>
+                  <p className="result-breakdown-note">依你設定的 {form.voluntaryRate}% 比例另行提撥</p>
+                </div>
+                <span className="result-breakdown-value">{fmt(result.voluntaryMonthly)} 元</span>
               </div>
             )}
-            <div className="flex items-center justify-between border-b border-slate-200 py-3 text-sm">
-              <span className="font-medium text-slate-700">每月合計提撥</span>
-              <span className="font-bold text-slate-950">{fmt(result.totalMonthly)} 元</span>
+            <div className="result-breakdown-row">
+              <div>
+                <p className="result-breakdown-title">每月合計提撥</p>
+                <p className="result-breakdown-note">雇主提撥與自提合併後，每月進帳的總額</p>
+              </div>
+              <span className="result-breakdown-value">{fmt(result.totalMonthly)} 元</span>
             </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="metric-tile text-center">
-              <p className="text-xs text-slate-400 mb-1">本金合計</p>
-              <p className="text-lg font-bold text-slate-950">{fmt(result.totalContributed)}</p>
-              <p className="text-xs text-slate-500">元</p>
-            </div>
-            <div className="rounded-[22px] border border-emerald-200 bg-emerald-50 p-4 text-center">
-              <p className="mb-1 text-xs text-emerald-700">試算收益</p>
-              <p className="text-lg font-bold text-emerald-800">{fmt(result.earnings)}</p>
-              <p className="text-xs text-emerald-600">元</p>
-            </div>
-          </div>
-
-          <div className="result-card flex justify-between items-center">
-            <span className="font-bold text-slate-950">{form.years} 年後估算累積</span>
-            <span className="text-2xl font-bold text-sky-700">{fmt(result.totalAccumulated)} 元</span>
           </div>
 
           <p className="fine-print mt-4">

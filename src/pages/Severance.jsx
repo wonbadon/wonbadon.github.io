@@ -15,6 +15,7 @@ export default function Severance() {
   const [form, setForm] = useState(initialForm)
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
+  const totalYears = Number(form.yearsNew || 0) + Number(form.yearsOld || 0)
 
   function set(k, v) {
     setForm(f => ({ ...f, [k]: v }))
@@ -27,7 +28,6 @@ export default function Severance() {
       setError('請輸入平均工資')
       return
     }
-    const totalYears = Number(form.yearsNew || 0) + Number(form.yearsOld || 0)
     if (totalYears <= 0) {
       setError('請輸入年資（至少填寫一種制度）')
       return
@@ -115,30 +115,58 @@ export default function Severance() {
           <p className="page-eyebrow">試算結果</p>
           <h2 className="mt-3 text-2xl font-extrabold text-slate-950">資遣費估算</h2>
 
-          <div className="space-y-3 mb-5 mt-5">
+          <div className="result-hero mt-5">
+            <p className="result-hero-label">資遣費合計</p>
+            <div className="result-hero-value-row">
+              <span className="result-hero-value">{fmt(result.total)}</span>
+              <span className="result-hero-unit">元</span>
+            </div>
+            <p className="result-hero-note">
+              本結果只含資遣費本身，不含預告工資、未休特休結清、謀職假工資與其他補償項目。
+            </p>
+
+            <div className="result-meta-grid md:grid-cols-3">
+              <div className="result-meta-card">
+                <p className="result-meta-label">平均工資</p>
+                <p className="result-meta-value">{fmt(Number(form.avgSalary))} 元</p>
+                <p className="result-meta-subtext">請先按法定口徑人工確認</p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">新制月數</p>
+                <p className="result-meta-value">{result.newMonths.toFixed(1)} 個月</p>
+                <p className="result-meta-subtext">
+                  {Number(form.yearsNew || 0) > 0 ? `${form.yearsNew} 年 × 0.5 月（上限 6 月）` : '未填新制年資'}
+                </p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">舊制月數</p>
+                <p className="result-meta-value">{result.oldMonths.toFixed(1)} 個月</p>
+                <p className="result-meta-subtext">
+                  {Number(form.yearsOld || 0) > 0 ? `${form.yearsOld} 年 × 1 月` : '未填舊制年資'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="result-breakdown">
             {result.newSystemPay > 0 && (
-              <div className="flex justify-between items-center border-b border-slate-200 py-3">
+              <div className="result-breakdown-row">
                 <div>
-                  <p className="text-sm font-medium text-slate-950">新制資遣費</p>
-                  <p className="text-xs text-slate-400">{form.yearsNew} 年 × 0.5 月 = {result.newMonths.toFixed(1)} 個月平均工資（上限 6 月）</p>
+                  <p className="result-breakdown-title">新制資遣費</p>
+                  <p className="result-breakdown-note">{form.yearsNew} 年 × 0.5 月 = {result.newMonths.toFixed(1)} 個月平均工資（上限 6 月）</p>
                 </div>
-                <span className="font-semibold text-slate-950">{fmt(result.newSystemPay)} 元</span>
+                <span className="result-breakdown-value">{fmt(result.newSystemPay)} 元</span>
               </div>
             )}
             {result.oldSystemPay > 0 && (
-              <div className="flex justify-between items-center border-b border-slate-200 py-3">
+              <div className="result-breakdown-row">
                 <div>
-                  <p className="text-sm font-medium text-slate-950">舊制資遣費</p>
-                  <p className="text-xs text-slate-400">{form.yearsOld} 年 × 1 月 = {result.oldMonths.toFixed(1)} 個月平均工資</p>
+                  <p className="result-breakdown-title">舊制資遣費</p>
+                  <p className="result-breakdown-note">{form.yearsOld} 年 × 1 月 = {result.oldMonths.toFixed(1)} 個月平均工資</p>
                 </div>
-                <span className="font-semibold text-slate-950">{fmt(result.oldSystemPay)} 元</span>
+                <span className="result-breakdown-value">{fmt(result.oldSystemPay)} 元</span>
               </div>
             )}
-          </div>
-
-          <div className="result-card flex justify-between items-center">
-            <span className="font-bold text-slate-950">資遣費合計</span>
-            <span className="text-2xl font-bold text-sky-700">{fmt(result.total)} 元</span>
           </div>
 
           <p className="fine-print mt-4">

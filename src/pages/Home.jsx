@@ -167,32 +167,32 @@ export default function Home() {
           </ol>
         </nav>
 
-        <div className="mt-4 max-w-3xl">
+        <div className="mt-3 max-w-3xl sm:mt-4">
           <h1 className="home-directory-title">勞工權益計算工具</h1>
-          <p className="home-directory-subtitle mt-4">
+          <p className="home-directory-subtitle mt-3 sm:mt-4">
             所有工具依據 2026 年最新勞基法與勞退級距資料整理，免費使用、即時計算。
           </p>
         </div>
 
-        <section className="home-directory-grid mt-10">
+        <section className="home-directory-grid mt-8 sm:mt-10">
           {tools.map(({ to, icon: Icon, category, badge, law, title, desc, suitable, inputs, output }) => (
             <Link key={to} to={to} className="home-directory-card">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-wrap items-start justify-between gap-3">
                 <span className="home-directory-icon" aria-hidden="true">
                   <Icon />
                 </span>
 
-                <div className="flex flex-wrap justify-end gap-2">
+                <div className="flex w-full flex-wrap justify-start gap-2 sm:w-auto sm:justify-end">
                   <span className="home-directory-tag home-directory-tag-primary">{category}</span>
                   <span className="home-directory-tag">{badge}</span>
                 </div>
               </div>
 
-              <p className="home-directory-law mt-7">法源｜{law}</p>
-              <h2 className="home-directory-card-title mt-3">{title}</h2>
-              <p className="home-directory-card-desc mt-4">{desc}</p>
+              <p className="home-directory-law mt-5 sm:mt-7">法源｜{law}</p>
+              <h2 className="home-directory-card-title mt-2 sm:mt-3">{title}</h2>
+              <p className="home-directory-card-desc mt-3 sm:mt-4">{desc}</p>
 
-              <div className="home-directory-detail-grid mt-6">
+              <div className="home-directory-detail-grid mt-5 sm:mt-6">
                 <div>
                   <p className="home-directory-detail-label">適用情境</p>
                   <p className="home-directory-detail-text mt-2">{suitable}</p>
@@ -204,7 +204,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-6">
+              <div className="mt-5 sm:mt-6">
                 <p className="home-directory-detail-label">需要資料</p>
                 <div className="home-directory-chip-wrap mt-3">
                   {inputs.map((item) => (
@@ -213,7 +213,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="home-directory-cta mt-7">
+              <div className="home-directory-cta mt-6 sm:mt-7">
                 立即試算
                 <ArrowIcon />
               </div>
@@ -221,29 +221,29 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="home-directory-section mt-16">
+        <section className="home-directory-section mt-14 sm:mt-16">
           <div className="max-w-3xl">
             <p className="home-directory-kicker">把工具站補成完整網站</p>
             <h2 className="home-directory-section-title mt-3">如果你還不確定該先算什麼，先從這幾頁進來</h2>
-            <p className="home-directory-section-desc mt-4">
+            <p className="home-directory-section-desc mt-3 sm:mt-4">
               首頁不只放入口，也把新手導覽、情境拆解、常見問題與站點邊界整理好，讓你不用一進站就直接掉進法條細節。
             </p>
           </div>
 
-          <div className="home-directory-support-grid mt-8">
+          <div className="home-directory-support-grid mt-6 sm:mt-8">
             {resources.map(({ to, eyebrow, title, desc, points }) => (
               <Link key={to} to={to} className="home-directory-support-card">
                 <p className="home-directory-support-eyebrow">{eyebrow}</p>
                 <h3 className="home-directory-support-title mt-3">{title}</h3>
-                <p className="home-directory-support-desc mt-4">{desc}</p>
+                <p className="home-directory-support-desc mt-3 sm:mt-4">{desc}</p>
 
-                <ul className="home-directory-support-list mt-5">
+                <ul className="home-directory-support-list mt-4 sm:mt-5">
                   {points.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
 
-                <div className="home-directory-cta mt-7">
+                <div className="home-directory-cta mt-6 sm:mt-7">
                   查看內容
                   <ArrowIcon />
                 </div>

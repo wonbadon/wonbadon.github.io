@@ -26,6 +26,7 @@ export default function Overtime() {
   const payNote = form.salaryType === 'monthly'
     ? '月薪制結果顯示本次應另補發的金額；既有月薪本身不重複列入。'
     : '時薪制結果顯示本次出勤依法應給金額；國定假日 / 休假日 8 小時內按出勤時數加倍計算。'
+  const enteredTotalHours = Number(form.weekdayHours || 0) + Number(form.restDayHours || 0) + Number(form.holidayHours || 0)
 
   function set(k, v) {
     setForm(f => ({ ...f, [k]: v }))
@@ -39,8 +40,7 @@ export default function Overtime() {
       setError('請輸入正確的薪資')
       return
     }
-    const totalHours = Number(form.weekdayHours || 0) + Number(form.restDayHours || 0) + Number(form.holidayHours || 0)
-    if (totalHours <= 0) {
+    if (enteredTotalHours <= 0) {
       setError('請至少輸入一種加班時數')
       return
     }
@@ -167,42 +167,70 @@ export default function Overtime() {
 
       {result && (
         <div className="section-card">
-          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="page-eyebrow">試算結果</p>
-              <h2 className="mt-2 text-2xl font-extrabold text-slate-950">本次依法應給金額</h2>
+          <div>
+            <p className="page-eyebrow">試算結果</p>
+            <h2 className="mt-2 text-2xl font-extrabold text-slate-950">本次依法應給金額</h2>
+          </div>
+
+          <div className="result-hero mt-5">
+            <p className="result-hero-label">本次應給合計</p>
+            <div className="result-hero-value-row">
+              <span className="result-hero-value">{fmt(result.total)}</span>
+              <span className="result-hero-unit">元</span>
             </div>
-            <p className="max-w-md text-sm leading-7 text-slate-600">{payNote}</p>
+            <p className="result-hero-note">{payNote}</p>
+
+            <div className="result-meta-grid md:grid-cols-3">
+              <div className="result-meta-card">
+                <p className="result-meta-label">適用時薪</p>
+                <p className="result-meta-value">{fmt(result.hourlyRate)} 元</p>
+                <p className="result-meta-subtext">
+                  {form.salaryType === 'monthly' ? '依月薪 ÷ 30 ÷ 8 換算' : '依你輸入的時薪直接計算'}
+                </p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">本次工時</p>
+                <p className="result-meta-value">{enteredTotalHours} 小時</p>
+                <p className="result-meta-subtext">平日、休息日、國定假日分開計價</p>
+              </div>
+              <div className="result-meta-card">
+                <p className="result-meta-label">計算基準</p>
+                <p className="result-meta-value">{form.salaryType === 'monthly' ? '月薪制' : '時薪制'}</p>
+                <p className="result-meta-subtext">
+                  {form.salaryType === 'monthly' ? '顯示本次應另補發金額' : '顯示本次依法應給總額'}
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="metric-tile mb-4 text-sm text-slate-600">
-            適用時薪：<span className="font-semibold text-slate-950">{fmt(result.hourlyRate)} 元</span>
-          </div>
-
-          <div className="mb-5 space-y-3">
+          <div className="result-breakdown">
             {result.weekdayPay > 0 && (
-              <div className="flex items-center justify-between border-b border-slate-200 py-3">
-                <span className="text-sm text-slate-600">平日延長工時（{form.weekdayHours} 小時）</span>
-                <span className="font-semibold text-slate-950">{fmt(result.weekdayPay)} 元</span>
+              <div className="result-breakdown-row">
+                <div>
+                  <p className="result-breakdown-title">平日延長工時</p>
+                  <p className="result-breakdown-note">{form.weekdayHours} 小時，前 2 小時 4/3，第 3 小時起 5/3</p>
+                </div>
+                <span className="result-breakdown-value">{fmt(result.weekdayPay)} 元</span>
               </div>
             )}
             {result.restDayPay > 0 && (
-              <div className="flex items-center justify-between border-b border-slate-200 py-3">
-                <span className="text-sm text-slate-600">休息日出勤（{form.restDayHours} 小時）</span>
-                <span className="font-semibold text-slate-950">{fmt(result.restDayPay)} 元</span>
+              <div className="result-breakdown-row">
+                <div>
+                  <p className="result-breakdown-title">休息日出勤</p>
+                  <p className="result-breakdown-note">{form.restDayHours} 小時，依 1.33 / 1.67 / 2.67 倍分段計算</p>
+                </div>
+                <span className="result-breakdown-value">{fmt(result.restDayPay)} 元</span>
               </div>
             )}
             {result.holidayPay > 0 && (
-              <div className="flex items-center justify-between border-b border-slate-200 py-3">
-                <span className="text-sm text-slate-600">國定假日 / 休假日出勤（{form.holidayHours} 小時）</span>
-                <span className="font-semibold text-slate-950">{fmt(result.holidayPay)} 元</span>
+              <div className="result-breakdown-row">
+                <div>
+                  <p className="result-breakdown-title">國定假日 / 休假日出勤</p>
+                  <p className="result-breakdown-note">{form.holidayHours} 小時，8 小時內依第 39 條，超過再接第 24 條加成</p>
+                </div>
+                <span className="result-breakdown-value">{fmt(result.holidayPay)} 元</span>
               </div>
             )}
-          </div>
-
-          <div className="result-card flex justify-between items-center">
-            <span className="font-bold text-slate-950">本次應給合計</span>
-            <span className="text-2xl font-bold text-sky-700">{fmt(result.total)} 元</span>
           </div>
 
           <p className="fine-print mt-4">

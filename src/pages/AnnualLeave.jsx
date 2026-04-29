@@ -11,6 +11,9 @@ export default function AnnualLeave() {
   const [startDate, setStartDate] = useState('')
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
+  const yearsWorkedLabel = result
+    ? `${Math.floor(result.yearsWorked)} 年 ${Math.round((result.yearsWorked % 1) * 12)} 個月`
+    : ''
 
   function calculate() {
     if (!startDate) { setError('請選擇到職日期'); return }
@@ -60,33 +63,36 @@ export default function AnnualLeave() {
           <p className="page-eyebrow">試算結果</p>
           <h2 className="mt-3 text-2xl font-extrabold text-slate-950">目前法定特休資格</h2>
 
-          <div className="metric-tile mb-4 mt-5 text-sm text-slate-600">
-            目前年資：<span className="font-semibold text-slate-950">
-              {Math.floor(result.yearsWorked)} 年{' '}
-              {Math.round((result.yearsWorked % 1) * 12)} 個月
-            </span>
-          </div>
-
-          {result.days === 0 ? (
-            <div className="rounded-[24px] border border-amber-200 bg-amber-50 p-5">
-              <p className="mb-1 font-semibold text-amber-800">尚未達到法定特休資格</p>
-              <p className="text-sm leading-7 text-amber-700">
-                還需 <span className="font-bold">{result.monthsToNext}</span> 個月後（滿6個月），
-                即可享有 <span className="font-bold">3天</span> 特休
-              </p>
+          <div className={result.days === 0 ? 'result-hero result-hero-warning mt-5' : 'result-hero mt-5'}>
+            <p className="result-hero-label">{result.days === 0 ? '目前狀態' : '目前法定特休'}</p>
+            <div className="result-hero-value-row">
+              <span className="result-hero-value">{result.days}</span>
+              <span className="result-hero-unit">天</span>
             </div>
-          ) : (
-            <>
-              <div className="result-card flex justify-between items-center mb-4">
-                <span className="font-bold text-slate-950">目前法定特休天數</span>
-                <span className="text-2xl font-bold text-sky-700">{result.days} 天</span>
+            <p className="result-hero-note">
+              {result.days === 0
+                ? `尚未達到法定特休資格，還需 ${result.monthsToNext} 個月後（滿 6 個月）才會取得 3 天。`
+                : `目前年資約 ${yearsWorkedLabel}。再 ${Math.ceil(result.monthsToNext)} 個月後，法定特休將升級為 ${result.nextDays} 天。`}
+            </p>
+
+            <div className="result-meta-grid md:grid-cols-3">
+              <div className="result-meta-card">
+                <p className="result-meta-label">目前年資</p>
+                <p className="result-meta-value">{yearsWorkedLabel}</p>
+                <p className="result-meta-subtext">以滿整月口徑計算</p>
               </div>
-              <div className="rounded-[22px] border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
-                再 <span className="font-bold">{Math.ceil(result.monthsToNext)}</span> 個月後特休將升級為{' '}
-                <span className="font-bold">{result.nextDays} 天</span>
+              <div className="result-meta-card">
+                <p className="result-meta-label">下一門檻</p>
+                <p className="result-meta-value">{result.days === 0 ? '滿 6 個月' : `升級為 ${result.nextDays} 天`}</p>
+                <p className="result-meta-subtext">約再 {result.days === 0 ? result.monthsToNext : Math.ceil(result.monthsToNext)} 個月</p>
               </div>
-            </>
-          )}
+              <div className="result-meta-card">
+                <p className="result-meta-label">判定邊界</p>
+                <p className="result-meta-value">{result.days === 0 ? '尚未取得' : '已達法定資格'}</p>
+                <p className="result-meta-subtext">不含曆年制、先行給假與遞延換算</p>
+              </div>
+            </div>
+          </div>
 
           <p className="fine-print mt-4">
             * 若公司採曆年制、先行給假、年中轉制或未休遞延，本結果可能與內部制度換算後的實際天數不同。
