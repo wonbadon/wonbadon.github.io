@@ -258,7 +258,7 @@ export default function Layout({ children }) {
 
             <div>
               <h3 className="text-sm font-extrabold text-slate-950">試算工具</h3>
-              <ul className="mt-4 space-y-2 text-sm text-slate-600">
+              <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm text-slate-600 sm:grid-cols-2">
                 {toolLinks.map(({ to, label }) => (
                   <li key={to}>
                     <Link to={to} className="transition hover:text-sky-700">{label}</Link>
