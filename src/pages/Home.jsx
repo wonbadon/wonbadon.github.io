@@ -54,30 +54,63 @@ function PensionIcon() {
   )
 }
 
+function ArrowIcon() {
+  return (
+    <IconBase className="home-directory-arrow">
+      <path d="M7 17 17 7" />
+      <path d="M9.5 7H17v7.5" />
+    </IconBase>
+  )
+}
+
 const tools = [
   {
     to: '/overtime',
     icon: OvertimeIcon,
+    category: '工時計算',
+    badge: '核心工具',
+    law: '第 24 條 / 第 39 條',
     title: '加班費計算機',
-    desc: '依勞基法第 24 條，計算平日、休息日、國定假日加班費。',
+    desc: '依勞基法口徑，整理平日、休息日、國定假日與休假日出勤金額。',
+    suitable: '平日延長工時、休息日出勤、國定假日加班。',
+    inputs: ['月薪或時薪', '加班時數', '假別'],
+    output: '應給金額、倍率口徑、常見錯用法條提醒。',
   },
   {
     to: '/annual-leave',
     icon: LeaveIcon,
+    category: '假勤權益',
+    badge: '年資門檻',
+    law: '第 38 條',
     title: '特休天數計算',
-    desc: '依勞基法第 38 條，輸入到職日算出法定特休天數。',
+    desc: '依勞基法第 38 條，從到職日推算目前法定特休資格與下一個門檻。',
+    suitable: '剛滿 6 個月、滿 1 年前後，或想確認特休資格時。',
+    inputs: ['到職日期', '查詢日期'],
+    output: '法定特休天數、目前年資狀態、下一個里程碑。',
   },
   {
     to: '/severance',
     icon: SeveranceIcon,
+    category: '離職權益',
+    badge: '新舊制拆算',
+    law: '第 17 條 / 勞退條例第 12 條',
     title: '資遣費計算機',
-    desc: '輸入平均工資與年資，算出新制或舊制的資遣費金額。',
+    desc: '依平均工資與年資拆算新制、舊制資遣費，避免把兩套制度混在一起。',
+    suitable: '收到資遣通知、非自願離職，或要先抓合理金額區間時。',
+    inputs: ['平均工資', '新制年資', '舊制年資'],
+    output: '新舊制分開結果、上限差異與試算總額。',
   },
   {
     to: '/labor-pension',
     icon: PensionIcon,
+    category: '退休規劃',
+    badge: '級距試算',
+    law: '勞工退休金條例',
     title: '勞退退休金試算',
-    desc: '估算勞退新制每月提繳金額與長期累積結果。',
+    desc: '依最新提繳級距估算雇主提撥、自提金額，以及長期累積結果。',
+    suitable: '想確認目前提繳級距、自提比例與退休帳戶成長差異時。',
+    inputs: ['月薪', '自提比例', '年限'],
+    output: '提繳級距、每月提撥金額、長期累積試算。',
   },
 ]
 
@@ -105,13 +138,48 @@ export default function Home() {
         </div>
 
         <section className="home-directory-grid mt-10">
-          {tools.map(({ to, icon: Icon, title, desc }) => (
+          {tools.map(({ to, icon: Icon, category, badge, law, title, desc, suitable, inputs, output }) => (
             <Link key={to} to={to} className="home-directory-card">
-              <span className="home-directory-icon" aria-hidden="true">
-                <Icon />
-              </span>
-              <h2 className="home-directory-card-title mt-7">{title}</h2>
+              <div className="flex items-start justify-between gap-3">
+                <span className="home-directory-icon" aria-hidden="true">
+                  <Icon />
+                </span>
+
+                <div className="flex flex-wrap justify-end gap-2">
+                  <span className="home-directory-tag home-directory-tag-primary">{category}</span>
+                  <span className="home-directory-tag">{badge}</span>
+                </div>
+              </div>
+
+              <p className="home-directory-law mt-7">法源｜{law}</p>
+              <h2 className="home-directory-card-title mt-3">{title}</h2>
               <p className="home-directory-card-desc mt-4">{desc}</p>
+
+              <div className="home-directory-detail-grid mt-6">
+                <div>
+                  <p className="home-directory-detail-label">適用情境</p>
+                  <p className="home-directory-detail-text mt-2">{suitable}</p>
+                </div>
+
+                <div>
+                  <p className="home-directory-detail-label">你會看到</p>
+                  <p className="home-directory-detail-text mt-2">{output}</p>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <p className="home-directory-detail-label">需要資料</p>
+                <div className="home-directory-chip-wrap mt-3">
+                  {inputs.map((item) => (
+                    <span key={item} className="home-directory-chip">{item}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="home-directory-cta mt-7">
+                立即試算
+                <ArrowIcon />
+              </div>
             </Link>
           ))}
         </section>
