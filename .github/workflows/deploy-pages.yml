@@ -40,24 +40,54 @@ jobs:
             echo "VITE_SITE_URL=https://wonbadon.github.io/taiwan-labor-calculator/" >> $GITHUB_ENV
           fi
 
-      - name: Build site
+      - name: Export optional site variables
         env:
-          VITE_SITE_URL: ${{ env.VITE_SITE_URL }}
-          VITE_ADS_ENABLED: ${{ vars.VITE_ADS_ENABLED }}
-          VITE_ADS_DEBUG: ${{ vars.VITE_ADS_DEBUG }}
-          VITE_ADS_PROVIDER: ${{ vars.VITE_ADS_PROVIDER }}
-          VITE_ADSENSE_CLIENT: ${{ vars.VITE_ADSENSE_CLIENT }}
-          VITE_ADSENSE_HOME_SLOT: ${{ vars.VITE_ADSENSE_HOME_SLOT }}
-          VITE_ADSENSE_PAGE_SLOT: ${{ vars.VITE_ADSENSE_PAGE_SLOT }}
-          VITE_ADSENSE_CONTENT_SLOT: ${{ vars.VITE_ADSENSE_CONTENT_SLOT }}
-          VITE_LEAD_CTA_ENABLED: ${{ vars.VITE_LEAD_CTA_ENABLED }}
-          VITE_LEAD_CTA_DEBUG: ${{ vars.VITE_LEAD_CTA_DEBUG }}
-          VITE_LEAD_CTA_TITLE: ${{ vars.VITE_LEAD_CTA_TITLE }}
-          VITE_LEAD_CTA_BODY: ${{ vars.VITE_LEAD_CTA_BODY }}
-          VITE_LEAD_CTA_PRIMARY_LABEL: ${{ vars.VITE_LEAD_CTA_PRIMARY_LABEL }}
-          VITE_LEAD_CTA_PRIMARY_URL: ${{ vars.VITE_LEAD_CTA_PRIMARY_URL }}
-          VITE_LEAD_CTA_SECONDARY_LABEL: ${{ vars.VITE_LEAD_CTA_SECONDARY_LABEL }}
-          VITE_LEAD_CTA_SECONDARY_URL: ${{ vars.VITE_LEAD_CTA_SECONDARY_URL }}
+          RAW_VITE_ADS_ENABLED: ${{ vars.VITE_ADS_ENABLED }}
+          RAW_VITE_ADS_DEBUG: ${{ vars.VITE_ADS_DEBUG }}
+          RAW_VITE_ADS_PROVIDER: ${{ vars.VITE_ADS_PROVIDER }}
+          RAW_VITE_ADSENSE_CLIENT: ${{ vars.VITE_ADSENSE_CLIENT }}
+          RAW_VITE_ADSENSE_HOME_SLOT: ${{ vars.VITE_ADSENSE_HOME_SLOT }}
+          RAW_VITE_ADSENSE_PAGE_SLOT: ${{ vars.VITE_ADSENSE_PAGE_SLOT }}
+          RAW_VITE_ADSENSE_CONTENT_SLOT: ${{ vars.VITE_ADSENSE_CONTENT_SLOT }}
+          RAW_VITE_LEAD_CTA_ENABLED: ${{ vars.VITE_LEAD_CTA_ENABLED }}
+          RAW_VITE_LEAD_CTA_DEBUG: ${{ vars.VITE_LEAD_CTA_DEBUG }}
+          RAW_VITE_LEAD_CTA_TITLE: ${{ vars.VITE_LEAD_CTA_TITLE }}
+          RAW_VITE_LEAD_CTA_BODY: ${{ vars.VITE_LEAD_CTA_BODY }}
+          RAW_VITE_LEAD_CTA_PRIMARY_LABEL: ${{ vars.VITE_LEAD_CTA_PRIMARY_LABEL }}
+          RAW_VITE_LEAD_CTA_PRIMARY_URL: ${{ vars.VITE_LEAD_CTA_PRIMARY_URL }}
+          RAW_VITE_LEAD_CTA_SECONDARY_LABEL: ${{ vars.VITE_LEAD_CTA_SECONDARY_LABEL }}
+          RAW_VITE_LEAD_CTA_SECONDARY_URL: ${{ vars.VITE_LEAD_CTA_SECONDARY_URL }}
+        run: |
+          set_optional_var() {
+            local key="$1"
+            local value="$2"
+
+            case "$value" in
+              ''|null|undefined)
+                return
+                ;;
+            esac
+
+            echo "$key=$value" >> "$GITHUB_ENV"
+          }
+
+          set_optional_var VITE_ADS_ENABLED "$RAW_VITE_ADS_ENABLED"
+          set_optional_var VITE_ADS_DEBUG "$RAW_VITE_ADS_DEBUG"
+          set_optional_var VITE_ADS_PROVIDER "$RAW_VITE_ADS_PROVIDER"
+          set_optional_var VITE_ADSENSE_CLIENT "$RAW_VITE_ADSENSE_CLIENT"
+          set_optional_var VITE_ADSENSE_HOME_SLOT "$RAW_VITE_ADSENSE_HOME_SLOT"
+          set_optional_var VITE_ADSENSE_PAGE_SLOT "$RAW_VITE_ADSENSE_PAGE_SLOT"
+          set_optional_var VITE_ADSENSE_CONTENT_SLOT "$RAW_VITE_ADSENSE_CONTENT_SLOT"
+          set_optional_var VITE_LEAD_CTA_ENABLED "$RAW_VITE_LEAD_CTA_ENABLED"
+          set_optional_var VITE_LEAD_CTA_DEBUG "$RAW_VITE_LEAD_CTA_DEBUG"
+          set_optional_var VITE_LEAD_CTA_TITLE "$RAW_VITE_LEAD_CTA_TITLE"
+          set_optional_var VITE_LEAD_CTA_BODY "$RAW_VITE_LEAD_CTA_BODY"
+          set_optional_var VITE_LEAD_CTA_PRIMARY_LABEL "$RAW_VITE_LEAD_CTA_PRIMARY_LABEL"
+          set_optional_var VITE_LEAD_CTA_PRIMARY_URL "$RAW_VITE_LEAD_CTA_PRIMARY_URL"
+          set_optional_var VITE_LEAD_CTA_SECONDARY_LABEL "$RAW_VITE_LEAD_CTA_SECONDARY_LABEL"
+          set_optional_var VITE_LEAD_CTA_SECONDARY_URL "$RAW_VITE_LEAD_CTA_SECONDARY_URL"
+
+      - name: Build site
         run: npm run build
 
       - name: Configure Pages
