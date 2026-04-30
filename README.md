@@ -162,6 +162,14 @@ git config sync.secondaryRemote user-site
 npm run sync:site -- "你的提交訊息"
 ```
 
+如果你已經安裝 GitHub CLI 並完成登入，也可以先執行：
+
+```bash
+powershell -ExecutionPolicy Bypass -File ./scripts/bootstrap-user-site.ps1
+```
+
+這會自動建立 `wonbadon.github.io`、加入 `user-site` remote，並把之後的同步腳本設成會一起推到根站。
+
 現在的同步腳本會先推 `origin`，如果你有設定 `sync.secondaryRemote`，也會一起推到根站 repo。
 
 這份程式也已經支援兩種網址：
