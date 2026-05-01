@@ -11,6 +11,7 @@ const adsTxtPath = path.join(distDir, 'ads.txt')
 const DEFAULT_SITE_URL = 'https://wonbadon.github.io/taiwan-labor-calculator/'
 const ADSENSE_SCRIPT_ID = 'adsense-script'
 const GOOGLE_SELLER_ID = 'f08c47fec0942fa0'
+const SOCIAL_IMAGE_PATH = 'social-card.svg'
 
 function normalizeSiteUrl(value) {
   const raw = (value || DEFAULT_SITE_URL).trim()
@@ -29,6 +30,31 @@ function getAdsenseClient(value) {
   return value ? value.trim() : ''
 }
 
+function buildAssetUrl(siteUrl, assetPath) {
+  return new URL(assetPath.replace(/^\//, ''), siteUrl).toString()
+}
+
+function buildWebsiteStructuredData(siteUrl, socialImageUrl) {
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: '台灣勞工權益計算器',
+      alternateName: '勞工權益試算工具',
+      url: siteUrl,
+      description: '免費試算加班費、特休、資遣費、勞退、勞健保與退休規劃，依 2026 最新勞基法與級距整理。',
+      inLanguage: 'zh-TW',
+      image: socialImageUrl,
+      publisher: {
+        '@type': 'Person',
+        name: 'wonbadon',
+      },
+    },
+    null,
+    2,
+  )
+}
+
 function upsertAdsenseScript(html, adsenseClient) {
   const scriptRegex = /\n?\s*<script[^>]*src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=[^"]*"[^>]*><\/script>/
   const cleanHtml = html.replace(scriptRegex, '')
@@ -43,10 +69,21 @@ function upsertAdsenseScript(html, adsenseClient) {
 
 async function rewriteIndexHtml(siteUrl, adsenseClient) {
   const html = await readFile(indexPath, 'utf8')
+  const socialImageUrl = buildAssetUrl(siteUrl, SOCIAL_IMAGE_PATH)
+  const structuredData = buildWebsiteStructuredData(siteUrl, socialImageUrl)
   const nextHtml = upsertAdsenseScript(
     html
-    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${siteUrl}" />`)
-    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${siteUrl}" />`),
+      .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${siteUrl}" />`)
+      .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${socialImageUrl}" />`)
+      .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${socialImageUrl}" />`)
+      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${siteUrl}" />`)
+      .replace(
+        /<script id="structured-data-website" type="application\/ld\+json">[\s\S]*?<\/script>/,
+        `    <script id="structured-data-website" type="application/ld+json">\n${structuredData
+          .split('\n')
+          .map((line) => `      ${line}`)
+          .join('\n')}\n    </script>`,
+      ),
     adsenseClient,
   )
 

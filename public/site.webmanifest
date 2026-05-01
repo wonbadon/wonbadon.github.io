@@ -1,0 +1,17 @@
+{
+  "name": "台灣勞工權益計算器",
+  "short_name": "勞工計算器",
+  "description": "免費試算加班費、特休、資遣費、勞退、勞健保與退休規劃。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

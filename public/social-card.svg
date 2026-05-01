@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="台灣勞工權益計算器分享圖">
+  <defs>
+    <linearGradient id="bg" x1="120" x2="1080" y1="40" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f172a" />
+      <stop offset="1" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="card" x1="180" x2="1020" y1="120" y2="510" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827" stop-opacity="0.94" />
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0.92" />
+    </linearGradient>
+    <filter id="shadow" width="1200" height="630" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+      <feOffset dy="18" />
+      <feGaussianBlur stdDeviation="24" />
+      <feColorMatrix values="0 0 0 0 0.0078 0 0 0 0 0.0471 0 0 0 0 0.1216 0 0 0 0.32 0" />
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1060" cy="108" r="150" fill="#38bdf8" fill-opacity="0.08" />
+  <circle cx="120" cy="560" r="190" fill="#f59e0b" fill-opacity="0.08" />
+  <g stroke="#334155" stroke-opacity="0.45">
+    <path d="M0 126h1200" />
+    <path d="M0 504h1200" />
+    <path d="M214 0v630" />
+    <path d="M986 0v630" />
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="96" y="78" width="1008" height="474" rx="36" fill="url(#card)" />
+    <rect x="96" y="78" width="1008" height="474" rx="36" fill="none" stroke="#334155" stroke-width="2" />
+  </g>
+
+  <rect x="152" y="152" width="176" height="176" rx="36" fill="#f8fafc" />
+  <rect x="174" y="174" width="132" height="36" rx="18" fill="#f59e0b" />
+  <rect x="180" y="228" width="34" height="34" rx="9" fill="#0f172a" />
+  <rect x="223" y="228" width="34" height="34" rx="9" fill="#0f172a" />
+  <rect x="266" y="228" width="34" height="34" rx="9" fill="#38bdf8" />
+  <rect x="180" y="271" width="34" height="34" rx="9" fill="#0f172a" />
+  <rect x="223" y="271" width="34" height="34" rx="9" fill="#0f172a" />
+  <path fill="#38bdf8" d="M291 274h-11v-11a6 6 0 0 0-12 0v11h-11a6 6 0 0 0 0 12h11v11a6 6 0 0 0 12 0v-11h11a6 6 0 0 0 0-12Z" />
+
+  <text x="368" y="174" fill="#f59e0b" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="28" font-weight="700" letter-spacing="2">免費勞工權益試算工具</text>
+  <text x="368" y="250" fill="#f8fafc" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="58" font-weight="800">台灣勞工權益計算器</text>
+  <text x="368" y="306" fill="#cbd5e1" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="500">加班費、特休、資遣費、勞退、勞健保與退休規劃一次整理</text>
+  <text x="368" y="354" fill="#94a3b8" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="24">依 2026 最新勞基法與級距整理，輸入資料後立即看結果與法條重點</text>
+
+  <g font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700">
+    <rect x="368" y="404" width="132" height="48" rx="24" fill="#172554" />
+    <text x="434" y="435" fill="#bfdbfe" text-anchor="middle">加班費</text>
+    <rect x="514" y="404" width="108" height="48" rx="24" fill="#1f2937" />
+    <text x="568" y="435" fill="#e2e8f0" text-anchor="middle">特休</text>
+    <rect x="636" y="404" width="132" height="48" rx="24" fill="#451a03" />
+    <text x="702" y="435" fill="#fde68a" text-anchor="middle">資遣費</text>
+    <rect x="782" y="404" width="108" height="48" rx="24" fill="#083344" />
+    <text x="836" y="435" fill="#a5f3fc" text-anchor="middle">勞退</text>
+  </g>
+
+  <text x="152" y="494" fill="#94a3b8" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="23">wonbadon.github.io</text>
+  <text x="1048" y="494" fill="#e2e8f0" font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700" text-anchor="end">免費使用・免登入・立即試算</text>
+</svg>
