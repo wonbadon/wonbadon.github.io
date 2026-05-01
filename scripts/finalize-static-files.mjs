@@ -12,6 +12,9 @@ const DEFAULT_SITE_URL = 'https://wonbadon.github.io/taiwan-labor-calculator/'
 const ADSENSE_SCRIPT_ID = 'adsense-script'
 const GOOGLE_SELLER_ID = 'f08c47fec0942fa0'
 const SOCIAL_IMAGE_PATH = 'social-card.svg'
+const SITE_NAME = '台灣勞工權益計算器'
+const SITE_ALTERNATE_NAMES = ['勞工權益試算工具', '勞工權益計算工具', 'wonbadon.github.io']
+const SITE_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。'
 
 function normalizeSiteUrl(value) {
   const raw = (value || DEFAULT_SITE_URL).trim()
@@ -39,10 +42,10 @@ function buildWebsiteStructuredData(siteUrl, socialImageUrl) {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: '台灣勞工權益計算器',
-      alternateName: '勞工權益試算工具',
+      name: SITE_NAME,
+      alternateName: SITE_ALTERNATE_NAMES,
       url: siteUrl,
-      description: '免費試算加班費、特休、資遣費、勞退、勞健保與退休規劃，依 2026 最新勞基法與級距整理。',
+      description: SITE_DESCRIPTION,
       inLanguage: 'zh-TW',
       image: socialImageUrl,
       publisher: {
@@ -101,6 +104,28 @@ async function writeAdsTxt(publisherId) {
   await writeFile(adsTxtPath, adsTxt, 'utf8')
 }
 
+async function prepareLegacyRedirect() {
+  const rootSiteUrl = 'https://wonbadon.github.io/'
+  const redirectHtml = `<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=${rootSiteUrl}" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${rootSiteUrl}" />
+    <link rel="icon" type="image/png" sizes="48x48" href="${buildAssetUrl(rootSiteUrl, 'favicon-48.png')}" />
+    <title>台灣勞工權益計算器｜網址已移轉</title>
+    <script>window.location.replace(${JSON.stringify(rootSiteUrl)});</script>
+  </head>
+  <body>
+    <p>本站已移轉至 <a href="${rootSiteUrl}">${rootSiteUrl}</a></p>
+  </body>
+</html>
+`
+
+  await writeFile(indexPath, redirectHtml, 'utf8')
+}
+
 export async function finalizeStaticFiles() {
   const siteUrl = normalizeSiteUrl(process.env.VITE_SITE_URL)
   const adsenseClient = getAdsenseClient(process.env.VITE_ADSENSE_CLIENT)
@@ -108,6 +133,10 @@ export async function finalizeStaticFiles() {
 
   await rewriteIndexHtml(siteUrl, adsenseClient)
   await writeAdsTxt(publisherId)
+
+  if (process.env.VITE_ENABLE_LEGACY_REDIRECT === 'true') {
+    await prepareLegacyRedirect()
+  }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {

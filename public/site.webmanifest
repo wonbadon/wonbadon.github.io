@@ -1,16 +1,22 @@
 {
   "name": "台灣勞工權益計算器",
   "short_name": "勞工計算器",
-  "description": "免費試算加班費、特休、資遣費、勞退、勞健保與退休規劃。",
+  "description": "2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保。",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "./favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

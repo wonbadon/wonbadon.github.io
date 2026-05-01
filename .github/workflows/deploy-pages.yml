@@ -90,6 +90,10 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Replace legacy Pages site with root redirect
+        if: github.repository != 'wonbadon/wonbadon.github.io'
+        run: node ./scripts/prepare-legacy-redirect.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
