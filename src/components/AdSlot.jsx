@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { adsConfig, canRenderAds } from '../config/ads'
 
 const ADSENSE_SCRIPT_ID = 'adsense-script'
@@ -42,12 +42,51 @@ function loadAdsenseScript(client) {
 
 export default function AdSlot({ slot, className = '', label = '贊助廣告', minHeight = 128 }) {
   const slotRef = useRef(null)
+  const [adState, setAdState] = useState('idle')
   const isConfigured = canRenderAds(slot)
+
+  useEffect(() => {
+    setAdState('idle')
+  }, [slot])
 
   useEffect(() => {
     if (!isConfigured || !slotRef.current) {
       return undefined
     }
+
+    const updateAdState = () => {
+      if (!slotRef.current) {
+        return
+      }
+
+      const { adLoaded, adStatus } = slotRef.current.dataset
+
+      if (adStatus === 'filled') {
+        setAdState('filled')
+        return
+      }
+
+      if (adStatus === 'unfilled') {
+        setAdState('unfilled')
+        return
+      }
+
+      if (adLoaded === 'error') {
+        setAdState('error')
+        return
+      }
+
+      if (adLoaded === 'true') {
+        setAdState('loaded')
+      }
+    }
+
+    const observer = new MutationObserver(updateAdState)
+    observer.observe(slotRef.current, {
+      attributes: true,
+      attributeFilter: ['data-ad-loaded', 'data-ad-status', 'data-adsbygoogle-status'],
+    })
+    updateAdState()
 
     let isCancelled = false
 
@@ -61,22 +100,28 @@ export default function AdSlot({ slot, className = '', label = '贊助廣告', m
           window.adsbygoogle = window.adsbygoogle || []
           window.adsbygoogle.push({})
           slotRef.current.dataset.adLoaded = 'true'
+          updateAdState()
         } catch {
           slotRef.current.dataset.adLoaded = 'error'
+          updateAdState()
         }
       })
       .catch(() => {
         if (slotRef.current) {
           slotRef.current.dataset.adLoaded = 'error'
+          updateAdState()
         }
       })
 
     return () => {
       isCancelled = true
+      observer.disconnect()
     }
   }, [isConfigured, slot])
 
-  if (!isConfigured && !adsConfig.debug) {
+  const shouldHideSlot = isConfigured && (adState === 'unfilled' || adState === 'error') && !adsConfig.debug
+
+  if ((!isConfigured && !adsConfig.debug) || shouldHideSlot) {
     return null
   }
 
