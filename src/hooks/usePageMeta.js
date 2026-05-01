@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 const SITE_NAME = '台灣勞工權益計算器'
-const DEFAULT_DESCRIPTION = '免費試算加班費、特休、資遣費、勞退、勞健保與退休規劃，依 2026 最新勞基法與級距整理。'
+const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。'
 
 function upsertMeta(selector, createMeta) {
   let meta = document.querySelector(selector)
