@@ -17,8 +17,8 @@ const leaveScenarios = [
   {
     title: '產假、陪產假與育嬰留停',
     desc: '親職相關假別的天數、給薪與津貼口徑不一樣，應跟一般病事假分開處理。',
-    to: '/parental-leave',
-    cta: '先看產假育嬰假',
+    to: '/parental-leave-guide',
+    cta: '先看產假與育嬰留停懶人包',
   },
 ]
 
@@ -56,8 +56,8 @@ const leaveSearchCards = [
   {
     keyword: '產假育嬰假怎麼算',
     desc: '親職相關假別涉及天數、雇主給薪、勞保生育給付與育嬰津貼，應獨立計算。',
-    to: '/parental-leave',
-    page: '產假育嬰假計算',
+    to: '/parental-leave-guide',
+    page: '產假與育嬰留停懶人包',
   },
 ]
 

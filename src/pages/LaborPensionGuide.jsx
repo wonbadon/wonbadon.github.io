@@ -17,8 +17,8 @@ const pensionScenarios = [
   {
     title: '想分清勞退和勞保年金',
     desc: '勞退個人帳戶和勞保老年年金不是同一套制度，退休時通常要一起看。',
-    to: '/retirement-planner',
-    cta: '先看退休規劃',
+    to: '/retirement-planning-guide',
+    cta: '先看退休準備懶人包',
   },
 ]
 
@@ -38,8 +38,8 @@ const pensionSearchCards = [
   {
     keyword: '勞退和勞保一樣嗎',
     desc: '勞退是個人帳戶，勞保老年給付是另一套制度，退休時通常兩邊都要一起看。',
-    to: '/retirement-planner',
-    page: '退休年齡規劃',
+    to: '/retirement-planning-guide',
+    page: '退休準備懶人包',
   },
   {
     keyword: '月薪多少對應哪個勞退級距',

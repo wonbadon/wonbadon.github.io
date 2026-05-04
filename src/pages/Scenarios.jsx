@@ -82,10 +82,28 @@ const mappingRows = [
     to: '/complaint-guide',
   },
   {
+    situation: '拿到薪資單，想先核對實領薪資、勞健保扣項和勞退自提',
+    page: '薪資單與勞健保懶人包',
+    check: '先分清楚哪些是你自己負擔，哪些是雇主另外負擔，再看是不是扣錯。',
+    to: '/salary-slip-guide',
+  },
+  {
+    situation: '懷孕、生產或準備申請育嬰留停，想先知道該分哪些假別與津貼',
+    page: '產假與育嬰留停懶人包',
+    check: '先分清楚產假、陪產檢及陪產假、安胎假與育嬰留停，不要全部混成一題。',
+    to: '/parental-leave-guide',
+  },
+  {
     situation: '想知道目前薪資對應哪個勞退級距，退休後可能累積多少',
     page: '勞退退休金試算',
     check: '自提比例是你自己另外提的百分比，不是雇主提撥比率。',
     to: '/labor-pension',
+  },
+  {
+    situation: '想比較幾歲退休比較划算，或分清勞退和勞保年金差在哪',
+    page: '退休準備懶人包',
+    check: '先把勞退個人帳戶和勞保老年年金拆開，再比較退休年齡差異。',
+    to: '/retirement-planning-guide',
   },
 ]
 

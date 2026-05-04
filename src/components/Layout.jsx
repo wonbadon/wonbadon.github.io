@@ -103,7 +103,7 @@ export default function Layout({ children }) {
   const isHome = pathname === '/'
   const isToolPage = toolRouteSet.has(pathname)
   const isContentPage = contentRouteSet.has(pathname)
-  const shouldShowSupportCta = pathname === '/guide' || pathname === '/overtime-guide' || pathname === '/attendance-dispute-guide' || pathname === '/annual-leave-guide' || pathname === '/leave-guide' || pathname === '/wage-rights' || pathname === '/insurance-benefits-guide' || pathname === '/leaving-job' || pathname === '/dismissal-guide' || pathname === '/complaint-guide' || pathname === '/severance-guide' || pathname === '/labor-pension-guide' || pathname === '/faq' || pathname === '/about'
+  const shouldShowSupportCta = pathname === '/guide' || pathname === '/overtime-guide' || pathname === '/attendance-dispute-guide' || pathname === '/annual-leave-guide' || pathname === '/leave-guide' || pathname === '/parental-leave-guide' || pathname === '/wage-rights' || pathname === '/salary-slip-guide' || pathname === '/insurance-benefits-guide' || pathname === '/leaving-job' || pathname === '/dismissal-guide' || pathname === '/complaint-guide' || pathname === '/severance-guide' || pathname === '/labor-pension-guide' || pathname === '/retirement-planning-guide' || pathname === '/faq' || pathname === '/about'
 
   const adSlot = isHome
     ? adsConfig.slots.home

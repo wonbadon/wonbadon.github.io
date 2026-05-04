@@ -6,18 +6,21 @@ import AnnualLeave from './pages/AnnualLeave'
 import Severance from './pages/Severance'
 import LaborPension from './pages/LaborPension'
 import SalarySlip from './pages/SalarySlip'
+import SalarySlipGuide from './pages/SalarySlipGuide'
 import InsurancePremium from './pages/InsurancePremium'
 import InsuranceBrackets from './pages/InsuranceBrackets'
 import WageConverter from './pages/WageConverter'
 import YearEndBonus from './pages/YearEndBonus'
 import NoticePeriod from './pages/NoticePeriod'
 import ParentalLeave from './pages/ParentalLeave'
+import ParentalLeaveGuide from './pages/ParentalLeaveGuide'
 import OccupationalAccident from './pages/OccupationalAccident'
 import TyphoonWorkday from './pages/TyphoonWorkday'
 import RightsCheck from './pages/RightsCheck'
 import SalaryCompare from './pages/SalaryCompare'
 import DisputeChecker from './pages/DisputeChecker'
 import RetirementPlanner from './pages/RetirementPlanner'
+import RetirementPlanningGuide from './pages/RetirementPlanningGuide'
 import LeavingJob from './pages/LeavingJob'
 import OvertimeGuide from './pages/OvertimeGuide'
 import SeveranceGuide from './pages/SeveranceGuide'
@@ -46,11 +49,14 @@ export default function App() {
         <Route path="/severance-guide" element={<SeveranceGuide />} />
         <Route path="/annual-leave-guide" element={<AnnualLeaveGuide />} />
         <Route path="/labor-pension-guide" element={<LaborPensionGuide />} />
+        <Route path="/retirement-planning-guide" element={<RetirementPlanningGuide />} />
         <Route path="/wage-rights" element={<WageRightsGuide />} />
+        <Route path="/salary-slip-guide" element={<SalarySlipGuide />} />
         <Route path="/insurance-benefits-guide" element={<InsuranceBenefitsGuide />} />
         <Route path="/dismissal-guide" element={<DismissalGuide />} />
         <Route path="/complaint-guide" element={<ComplaintGuide />} />
         <Route path="/leave-guide" element={<LeaveGuide />} />
+        <Route path="/parental-leave-guide" element={<ParentalLeaveGuide />} />
         <Route path="/attendance-dispute-guide" element={<AttendanceDisputeGuide />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />

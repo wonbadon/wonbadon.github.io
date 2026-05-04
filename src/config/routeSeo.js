@@ -1,7 +1,7 @@
 import { faqEntries } from '../data/faqEntries.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
-export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假、職災、排班與申訴流程重點。'
+export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假、職災、排班、育嬰與退休規劃重點。'
 export const SOCIAL_IMAGE_PATH = 'social-card.svg'
 
 export function composeDocumentTitle(pageTitle) {
@@ -17,7 +17,7 @@ export const routeSeoEntries = [
     path: '/',
     title: '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保',
     description: DEFAULT_DESCRIPTION,
-    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦', '職災怎麼申請', '排班爭議', '勞工局申訴'],
+    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦', '職災怎麼申請', '排班爭議', '勞工局申訴', '薪資單怎麼看', '育嬰留停', '勞保老年年金'],
     schemaType: 'CollectionPage',
   },
   {
@@ -53,6 +53,13 @@ export const routeSeoEntries = [
     title: '工資與扣薪懶人包｜欠薪、扣薪、薪資單與平均工資一次看',
     description: '整理欠薪怎麼辦、公司可以怎麼扣薪、薪資單怎麼看與平均工資常見誤區，幫你先找到正確入口。',
     keywords: ['扣薪怎麼辦', '欠薪怎麼辦', '薪資單怎麼看', '平均工資怎麼算', '勞保低報', '工資爭議'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/salary-slip-guide',
+    title: '薪資單與勞健保懶人包｜實領薪資、勞健保扣項與投保級距一次看',
+    description: '整理薪資單怎麼看、實領薪資怎麼算、勞健保扣項、勞退自提與投保級距常見問題，幫你先找到正確入口。',
+    keywords: ['薪資單怎麼看', '實領薪資怎麼算', '勞健保扣多少', '勞退自提', '投保級距怎麼查', '薪資明細'],
     schemaType: 'Guide',
   },
   {
@@ -98,10 +105,24 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/parental-leave-guide',
+    title: '產假與育嬰留停懶人包｜產假、陪產檢、生育給付與育嬰津貼一次看',
+    description: '整理產假幾天、陪產檢及陪產假、生育給付、安胎假與育嬰留停津貼常見問題，幫你先找到正確入口。',
+    keywords: ['產假幾天', '陪產假幾天', '育嬰留停津貼', '生育給付', '安胎假', '育嬰留停'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/labor-pension-guide',
     title: '勞退怎麼算懶人包｜雇主 6%、自提、級距與退休規劃一次看',
     description: '整理勞退 6% 怎麼算、勞退自提、提繳級距與勞退和勞保差異，幫你先找到正確入口。',
     keywords: ['勞退怎麼算', '勞退 6%', '勞退自提', '勞退級距', '勞退和勞保差別', '退休金試算'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/retirement-planning-guide',
+    title: '退休準備懶人包｜勞退、勞保老年年金與退休年齡規劃一次看',
+    description: '整理勞退、勞保老年年金、退休年齡、退休月收入與自提差異常見問題，幫你先找到正確入口。',
+    keywords: ['勞保老年年金怎麼算', '勞保退休金怎麼算', '退休年齡規劃', '退休每月可以領多少', '勞退和勞保差在哪', '幾歲退休比較划算'],
     schemaType: 'Guide',
   },
   {
@@ -114,8 +135,8 @@ export const routeSeoEntries = [
   {
     path: '/faq',
     title: '勞工權益常見問題｜加班費、請假、扣薪、職災、排班與申訴 FAQ',
-    description: '整理加班費、請假、扣薪、職災、排班、離職、申訴與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
-    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '職災常見問題', '排班常見問題', '申訴常見問題'],
+    description: '整理加班費、請假、扣薪、職災、排班、離職、申訴、育嬰與退休規劃中最常見的法條口徑、輸入誤區與結果差異。',
+    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '職災常見問題', '排班常見問題', '申訴常見問題', '育嬰留停常見問題', '退休規劃常見問題'],
     schemaType: 'FAQPage',
   },
   {

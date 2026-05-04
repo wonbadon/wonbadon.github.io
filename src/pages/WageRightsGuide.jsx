@@ -5,8 +5,8 @@ const wageScenarios = [
   {
     title: '先看薪資單扣項',
     desc: '先把勞保、健保、勞退自提與實領月薪拆開，避免只看入帳數字就判斷公司有沒有少給。',
-    to: '/salary-slip',
-    cta: '先看薪資明細',
+    to: '/salary-slip-guide',
+    cta: '先看薪資單與勞健保懶人包',
   },
   {
     title: '被欠薪或亂扣薪',
@@ -38,8 +38,8 @@ const wageSearchCards = [
   {
     keyword: '薪資單怎麼看',
     desc: '先拆清楚勞保、健保、勞退自提與各種扣項，不要把所有差額都算成公司少給。',
-    to: '/salary-slip',
-    page: '薪資明細計算機',
+    to: '/salary-slip-guide',
+    page: '薪資單與勞健保懶人包',
   },
   {
     keyword: '平均工資怎麼算',
