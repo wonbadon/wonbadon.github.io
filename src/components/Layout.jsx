@@ -103,7 +103,7 @@ export default function Layout({ children }) {
   const isHome = pathname === '/'
   const isToolPage = toolRouteSet.has(pathname)
   const isContentPage = contentRouteSet.has(pathname)
-  const shouldShowSupportCta = pathname === '/guide' || pathname === '/overtime-guide' || pathname === '/annual-leave-guide' || pathname === '/leaving-job' || pathname === '/severance-guide' || pathname === '/labor-pension-guide' || pathname === '/faq' || pathname === '/about'
+  const shouldShowSupportCta = pathname === '/guide' || pathname === '/overtime-guide' || pathname === '/annual-leave-guide' || pathname === '/leave-guide' || pathname === '/wage-rights' || pathname === '/leaving-job' || pathname === '/dismissal-guide' || pathname === '/severance-guide' || pathname === '/labor-pension-guide' || pathname === '/faq' || pathname === '/about'
 
   const adSlot = isHome
     ? adsConfig.slots.home

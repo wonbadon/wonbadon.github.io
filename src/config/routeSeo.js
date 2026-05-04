@@ -1,7 +1,7 @@
 import { faqEntries } from '../data/faqEntries.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
-export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。'
+export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假與勞資爭議重點。'
 export const SOCIAL_IMAGE_PATH = 'social-card.svg'
 
 export function composeDocumentTitle(pageTitle) {
@@ -17,7 +17,7 @@ export const routeSeoEntries = [
     path: '/',
     title: '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保',
     description: DEFAULT_DESCRIPTION,
-    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算'],
+    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦'],
     schemaType: 'CollectionPage',
   },
   {
@@ -42,6 +42,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/wage-rights',
+    title: '工資與扣薪懶人包｜欠薪、扣薪、薪資單與平均工資一次看',
+    description: '整理欠薪怎麼辦、公司可以怎麼扣薪、薪資單怎麼看與平均工資常見誤區，幫你先找到正確入口。',
+    keywords: ['扣薪怎麼辦', '欠薪怎麼辦', '薪資單怎麼看', '平均工資怎麼算', '勞保低報', '工資爭議'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/leaving-job',
     title: '離職權益懶人包｜離職預告期、資遣費、特休結清與非自願離職怎麼看',
     description: '整理離職預告期、資遣費、特休結清、非自願離職與勞資爭議的常見問題，幫你先找到正確入口。',
@@ -49,10 +56,24 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/dismissal-guide',
+    title: '被開除怎麼辦懶人包｜解僱、逼離職、非自願離職與失業給付一次看',
+    description: '整理被開除怎麼辦、被逼離職、非自願離職證明與失業給付常見問題，幫你先找到正確入口。',
+    keywords: ['被開除怎麼辦', '被逼離職', '非自願離職證明', '失業給付', '解僱', '資遣通知'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/severance-guide',
     title: '資遣費怎麼算懶人包｜非自願離職、平均工資與新舊制一次看',
     description: '整理資遣費怎麼算、非自願離職、平均工資、新舊制年資與自請離職差異，幫你先找到正確入口。',
     keywords: ['資遣費怎麼算', '資遣費', '非自願離職', '平均工資', '新制資遣費', '舊制資遣費'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/leave-guide',
+    title: '請假權益懶人包｜病假、事假、婚假、喪假、生理假與家庭照顧假',
+    description: '整理病假、事假、婚假、喪假、生理假、家庭照顧假與親職假常見問題，幫你先找到正確入口。',
+    keywords: ['病假', '事假', '婚假', '喪假', '生理假', '家庭照顧假'],
     schemaType: 'Guide',
   },
   {
@@ -71,9 +92,9 @@ export const routeSeoEntries = [
   },
   {
     path: '/faq',
-    title: '勞工權益常見問題｜加班費、特休、資遣費與勞退 FAQ',
-    description: '整理加班費、特休、資遣費與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
-    keywords: ['勞工權益 FAQ', '加班費常見問題', '特休常見問題', '資遣費常見問題', '勞退常見問題'],
+    title: '勞工權益常見問題｜加班費、請假、扣薪、資遣與勞退 FAQ',
+    description: '整理加班費、請假、扣薪、資遣、離職與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
+    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '資遣費常見問題', '勞退常見問題'],
     schemaType: 'FAQPage',
   },
   {
