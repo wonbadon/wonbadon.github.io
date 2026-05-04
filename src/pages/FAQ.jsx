@@ -1,80 +1,6 @@
 import { Link } from 'react-router-dom'
 import usePageMeta from '../hooks/usePageMeta'
-
-const faqs = [
-  {
-    q: '月薪制為什麼國定假日出勤，8 小時內還會看到另加工資？',
-    a: [
-      '因為月薪通常是就正常工作日與制度內工時給付，不代表國定假日出勤已經被額外補償。',
-      '在本站的整理口徑下，月薪制若於國定假日或休假日出勤，8 小時內會顯示應另加發 1 日工資；超過 8 小時的部分，再依延長工時倍率處理。',
-    ],
-    to: '/overtime',
-    cta: '回到加班費頁看試算',
-  },
-  {
-    q: '休息日出勤和一般平日加班，為什麼不能用同一套倍率？',
-    a: [
-      '因為法條把休息日出勤獨立處理，前 2 小時、3 至 8 小時與第 9 小時起的倍率不同。',
-      '如果你把休息日誤當成平日延長工時，金額會直接低估或高估。先確認當天性質，再輸入欄位。',
-    ],
-    to: '/scenarios',
-    cta: '先看情境比較',
-  },
-  {
-    q: '特休沒休完，最後會怎麼處理？',
-    a: [
-      '法定特休未休完時，原則上應折發工資。若勞雇雙方有合法約定遞延，可遞延到次一年度，但屆期仍未休完仍應折發。',
-      '本站的特休頁主要先幫你確認法定資格與天數；是否已休、遞延、折發與公司制度，還要再回頭核對。',
-    ],
-    to: '/annual-leave',
-    cta: '查看特休天數頁',
-  },
-  {
-    q: '自請離職也能直接套資遣費嗎？',
-    a: [
-      '多數情況不行。資遣費通常對應的是非自願離職、資遣或法定終止場景，自請離職不是同一個權利結構。',
-      '如果你遇到的是自請離職、契約到期或特殊終止，應先確認實際終止原因，再判斷是否真的落在資遣費範圍。',
-    ],
-    to: '/severance',
-    cta: '查看資遣費試算頁',
-  },
-  {
-    q: '平均工資是不是等於最近一個月薪資？',
-    a: [
-      '不是。平均工資通常要回到事由發生日前一段期間內的工資總額與總日數來看，而不是只抓最近一個月。',
-      '實務上常見口徑會參考前 6 個月工資總額除以該期間總日數；若工作未滿 6 個月，則按實際期間計算。碰到獎金、津貼或變動薪資時，更需要人工覆核。',
-    ],
-    to: '/guide',
-    cta: '先看新手指南的輸入提醒',
-  },
-  {
-    q: '勞退自提比例是不是越高越好？',
-    a: [
-      '不一定。自提比例提高，退休帳戶累積通常更快，但你當下可支配所得也會下降。',
-      '適合的比例要一起看現金流、稅務效果與你打算持續多久，不適合只看單次試算結果就決定。',
-    ],
-    to: '/labor-pension',
-    cta: '查看勞退試算頁',
-  },
-  {
-    q: '為什麼本站算出來和公司或人資口徑不一樣？',
-    a: [
-      '最常見原因是前面輸入條件不同，例如把休息日填成平日、把最近一個月薪資當平均工資，或沒有把制度類型分開。',
-      '另外，公司內規、排班方式、獎金津貼計入與否、個案事實爭議，也都可能讓結果產生差異。本站適合先抓方向，不是最後裁決。',
-    ],
-    to: '/about',
-    cta: '查看本站定位與邊界',
-  },
-  {
-    q: '本站有沒有處理所有勞動法爭議情況？',
-    a: [
-      '沒有。本站主要處理常見、可以前端快速試算的四種主題：加班費、特休、資遣費與勞退。',
-      '若案件涉及輪班津貼、變形工時、曆年制折算、非典型工時、特殊終止或訴訟爭點，不能只依本站結果決定。',
-    ],
-    to: '/about',
-    cta: '查看關於本站',
-  },
-]
+import { faqEntries } from '../data/faqEntries'
 
 export default function FAQ() {
   usePageMeta(
@@ -93,11 +19,11 @@ export default function FAQ() {
       </section>
 
       <section className="section-card space-y-4">
-        {faqs.map(({ q, a, to, cta }, index) => (
-          <details key={q} className="rounded-[22px] border border-slate-200 bg-slate-50 p-5" open={index === 0}>
-            <summary className="cursor-pointer text-lg font-extrabold text-slate-950">{q}</summary>
+        {faqEntries.map(({ question, answers, to, cta }, index) => (
+          <details key={question} className="rounded-[22px] border border-slate-200 bg-slate-50 p-5" open={index === 0}>
+            <summary className="cursor-pointer text-lg font-extrabold text-slate-950">{question}</summary>
             <div className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
-              {a.map((paragraph) => (
+              {answers.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
               <Link to={to} className="inline-flex pt-1 font-semibold text-sky-700 transition hover:text-sky-800">

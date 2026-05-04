@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
-
-const SITE_NAME = '台灣勞工權益計算器'
-const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。'
+import { buildStructuredData, composeDocumentTitle, routeSeoByPath, DEFAULT_DESCRIPTION, SOCIAL_IMAGE_PATH } from '../config/routeSeo'
 
 function upsertMeta(selector, createMeta) {
   let meta = document.querySelector(selector)
@@ -14,12 +12,41 @@ function upsertMeta(selector, createMeta) {
   return meta
 }
 
+function upsertLink(selector, createLink) {
+  let link = document.querySelector(selector)
+
+  if (!link) {
+    link = createLink()
+    document.head.appendChild(link)
+  }
+
+  return link
+}
+
+function upsertScript(selector, createScript) {
+  let script = document.querySelector(selector)
+
+  if (!script) {
+    script = createScript()
+    document.head.appendChild(script)
+  }
+
+  return script
+}
+
 export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION) {
   useEffect(() => {
     const previousTitle = document.title
-    const title = pageTitle
-      ? (pageTitle.includes(SITE_NAME) ? pageTitle : `${pageTitle}｜${SITE_NAME}`)
-      : SITE_NAME
+    const pathname = window.location.pathname || '/'
+    const normalizedPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '')
+    const routeSeo = routeSeoByPath[normalizedPath]
+    const resolvedPageTitle = routeSeo?.title ?? pageTitle
+    const resolvedDescription = routeSeo?.description ?? description
+    const resolvedKeywords = routeSeo?.keywords?.join(', ') ?? ''
+    const title = composeDocumentTitle(resolvedPageTitle)
+    const pageUrl = new URL(normalizedPath === '/' ? '/' : `${normalizedPath}/`, window.location.origin).toString()
+    const socialImageUrl = new URL(SOCIAL_IMAGE_PATH, window.location.origin).toString()
+    const structuredData = buildStructuredData(normalizedPath, pageUrl, socialImageUrl)
 
     document.title = title
 
@@ -53,17 +80,58 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
       return meta
     })
 
+    const metaKeywords = upsertMeta('meta[name="keywords"]', () => {
+      const meta = document.createElement('meta')
+      meta.setAttribute('name', 'keywords')
+      return meta
+    })
+
+    const ogUrl = upsertMeta('meta[property="og:url"]', () => {
+      const meta = document.createElement('meta')
+      meta.setAttribute('property', 'og:url')
+      return meta
+    })
+
+    const canonical = upsertLink('link[rel="canonical"]', () => {
+      const link = document.createElement('link')
+      link.setAttribute('rel', 'canonical')
+      return link
+    })
+
+    const robots = upsertMeta('meta[name="robots"]', () => {
+      const meta = document.createElement('meta')
+      meta.setAttribute('name', 'robots')
+      return meta
+    })
+
+    const structuredDataScript = upsertScript('#structured-data-website', () => {
+      const script = document.createElement('script')
+      script.id = 'structured-data-website'
+      script.type = 'application/ld+json'
+      return script
+    })
+
     const previousDescription = metaDescription.getAttribute('content') || ''
     const previousOgTitle = ogTitle.getAttribute('content') || ''
     const previousOgDescription = ogDescription.getAttribute('content') || ''
     const previousTwitterTitle = twitterTitle.getAttribute('content') || ''
     const previousTwitterDescription = twitterDescription.getAttribute('content') || ''
+    const previousKeywords = metaKeywords.getAttribute('content') || ''
+    const previousOgUrl = ogUrl.getAttribute('content') || ''
+    const previousCanonical = canonical.getAttribute('href') || ''
+    const previousRobots = robots.getAttribute('content') || ''
+    const previousStructuredData = structuredDataScript.textContent || ''
 
-    metaDescription.setAttribute('content', description)
+    metaDescription.setAttribute('content', resolvedDescription)
     ogTitle.setAttribute('content', title)
-    ogDescription.setAttribute('content', description)
+    ogDescription.setAttribute('content', resolvedDescription)
     twitterTitle.setAttribute('content', title)
-    twitterDescription.setAttribute('content', description)
+    twitterDescription.setAttribute('content', resolvedDescription)
+    metaKeywords.setAttribute('content', resolvedKeywords)
+    ogUrl.setAttribute('content', pageUrl)
+    canonical.setAttribute('href', pageUrl)
+    robots.setAttribute('content', routeSeo ? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' : 'noindex, follow')
+    structuredDataScript.textContent = JSON.stringify(structuredData, null, 2)
 
     return () => {
       document.title = previousTitle
@@ -72,6 +140,11 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
       ogDescription.setAttribute('content', previousOgDescription)
       twitterTitle.setAttribute('content', previousTwitterTitle)
       twitterDescription.setAttribute('content', previousTwitterDescription)
+      metaKeywords.setAttribute('content', previousKeywords)
+      ogUrl.setAttribute('content', previousOgUrl)
+      canonical.setAttribute('href', previousCanonical)
+      robots.setAttribute('content', previousRobots)
+      structuredDataScript.textContent = previousStructuredData
     }
   }, [pageTitle, description])
 }

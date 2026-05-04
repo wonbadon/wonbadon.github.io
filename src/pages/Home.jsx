@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import usePageMeta from '../hooks/usePageMeta'
 import { contentCatalog, featuredTools, secondaryTools } from '../data/toolCatalog'
+import { faqEntries } from '../data/faqEntries'
 
 function IconBase({ children, className = 'h-5 w-5' }) {
   return (
@@ -86,6 +87,8 @@ const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
   category,
   count: tools.length,
 }))
+
+const featuredSearchQuestions = faqEntries.slice(0, 6)
 
 function CategoryPillButton({ label, count, isActive, onClick }) {
   return (
@@ -266,6 +269,32 @@ export default function Home() {
             </Link>
             )
           })}
+        </section>
+
+        <section className="home-directory-section mt-14 sm:mt-16">
+          <div className="max-w-3xl">
+            <p className="home-directory-kicker">熱門搜尋問題</p>
+            <h2 className="home-directory-section-title mt-3">大家最常搜的勞工權益問題，直接從這裡進</h2>
+            <p className="home-directory-section-desc mt-3 sm:mt-4">
+              這一區直接放常見搜尋問句，讓第一次進站的人不用先理解分類，也能從自己的問題切到正確工具或說明頁。
+            </p>
+          </div>
+
+          <div className="home-tool-library-grid mt-6 sm:mt-8">
+            {featuredSearchQuestions.map(({ question, to, cta }) => (
+              <Link key={question} to={to} className="home-tool-library-card">
+                <span className="home-directory-tag home-directory-tag-primary">常見搜尋</span>
+                <h2 className="home-tool-library-title mt-4">{question}</h2>
+                <p className="home-tool-library-desc mt-3">
+                  直接從這個問題切進對應頁面，比先猜法條或制度名稱更快找到答案。
+                </p>
+                <div className="home-directory-cta mt-5">
+                  {cta}
+                  <ArrowIcon />
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <section ref={librarySectionRef} className="home-directory-section mt-14 sm:mt-16">

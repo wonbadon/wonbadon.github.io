@@ -1,20 +1,27 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  buildStructuredData,
+  composeDocumentTitle,
+  DEFAULT_DESCRIPTION,
+  notFoundSeo,
+  routeSeoEntries,
+  SOCIAL_IMAGE_PATH,
+} from '../src/config/routeSeo.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const distDir = path.resolve(__dirname, '../dist')
 const indexPath = path.join(distDir, 'index.html')
 const adsTxtPath = path.join(distDir, 'ads.txt')
+const robotsTxtPath = path.join(distDir, 'robots.txt')
+const sitemapPath = path.join(distDir, 'sitemap.xml')
+const notFoundPath = path.join(distDir, '404.html')
 
-const DEFAULT_SITE_URL = 'https://wonbadon.github.io/taiwan-labor-calculator/'
+const DEFAULT_SITE_URL = 'https://wonbadon.github.io/'
 const ADSENSE_SCRIPT_ID = 'adsense-script'
 const GOOGLE_SELLER_ID = 'f08c47fec0942fa0'
-const SOCIAL_IMAGE_PATH = 'social-card.svg'
-const SITE_NAME = '台灣勞工權益計算器'
-const SITE_ALTERNATE_NAMES = ['勞工權益試算工具', '勞工權益計算工具', 'wonbadon.github.io']
-const SITE_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。'
 
 function normalizeSiteUrl(value) {
   const raw = (value || DEFAULT_SITE_URL).trim()
@@ -37,24 +44,53 @@ function buildAssetUrl(siteUrl, assetPath) {
   return new URL(assetPath.replace(/^\//, ''), siteUrl).toString()
 }
 
-function buildWebsiteStructuredData(siteUrl, socialImageUrl) {
-  return JSON.stringify(
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: SITE_NAME,
-      alternateName: SITE_ALTERNATE_NAMES,
-      url: siteUrl,
-      description: SITE_DESCRIPTION,
-      inLanguage: 'zh-TW',
-      image: socialImageUrl,
-      publisher: {
-        '@type': 'Person',
-        name: 'wonbadon',
-      },
-    },
-    null,
-    2,
+function buildPageUrl(siteUrl, routePath) {
+  if (routePath === '/') {
+    return siteUrl
+  }
+
+  return new URL(`${routePath.replace(/^\//, '').replace(/\/?$/, '/')}`, siteUrl).toString()
+}
+
+function replaceAssetPrefix(html, routePath) {
+  const depth = routePath.split('/').filter(Boolean).length
+
+  if (depth === 0) {
+    return html
+  }
+
+  const prefix = '../'.repeat(depth)
+  return html.replace(/(href|src)="\.\/([^\"]+)"/g, `$1="${prefix}$2"`)
+}
+
+function injectStructuredData(html, structuredData) {
+  const serialized = JSON.stringify(structuredData, null, 2)
+
+  return html.replace(
+    /<script id="structured-data-website" type="application\/ld\+json">[\s\S]*?<\/script>/,
+    `    <script id="structured-data-website" type="application/ld+json">\n${serialized
+      .split('\n')
+      .map((line) => `      ${line}`)
+      .join('\n')}\n    </script>`,
+  )
+}
+
+function applyPageSeo(html, { title, description = DEFAULT_DESCRIPTION, keywords = [], pageUrl, socialImageUrl, structuredData, robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }) {
+  return injectStructuredData(
+    html
+      .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+      .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
+      .replace(/<meta name="keywords" content="[^"]*" \/>/, `<meta name="keywords" content="${keywords.join(',')}" />`)
+      .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
+      .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
+      .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${pageUrl}" />`)
+      .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${socialImageUrl}" />`)
+      .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
+      .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`)
+      .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${socialImageUrl}" />`)
+      .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${robots}" />`)
+      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${pageUrl}" />`),
+    structuredData,
   )
 }
 
@@ -70,29 +106,70 @@ function upsertAdsenseScript(html, adsenseClient) {
   return cleanHtml.replace('  </head>', `${scriptTag}  </head>`)
 }
 
-async function rewriteIndexHtml(siteUrl, adsenseClient) {
-  const html = await readFile(indexPath, 'utf8')
+function buildPageHtml(templateHtml, routeSeo, siteUrl, adsenseClient) {
   const socialImageUrl = buildAssetUrl(siteUrl, SOCIAL_IMAGE_PATH)
-  const structuredData = buildWebsiteStructuredData(siteUrl, socialImageUrl)
-  const nextHtml = upsertAdsenseScript(
-    html
-      .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${siteUrl}" />`)
-      .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${socialImageUrl}" />`)
-      .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${socialImageUrl}" />`)
-      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${siteUrl}" />`)
-      .replace(
-        /<script id="structured-data-website" type="application\/ld\+json">[\s\S]*?<\/script>/,
-        `    <script id="structured-data-website" type="application/ld+json">\n${structuredData
-          .split('\n')
-          .map((line) => `      ${line}`)
-          .join('\n')}\n    </script>`,
-      ),
+  const pageUrl = buildPageUrl(siteUrl, routeSeo.path)
+  const structuredData = buildStructuredData(routeSeo.path, pageUrl, socialImageUrl)
+  const nextHtml = replaceAssetPrefix(
+    upsertAdsenseScript(
+      applyPageSeo(templateHtml, {
+        title: composeDocumentTitle(routeSeo.title),
+        description: routeSeo.description,
+        keywords: routeSeo.keywords,
+        pageUrl,
+        socialImageUrl,
+        structuredData,
+      }),
+      adsenseClient,
+    ),
+    routeSeo.path,
+  )
+
+  return nextHtml
+}
+
+async function writeRoutePages(siteUrl, adsenseClient) {
+  const templateHtml = await readFile(indexPath, 'utf8')
+
+  for (const routeSeo of routeSeoEntries) {
+    const pageHtml = buildPageHtml(templateHtml, routeSeo, siteUrl, adsenseClient)
+    const outputPath = routeSeo.path === '/'
+      ? indexPath
+      : path.join(distDir, routeSeo.path.replace(/^\//, ''), 'index.html')
+
+    await mkdir(path.dirname(outputPath), { recursive: true })
+    await writeFile(outputPath, pageHtml, 'utf8')
+  }
+
+  const socialImageUrl = buildAssetUrl(siteUrl, SOCIAL_IMAGE_PATH)
+  const notFoundHtml = upsertAdsenseScript(
+    applyPageSeo(templateHtml, {
+      title: composeDocumentTitle(notFoundSeo.title),
+      description: notFoundSeo.description,
+      keywords: [],
+      pageUrl: buildPageUrl(siteUrl, '/404/'),
+      socialImageUrl,
+      structuredData: buildStructuredData('/404', buildPageUrl(siteUrl, '/404/'), socialImageUrl),
+      robots: 'noindex, follow',
+    }),
     adsenseClient,
   )
 
-  if (nextHtml !== html) {
-    await writeFile(indexPath, nextHtml, 'utf8')
-  }
+  await writeFile(notFoundPath, notFoundHtml, 'utf8')
+}
+
+async function writeSitemap(siteUrl) {
+  const urls = routeSeoEntries
+    .map((routeSeo) => `  <url>\n    <loc>${buildPageUrl(siteUrl, routeSeo.path)}</loc>\n  </url>`)
+    .join('\n')
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+  await writeFile(sitemapPath, sitemap, 'utf8')
+}
+
+async function writeRobotsTxt(siteUrl) {
+  const robotsTxt = `User-agent: *\nAllow: /\n\nSitemap: ${buildAssetUrl(siteUrl, 'sitemap.xml')}\n`
+  await writeFile(robotsTxtPath, robotsTxt, 'utf8')
 }
 
 async function writeAdsTxt(publisherId) {
@@ -131,8 +208,10 @@ export async function finalizeStaticFiles() {
   const adsenseClient = getAdsenseClient(process.env.VITE_ADSENSE_CLIENT)
   const publisherId = getPublisherId(process.env.VITE_ADSENSE_CLIENT)
 
-  await rewriteIndexHtml(siteUrl, adsenseClient)
+  await writeRoutePages(siteUrl, adsenseClient)
   await writeAdsTxt(publisherId)
+  await writeSitemap(siteUrl)
+  await writeRobotsTxt(siteUrl)
 
   if (process.env.VITE_ENABLE_LEGACY_REDIRECT === 'true') {
     await prepareLegacyRedirect()
