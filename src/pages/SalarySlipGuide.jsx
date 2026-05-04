@@ -54,6 +54,12 @@ const salarySearchCards = [
     page: '投保級距查詢',
   },
   {
+    keyword: 'offer 怎麼比才準',
+    desc: '如果你同時在比月薪、年終、津貼與試用期條件，應先把固定收入和時間成本攤成同一個口徑。',
+    to: '/offer-negotiation-guide',
+    page: 'Offer 比較與薪資談判懶人包',
+  },
+  {
     keyword: '公司保低了怎麼看',
     desc: '先整理薪資單、匯款紀錄、勞保投保資料與勞退提繳紀錄，再判斷是低報還是單純級距理解錯誤。',
     to: '/wage-rights',

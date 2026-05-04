@@ -5,7 +5,7 @@ import { faqEntries } from '../data/faqEntries'
 export default function FAQ() {
   usePageMeta(
     '勞工權益常見問題',
-    '整理加班費、請假、扣薪、資遣、離職與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
+    '整理加班費、請假、扣薪、資遣、離職、年終、offer 比較、離職交接與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
   )
 
   return (

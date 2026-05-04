@@ -94,6 +94,18 @@ const mappingRows = [
     to: '/salary-slip-guide',
   },
   {
+    situation: '年底前換工作或剛到職，想先估未滿一年年終、發放資格和保證年薪差異',
+    page: '年終獎金懶人包',
+    check: '先分清楚固定月數、發放日資格與是不是把保證年薪、年終和獎金混成同一筆。',
+    to: '/year-end-bonus-guide',
+  },
+  {
+    situation: '拿到兩份 offer，想比較年包、通勤、加班與試用期條件哪個比較划算',
+    page: 'Offer 比較與薪資談判懶人包',
+    check: '先把月薪、年終、津貼、平均加班與通勤時間換成同一個口徑，不要只比表面月薪。',
+    to: '/offer-negotiation-guide',
+  },
+  {
     situation: '打工、兼職或工讀，想先分清時薪、加班費、特休和最低工資',
     page: '打工兼職權益懶人包',
     check: '先把薪資型態、班表日別與實際工時拆開，不要只看自己是不是兼職。',
@@ -110,6 +122,12 @@ const mappingRows = [
     page: '產假與育嬰留停懶人包',
     check: '先分清楚產假、陪產檢及陪產假、安胎假與育嬰留停，不要全部混成一題。',
     to: '/parental-leave-guide',
+  },
+  {
+    situation: '準備提離職，想先安排最後工作日、交接清單、離職文件與薪資結清',
+    page: '離職交接與最後工作日懶人包',
+    check: '先把通知日、預告期、工作清單、特休與薪資結清拆開，交接和扣薪不要混成同一題。',
+    to: '/exit-handover-guide',
   },
   {
     situation: '想知道目前薪資對應哪個勞退級距，退休後可能累積多少',

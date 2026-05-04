@@ -351,6 +351,22 @@ export const contentCatalog = [
     points: ['薪資單怎麼看', '勞健保扣多少', '投保級距怎麼查'],
   },
   {
+    to: '/year-end-bonus-guide',
+    label: '年終獎金',
+    eyebrow: '年終入口',
+    title: '年終獎金懶人包',
+    desc: '把年終獎金、未滿一年比例、保證年薪與離職前後發放常見問題集中整理，先分清條件再往下看。',
+    points: ['年終一定要發嗎', '未滿一年怎麼算', '保證年薪怎麼看'],
+  },
+  {
+    to: '/offer-negotiation-guide',
+    label: 'Offer 談薪',
+    eyebrow: '談薪入口',
+    title: 'Offer 比較與薪資談判懶人包',
+    desc: '把 offer 比較、薪資談判、保證年薪、試用期薪資與新鮮人起薪常見問題集中整理，先分清口徑再往下看。',
+    points: ['offer 怎麼比', '保證年薪差在哪', '談薪要看哪些數字'],
+  },
+  {
     to: '/part-time-rights-guide',
     label: '打工兼職',
     eyebrow: '兼職入口',
@@ -381,6 +397,14 @@ export const contentCatalog = [
     title: '離職權益懶人包',
     desc: '把離職預告期、資遣費、特休結清與非自願離職常見問題集中整理，先找對入口再往下算。',
     points: ['離職要提前幾天', '被資遣可以拿多少', '特休沒休完怎麼看'],
+  },
+  {
+    to: '/exit-handover-guide',
+    label: '離職交接',
+    eyebrow: '交接入口',
+    title: '離職交接與最後工作日懶人包',
+    desc: '把離職交接清單、最後工作日、離職文件、薪資結清與特休折發常見問題集中整理，先分清時序再往下看。',
+    points: ['離職交接清單', '最後工作日怎麼算', '離職文件何時拿'],
   },
   {
     to: '/dismissal-guide',

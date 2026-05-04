@@ -54,6 +54,12 @@ const dismissalSearchCards = [
     page: '離職預告期計算',
   },
   {
+    keyword: '被叫當天走人，交接和文件怎麼辦',
+    desc: '如果公司要求立刻離場，先把最後工作日、交接要求、帳號權限與應拿文件拆開記錄。',
+    to: '/exit-handover-guide',
+    page: '離職交接與最後工作日懶人包',
+  },
+  {
     keyword: '試用期可以隨時開除嗎',
     desc: '試用期不是公司可以省略終止理由和程序的空白地帶，應先分清楚是試用不適任還是一般解僱爭議。',
     to: '/probation-rights-guide',

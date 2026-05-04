@@ -54,6 +54,12 @@ const wageSearchCards = [
     page: '投保級距查詢',
   },
   {
+    keyword: '年終獎金一定要發嗎',
+    desc: '如果你在查年終是否屬於工資、未滿一年比例或少發爭議，應先把制度、發放條件與證據拆開看。',
+    to: '/year-end-bonus-guide',
+    page: '年終獎金懶人包',
+  },
+  {
     keyword: '打工最低時薪多少',
     desc: '如果你同時在查兼職時薪、加班費、特休或刪班問題，應先把薪資型態和班表日別拆開看。',
     to: '/part-time-rights-guide',

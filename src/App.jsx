@@ -22,6 +22,8 @@ import DisputeChecker from './pages/DisputeChecker'
 import RetirementPlanner from './pages/RetirementPlanner'
 import RetirementPlanningGuide from './pages/RetirementPlanningGuide'
 import LeavingJob from './pages/LeavingJob'
+import ExitHandoverGuide from './pages/ExitHandoverGuide'
+import OfferNegotiationGuide from './pages/OfferNegotiationGuide'
 import ProbationRightsGuide from './pages/ProbationRightsGuide'
 import PartTimeRightsGuide from './pages/PartTimeRightsGuide'
 import OvertimeGuide from './pages/OvertimeGuide'
@@ -35,6 +37,7 @@ import InsuranceBenefitsGuide from './pages/InsuranceBenefitsGuide'
 import AttendanceDisputeGuide from './pages/AttendanceDisputeGuide'
 import ComplaintGuide from './pages/ComplaintGuide'
 import TyphoonWorkdayGuide from './pages/TyphoonWorkdayGuide'
+import YearEndBonusGuide from './pages/YearEndBonusGuide'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -57,7 +60,10 @@ export default function App() {
         <Route path="/salary-slip-guide" element={<SalarySlipGuide />} />
         <Route path="/insurance-benefits-guide" element={<InsuranceBenefitsGuide />} />
         <Route path="/dismissal-guide" element={<DismissalGuide />} />
+        <Route path="/year-end-bonus-guide" element={<YearEndBonusGuide />} />
+        <Route path="/offer-negotiation-guide" element={<OfferNegotiationGuide />} />
         <Route path="/probation-rights-guide" element={<ProbationRightsGuide />} />
+        <Route path="/exit-handover-guide" element={<ExitHandoverGuide />} />
         <Route path="/complaint-guide" element={<ComplaintGuide />} />
         <Route path="/leave-guide" element={<LeaveGuide />} />
         <Route path="/part-time-rights-guide" element={<PartTimeRightsGuide />} />

@@ -30,6 +30,12 @@ const leavingChecklist = [
     page: '離職預告期計算',
   },
   {
+    keyword: '離職交接清單怎麼做',
+    desc: '先把最後工作日、交接項目、帳號權限、文件與薪資結清拆開，不要全部壓在同一個截止日。',
+    to: '/exit-handover-guide',
+    page: '離職交接與最後工作日懶人包',
+  },
+  {
     keyword: '被資遣可以拿多少',
     desc: '先分新制與舊制年資，再估合理資遣費區間。',
     to: '/severance',
@@ -46,6 +52,12 @@ const leavingChecklist = [
     desc: '先整理爭議類型、薪資項目與可留存證據。',
     to: '/dispute-checker',
     page: '勞資爭議檢查器',
+  },
+  {
+    keyword: '提離職還拿得到年終嗎',
+    desc: '不要只看自己有沒有做到年底，還要一起看發放日、最後工作日、交接狀態與公司制度。',
+    to: '/year-end-bonus-guide',
+    page: '年終獎金懶人包',
   },
   {
     keyword: '試用期離職要預告嗎',
