@@ -53,6 +53,12 @@ const wageSearchCards = [
     to: '/insurance-brackets',
     page: '投保級距查詢',
   },
+  {
+    keyword: '打工最低時薪多少',
+    desc: '如果你同時在查兼職時薪、加班費、特休或刪班問題，應先把薪資型態和班表日別拆開看。',
+    to: '/part-time-rights-guide',
+    page: '打工兼職權益懶人包',
+  },
 ]
 
 const wageMistakes = [

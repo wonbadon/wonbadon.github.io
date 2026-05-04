@@ -17,8 +17,8 @@ const attendanceScenarios = [
   {
     title: '碰到颱風天、補休或輪班連假',
     desc: '這些情境最容易把補休、假日出勤和正常排班混在一起，應先分清楚原始班表。',
-    to: '/typhoon-workday',
-    cta: '先看颱風天與出勤口徑',
+    to: '/typhoon-workday-guide',
+    cta: '先看颱風假與天災出勤懶人包',
   },
 ]
 
@@ -56,8 +56,8 @@ const attendanceSearchCards = [
   {
     keyword: '颱風天出勤能不能扣薪',
     desc: '先看有沒有出勤、原本排的是哪種班，颱風天口徑和國定假日不是同一套。',
-    to: '/typhoon-workday',
-    page: '颱風假薪資計算機',
+    to: '/typhoon-workday-guide',
+    page: '颱風假與天災出勤懶人包',
   },
 ]
 

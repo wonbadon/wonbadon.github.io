@@ -303,6 +303,14 @@ export const contentCatalog = [
     points: ['公司可以臨時改班嗎', '國定假日上班怎麼算', '補休與輪班怎麼看'],
   },
   {
+    to: '/typhoon-workday-guide',
+    label: '颱風假',
+    eyebrow: '天災入口',
+    title: '颱風假與天災出勤懶人包',
+    desc: '把停班停課、颱風天出勤、扣薪與補休常見問題集中整理，先分清日別與出勤再往下看。',
+    points: ['颱風假有薪嗎', '停班停課會扣薪嗎', '颱風天上班怎麼算'],
+  },
+  {
     to: '/annual-leave-guide',
     label: '特休攻略',
     eyebrow: '特休入口',
@@ -343,6 +351,14 @@ export const contentCatalog = [
     points: ['薪資單怎麼看', '勞健保扣多少', '投保級距怎麼查'],
   },
   {
+    to: '/part-time-rights-guide',
+    label: '打工兼職',
+    eyebrow: '兼職入口',
+    title: '打工兼職權益懶人包',
+    desc: '把時薪月薪換算、排班、加班費、最低工資與兼職投保常見問題集中整理，先分清工時與日別再往下看。',
+    points: ['打工加班費怎麼算', '兼職有特休嗎', '最低時薪怎麼看'],
+  },
+  {
     to: '/insurance-benefits-guide',
     label: '勞保職災',
     eyebrow: '給付入口',
@@ -373,6 +389,14 @@ export const contentCatalog = [
     title: '被開除怎麼辦懶人包',
     desc: '把解僱、逼離職、非自願離職、失業給付與終止文件常見問題集中整理，先分清情境再往下看。',
     points: ['被開除怎麼辦', '被逼離職', '非自願離職證明'],
+  },
+  {
+    to: '/probation-rights-guide',
+    label: '試用期',
+    eyebrow: '到職入口',
+    title: '試用期權益懶人包',
+    desc: '把試用期開除、離職預告、薪資、勞健保與到職初期常見問題集中整理，先分清終止與工資再往下看。',
+    points: ['試用期可以開除嗎', '試用期要預告嗎', '試用期要保勞健保嗎'],
   },
   {
     to: '/complaint-guide',

@@ -47,6 +47,12 @@ const leavingChecklist = [
     to: '/dispute-checker',
     page: '勞資爭議檢查器',
   },
+  {
+    keyword: '試用期離職要預告嗎',
+    desc: '不要只看是不是還在試用期，還是要先回到實際年資、通知方式與離職原因。',
+    to: '/probation-rights-guide',
+    page: '試用期權益懶人包',
+  },
 ]
 
 const leavingMistakes = [

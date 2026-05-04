@@ -70,6 +70,12 @@ const mappingRows = [
     to: '/attendance-dispute-guide',
   },
   {
+    situation: '颱風天停班停課、被叫去上班，想先知道能不能扣薪或怎麼算',
+    page: '颱風假與天災出勤懶人包',
+    check: '先分清楚你有沒有出勤，以及那天原本是工作日、休息日還是國定假日。',
+    to: '/typhoon-workday-guide',
+  },
+  {
     situation: '收到資遣通知，想先抓公司大概應給多少',
     page: '資遣費計算機',
     check: '把新制與舊制年資拆開填，避免兩套制度混算。',
@@ -86,6 +92,18 @@ const mappingRows = [
     page: '薪資單與勞健保懶人包',
     check: '先分清楚哪些是你自己負擔，哪些是雇主另外負擔，再看是不是扣錯。',
     to: '/salary-slip-guide',
+  },
+  {
+    situation: '打工、兼職或工讀，想先分清時薪、加班費、特休和最低工資',
+    page: '打工兼職權益懶人包',
+    check: '先把薪資型態、班表日別與實際工時拆開，不要只看自己是不是兼職。',
+    to: '/part-time-rights-guide',
+  },
+  {
+    situation: '剛到職還在試用期，想知道被說不適任、離職預告和勞健保怎麼看',
+    page: '試用期權益懶人包',
+    check: '先分清楚是你主動離職、公司終止契約，還是只是在談薪資與投保。',
+    to: '/probation-rights-guide',
   },
   {
     situation: '懷孕、生產或準備申請育嬰留停，想先知道該分哪些假別與津貼',

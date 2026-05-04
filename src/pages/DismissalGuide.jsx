@@ -53,6 +53,12 @@ const dismissalSearchCards = [
     to: '/notice-period',
     page: '離職預告期計算',
   },
+  {
+    keyword: '試用期可以隨時開除嗎',
+    desc: '試用期不是公司可以省略終止理由和程序的空白地帶，應先分清楚是試用不適任還是一般解僱爭議。',
+    to: '/probation-rights-guide',
+    page: '試用期權益懶人包',
+  },
 ]
 
 const dismissalMistakes = [
