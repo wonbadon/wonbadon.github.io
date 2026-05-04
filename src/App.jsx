@@ -26,6 +26,9 @@ import LaborPensionGuide from './pages/LaborPensionGuide'
 import WageRightsGuide from './pages/WageRightsGuide'
 import DismissalGuide from './pages/DismissalGuide'
 import LeaveGuide from './pages/LeaveGuide'
+import InsuranceBenefitsGuide from './pages/InsuranceBenefitsGuide'
+import AttendanceDisputeGuide from './pages/AttendanceDisputeGuide'
+import ComplaintGuide from './pages/ComplaintGuide'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -44,8 +47,11 @@ export default function App() {
         <Route path="/annual-leave-guide" element={<AnnualLeaveGuide />} />
         <Route path="/labor-pension-guide" element={<LaborPensionGuide />} />
         <Route path="/wage-rights" element={<WageRightsGuide />} />
+        <Route path="/insurance-benefits-guide" element={<InsuranceBenefitsGuide />} />
         <Route path="/dismissal-guide" element={<DismissalGuide />} />
+        <Route path="/complaint-guide" element={<ComplaintGuide />} />
         <Route path="/leave-guide" element={<LeaveGuide />} />
+        <Route path="/attendance-dispute-guide" element={<AttendanceDisputeGuide />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/about" element={<About />} />

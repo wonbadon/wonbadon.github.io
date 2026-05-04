@@ -295,6 +295,14 @@ export const contentCatalog = [
     points: ['加班費怎麼算', '休息日倍率差異', '國定假日薪資口徑'],
   },
   {
+    to: '/attendance-dispute-guide',
+    label: '排班出勤',
+    eyebrow: '排班入口',
+    title: '排班與出勤爭議懶人包',
+    desc: '把調班、輪班、國定假日出勤、補休與颱風天出勤常見問題集中整理，先分清班表再往下看。',
+    points: ['公司可以臨時改班嗎', '國定假日上班怎麼算', '補休與輪班怎麼看'],
+  },
+  {
     to: '/annual-leave-guide',
     label: '特休攻略',
     eyebrow: '特休入口',
@@ -319,6 +327,14 @@ export const contentCatalog = [
     points: ['扣薪合法嗎', '欠薪怎麼辦', '薪資單怎麼看'],
   },
   {
+    to: '/insurance-benefits-guide',
+    label: '勞保職災',
+    eyebrow: '給付入口',
+    title: '勞保、職災與失業給付懶人包',
+    desc: '把勞保低報、職災補償、失業給付與文件流程常見問題集中整理，先分清制度再往下看。',
+    points: ['職災怎麼申請', '失業給付怎麼領', '勞保低報怎麼看'],
+  },
+  {
     to: '/scenarios',
     label: '情境比較',
     eyebrow: '快速判斷',
@@ -341,6 +357,14 @@ export const contentCatalog = [
     title: '被開除怎麼辦懶人包',
     desc: '把解僱、逼離職、非自願離職、失業給付與終止文件常見問題集中整理，先分清情境再往下看。',
     points: ['被開除怎麼辦', '被逼離職', '非自願離職證明'],
+  },
+  {
+    to: '/complaint-guide',
+    label: '申訴調解',
+    eyebrow: '申訴入口',
+    title: '勞工申訴流程懶人包',
+    desc: '把勞工局申訴、調解、檢舉前蒐證與文件整理常見問題集中整理，先分清爭議再往下走。',
+    points: ['蒐證怎麼整理', '勞工局申訴要帶什麼', '調解前先算清楚什麼'],
   },
   {
     to: '/severance-guide',

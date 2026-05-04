@@ -44,8 +44,8 @@ const dismissalSearchCards = [
   {
     keyword: '失業給付怎麼領',
     desc: '先把非自願離職身分、文件與離職流程理清，不要一開始就只查金額。',
-    to: '/leaving-job',
-    page: '離職權益懶人包',
+    to: '/insurance-benefits-guide',
+    page: '勞保、職災與失業給付懶人包',
   },
   {
     keyword: '資遣通知後多久離職',

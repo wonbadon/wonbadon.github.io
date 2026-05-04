@@ -88,7 +88,7 @@ const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
   count: tools.length,
 }))
 
-const featuredSearchQuestions = faqEntries.slice(0, 6)
+const featuredSearchQuestions = faqEntries.slice(0, 9)
 
 function CategoryPillButton({ label, count, isActive, onClick }) {
   return (
@@ -128,7 +128,7 @@ export default function Home() {
 
   usePageMeta(
     '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保｜台灣勞工權益計算器',
-    '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假與勞資爭議重點。',
+    '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假、職災、排班與申訴流程重點。',
   )
 
   return (

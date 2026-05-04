@@ -64,10 +64,22 @@ const mappingRows = [
     to: '/annual-leave',
   },
   {
+    situation: '公司臨時調班、改排休或連假排班，想先知道該怎麼分辨',
+    page: '排班與出勤爭議懶人包',
+    check: '先把原始班表、改班通知與當天性質放在一起看，不要直接跳倍率。',
+    to: '/attendance-dispute-guide',
+  },
+  {
     situation: '收到資遣通知，想先抓公司大概應給多少',
     page: '資遣費計算機',
     check: '把新制與舊制年資拆開填，避免兩套制度混算。',
     to: '/severance',
+  },
+  {
+    situation: '準備去勞工局申訴或調解，但還沒整理好證據和主張',
+    page: '勞工申訴流程懶人包',
+    check: '先整理時間線、主張項目與對應證據，再決定要帶哪些資料。',
+    to: '/complaint-guide',
   },
   {
     situation: '想知道目前薪資對應哪個勞退級距，退休後可能累積多少',

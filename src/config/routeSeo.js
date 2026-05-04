@@ -1,7 +1,7 @@
 import { faqEntries } from '../data/faqEntries.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
-export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假與勞資爭議重點。'
+export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、請假、職災、排班與申訴流程重點。'
 export const SOCIAL_IMAGE_PATH = 'social-card.svg'
 
 export function composeDocumentTitle(pageTitle) {
@@ -17,7 +17,7 @@ export const routeSeoEntries = [
     path: '/',
     title: '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保',
     description: DEFAULT_DESCRIPTION,
-    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦'],
+    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦', '職災怎麼申請', '排班爭議', '勞工局申訴'],
     schemaType: 'CollectionPage',
   },
   {
@@ -35,6 +35,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/attendance-dispute-guide',
+    title: '排班與出勤爭議懶人包｜調班、輪班、國定假日與補休一次看',
+    description: '整理調班、排班、輪班、國定假日出勤、補休與颱風天出勤常見問題，幫你先找到正確入口。',
+    keywords: ['調班怎麼算', '排班爭議', '輪班國定假日', '補休怎麼算', '國定假日出勤', '排休違法嗎'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/annual-leave-guide',
     title: '特休怎麼算懶人包｜滿半年、滿一年、未休折發與遞延一次看',
     description: '整理特休幾天、滿半年特休、未休折發工資與特休遞延的常見問題，幫你先找到正確入口。',
@@ -49,6 +56,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/insurance-benefits-guide',
+    title: '勞保、職災與失業給付懶人包｜勞保給付、職災補償與失業給付流程一次看',
+    description: '整理勞保給付怎麼看、職災補償與失業給付申請流程、文件與常見誤區，幫你先找到正確入口。',
+    keywords: ['失業給付怎麼領', '職災怎麼申請', '勞保給付', '勞保低報', '職災補償', '非自願離職失業給付'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/leaving-job',
     title: '離職權益懶人包｜離職預告期、資遣費、特休結清與非自願離職怎麼看',
     description: '整理離職預告期、資遣費、特休結清、非自願離職與勞資爭議的常見問題，幫你先找到正確入口。',
@@ -60,6 +74,13 @@ export const routeSeoEntries = [
     title: '被開除怎麼辦懶人包｜解僱、逼離職、非自願離職與失業給付一次看',
     description: '整理被開除怎麼辦、被逼離職、非自願離職證明與失業給付常見問題，幫你先找到正確入口。',
     keywords: ['被開除怎麼辦', '被逼離職', '非自願離職證明', '失業給付', '解僱', '資遣通知'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/complaint-guide',
+    title: '勞工申訴流程懶人包｜蒐證、勞工局申訴、調解與檢舉一次看',
+    description: '整理勞工局申訴、勞資調解、檢舉前蒐證、時序整理與常見文件，幫你先找到正確入口。',
+    keywords: ['勞工局申訴流程', '勞資調解', '勞工申訴', '蒐證清單', '勞工檢舉', '勞資爭議調解'],
     schemaType: 'Guide',
   },
   {
@@ -92,9 +113,9 @@ export const routeSeoEntries = [
   },
   {
     path: '/faq',
-    title: '勞工權益常見問題｜加班費、請假、扣薪、資遣與勞退 FAQ',
-    description: '整理加班費、請假、扣薪、資遣、離職與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
-    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '資遣費常見問題', '勞退常見問題'],
+    title: '勞工權益常見問題｜加班費、請假、扣薪、職災、排班與申訴 FAQ',
+    description: '整理加班費、請假、扣薪、職災、排班、離職、申訴與勞退試算中最常見的法條口徑、輸入誤區與結果差異。',
+    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '職災常見問題', '排班常見問題', '申訴常見問題'],
     schemaType: 'FAQPage',
   },
   {
