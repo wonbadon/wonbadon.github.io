@@ -17,8 +17,8 @@ const insuranceScenarios = [
   {
     title: '非自願離職準備接失業給付',
     desc: '先分清楚自己是不是非自願離職，再看離職文件、就保資格與後續申請流程。',
-    to: '/dismissal-guide',
-    cta: '先看解僱與失業給付入口',
+    to: '/unemployment-benefits-guide',
+    cta: '先看失業給付與文件懶人包',
   },
 ]
 
@@ -32,14 +32,14 @@ const insuranceSearchCards = [
   {
     keyword: '失業給付怎麼領',
     desc: '先確認是不是非自願離職、有沒有拿到對的文件，以及後續要不要先處理爭議。',
-    to: '/dismissal-guide',
-    page: '被開除怎麼辦懶人包',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
   },
   {
     keyword: '勞保低報怎麼看',
     desc: '先對照實際月薪、投保薪資與勞退提繳級距，不要只憑單月保費差額判斷。',
-    to: '/insurance-brackets',
-    page: '投保級距查詢',
+    to: '/insurance-reporting-guide',
+    page: '勞健保高薪低報與兼職投保懶人包',
   },
   {
     keyword: '職災休養期間薪水怎麼算',
@@ -56,8 +56,8 @@ const insuranceSearchCards = [
   {
     keyword: '失業給付被退件怎麼辦',
     desc: '如果卡在文件、身分或終止原因，通常要先回頭整理離職文件與蒐證。',
-    to: '/complaint-guide',
-    page: '勞工申訴流程懶人包',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
   },
 ]
 

@@ -50,8 +50,14 @@ const wageSearchCards = [
   {
     keyword: '勞保低報怎麼看',
     desc: '先對照投保級距、薪資單與勞退提繳級距，再判斷公司是不是低報。',
-    to: '/insurance-brackets',
-    page: '投保級距查詢',
+    to: '/insurance-reporting-guide',
+    page: '勞健保高薪低報與兼職投保懶人包',
+  },
+  {
+    keyword: '輪班津貼算不算工資',
+    desc: '先分清楚固定津貼、條件式津貼與實際班表，再判斷會不會影響平均工資、加班費與離職結算。',
+    to: '/flexible-schedule-guide',
+    page: '變形工時、責任制與輪班津貼懶人包',
   },
   {
     keyword: '年終獎金一定要發嗎',

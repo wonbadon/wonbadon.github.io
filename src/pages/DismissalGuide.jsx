@@ -38,14 +38,20 @@ const dismissalSearchCards = [
   {
     keyword: '非自願離職證明是什麼',
     desc: '先確認終止原因、文件名稱與後續用途，尤其是資遣和失業給付會用到。',
-    to: '/leaving-job',
-    page: '離職權益懶人包',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
   },
   {
     keyword: '失業給付怎麼領',
     desc: '先把非自願離職身分、文件與離職流程理清，不要一開始就只查金額。',
-    to: '/insurance-benefits-guide',
-    page: '勞保、職災與失業給付懶人包',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
+  },
+  {
+    keyword: '失業給付要準備哪些文件',
+    desc: '先分清楚非自願離職文件、離職證明、服務證明與最後工作日，申請時程才不會從第一步就亂掉。',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
   },
   {
     keyword: '資遣通知後多久離職',

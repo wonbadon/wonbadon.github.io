@@ -42,6 +42,18 @@ const attendanceSearchCards = [
     page: '熱門情境比較',
   },
   {
+    keyword: '變形工時是什麼',
+    desc: '先分清楚公司說的是哪一種變形工時制度，再回頭核對班表、工時總量與排班方式。',
+    to: '/flexible-schedule-guide',
+    page: '變形工時、責任制與輪班津貼懶人包',
+  },
+  {
+    keyword: '責任制沒有加班費嗎',
+    desc: '不要只看公司怎麼稱呼，還要一起看職務、工時紀錄、約定內容與是否真的落在例外範圍。',
+    to: '/flexible-schedule-guide',
+    page: '變形工時、責任制與輪班津貼懶人包',
+  },
+  {
     keyword: '補休沒休完怎麼辦',
     desc: '先分清楚補休來源、約定方式、到期處理與是否又和特休混在一起。',
     to: '/rights-check',

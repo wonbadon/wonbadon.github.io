@@ -62,8 +62,14 @@ const salarySearchCards = [
   {
     keyword: '公司保低了怎麼看',
     desc: '先整理薪資單、匯款紀錄、勞保投保資料與勞退提繳紀錄，再判斷是低報還是單純級距理解錯誤。',
-    to: '/wage-rights',
-    page: '工資與扣薪懶人包',
+    to: '/insurance-reporting-guide',
+    page: '勞健保高薪低報與兼職投保懶人包',
+  },
+  {
+    keyword: '輪班津貼算不算薪水',
+    desc: '如果你同時在看排班、夜班津貼與平均工資，先把制度名稱、工時紀錄和津貼項目拆開。',
+    to: '/flexible-schedule-guide',
+    page: '變形工時、責任制與輪班津貼懶人包',
   },
 ]
 

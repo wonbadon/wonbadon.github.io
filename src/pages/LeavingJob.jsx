@@ -42,6 +42,12 @@ const leavingChecklist = [
     page: '資遣費計算機',
   },
   {
+    keyword: '被資遣後失業給付文件和時程怎麼排',
+    desc: '先把最後工作日、非自願離職文件、求職登記與申請節點排成同一條時間線，不要想到哪一步查哪一步。',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
+  },
+  {
     keyword: '離職後特休沒休完怎麼算',
     desc: '先看目前法定特休資格，再回頭確認未休天數該如何折算。',
     to: '/annual-leave',

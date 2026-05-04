@@ -7,6 +7,7 @@ import Severance from './pages/Severance'
 import LaborPension from './pages/LaborPension'
 import SalarySlip from './pages/SalarySlip'
 import SalarySlipGuide from './pages/SalarySlipGuide'
+import InsuranceReportingGuide from './pages/InsuranceReportingGuide'
 import InsurancePremium from './pages/InsurancePremium'
 import InsuranceBrackets from './pages/InsuranceBrackets'
 import WageConverter from './pages/WageConverter'
@@ -34,7 +35,9 @@ import WageRightsGuide from './pages/WageRightsGuide'
 import DismissalGuide from './pages/DismissalGuide'
 import LeaveGuide from './pages/LeaveGuide'
 import InsuranceBenefitsGuide from './pages/InsuranceBenefitsGuide'
+import UnemploymentBenefitsGuide from './pages/UnemploymentBenefitsGuide'
 import AttendanceDisputeGuide from './pages/AttendanceDisputeGuide'
+import FlexibleScheduleGuide from './pages/FlexibleScheduleGuide'
 import ComplaintGuide from './pages/ComplaintGuide'
 import TyphoonWorkdayGuide from './pages/TyphoonWorkdayGuide'
 import YearEndBonusGuide from './pages/YearEndBonusGuide'
@@ -58,7 +61,9 @@ export default function App() {
         <Route path="/retirement-planning-guide" element={<RetirementPlanningGuide />} />
         <Route path="/wage-rights" element={<WageRightsGuide />} />
         <Route path="/salary-slip-guide" element={<SalarySlipGuide />} />
+        <Route path="/insurance-reporting-guide" element={<InsuranceReportingGuide />} />
         <Route path="/insurance-benefits-guide" element={<InsuranceBenefitsGuide />} />
+        <Route path="/unemployment-benefits-guide" element={<UnemploymentBenefitsGuide />} />
         <Route path="/dismissal-guide" element={<DismissalGuide />} />
         <Route path="/year-end-bonus-guide" element={<YearEndBonusGuide />} />
         <Route path="/offer-negotiation-guide" element={<OfferNegotiationGuide />} />
@@ -69,6 +74,7 @@ export default function App() {
         <Route path="/part-time-rights-guide" element={<PartTimeRightsGuide />} />
         <Route path="/parental-leave-guide" element={<ParentalLeaveGuide />} />
         <Route path="/attendance-dispute-guide" element={<AttendanceDisputeGuide />} />
+        <Route path="/flexible-schedule-guide" element={<FlexibleScheduleGuide />} />
         <Route path="/typhoon-workday-guide" element={<TyphoonWorkdayGuide />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />

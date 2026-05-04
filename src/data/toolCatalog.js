@@ -303,6 +303,14 @@ export const contentCatalog = [
     points: ['公司可以臨時改班嗎', '國定假日上班怎麼算', '補休與輪班怎麼看'],
   },
   {
+    to: '/flexible-schedule-guide',
+    label: '變形工時',
+    eyebrow: '工時入口',
+    title: '變形工時、責任制與輪班津貼懶人包',
+    desc: '把變形工時、責任制、輪班津貼與排班加班常見問題集中整理，先分清制度與工資項目再往下看。',
+    points: ['變形工時是什麼', '責任制有沒有加班費', '輪班津貼算不算工資'],
+  },
+  {
     to: '/typhoon-workday-guide',
     label: '颱風假',
     eyebrow: '天災入口',
@@ -351,6 +359,14 @@ export const contentCatalog = [
     points: ['薪資單怎麼看', '勞健保扣多少', '投保級距怎麼查'],
   },
   {
+    to: '/insurance-reporting-guide',
+    label: '低報投保',
+    eyebrow: '投保入口',
+    title: '勞健保高薪低報與兼職投保懶人包',
+    desc: '把高薪低報、兼職投保、多份工作與投保薪資級距常見問題集中整理，先分清申報與給付基礎再往下看。',
+    points: ['高薪低報怎麼看', '兼職要保勞健保嗎', '多份工作勞保怎麼保'],
+  },
+  {
     to: '/year-end-bonus-guide',
     label: '年終獎金',
     eyebrow: '年終入口',
@@ -381,6 +397,14 @@ export const contentCatalog = [
     title: '勞保、職災與失業給付懶人包',
     desc: '把勞保低報、職災補償、失業給付與文件流程常見問題集中整理，先分清制度再往下看。',
     points: ['職災怎麼申請', '失業給付怎麼領', '勞保低報怎麼看'],
+  },
+  {
+    to: '/unemployment-benefits-guide',
+    label: '失業給付',
+    eyebrow: '失業入口',
+    title: '失業給付與非自願離職文件懶人包',
+    desc: '把失業給付申請、非自願離職文件、退件原因與申辦時程常見問題集中整理，先分清身分與文件再往下看。',
+    points: ['失業給付怎麼領', '非自願離職證明文件', '申請時程怎麼排'],
   },
   {
     to: '/scenarios',

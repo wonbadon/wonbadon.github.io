@@ -50,8 +50,14 @@ const partTimeSearchCards = [
   {
     keyword: '兼職要保勞健保嗎',
     desc: '兼職投保不是一句有或沒有就結束，還要先看工時、雇用型態與實際申報狀況。',
-    to: '/salary-slip-guide',
-    page: '薪資單與勞健保懶人包',
+    to: '/insurance-reporting-guide',
+    page: '勞健保高薪低報與兼職投保懶人包',
+  },
+  {
+    keyword: '多份工作勞保怎麼保',
+    desc: '如果你同時有正職和兼職，先分清楚哪一份工作負責投保、哪一份影響給付與申報基礎。',
+    to: '/insurance-reporting-guide',
+    page: '勞健保高薪低報與兼職投保懶人包',
   },
   {
     keyword: '打工被臨時刪班怎麼辦',
