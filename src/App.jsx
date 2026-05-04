@@ -19,6 +19,8 @@ import SalaryCompare from './pages/SalaryCompare'
 import DisputeChecker from './pages/DisputeChecker'
 import RetirementPlanner from './pages/RetirementPlanner'
 import LeavingJob from './pages/LeavingJob'
+import OvertimeGuide from './pages/OvertimeGuide'
+import SeveranceGuide from './pages/SeveranceGuide'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -32,6 +34,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/guide" element={<Guide />} />
         <Route path="/leaving-job" element={<LeavingJob />} />
+        <Route path="/overtime-guide" element={<OvertimeGuide />} />
+        <Route path="/severance-guide" element={<SeveranceGuide />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/about" element={<About />} />

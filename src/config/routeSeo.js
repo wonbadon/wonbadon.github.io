@@ -28,10 +28,24 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/overtime-guide',
+    title: '加班費怎麼算懶人包｜平日、休息日、國定假日加班費一次看',
+    description: '整理加班費怎麼算、休息日加班費、國定假日上班薪水與月薪制假日出勤的常見問題，先分情境再進試算。',
+    keywords: ['加班費怎麼算', '加班費', '休息日加班費', '國定假日加班費', '月薪制加班費', '加班費計算'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/leaving-job',
     title: '離職權益懶人包｜離職預告期、資遣費、特休結清與非自願離職怎麼看',
     description: '整理離職預告期、資遣費、特休結清、非自願離職與勞資爭議的常見問題，幫你先找到正確入口。',
     keywords: ['離職', '離職權益', '離職預告期', '資遣費怎麼算', '非自願離職', '離職特休結清'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/severance-guide',
+    title: '資遣費怎麼算懶人包｜非自願離職、平均工資與新舊制一次看',
+    description: '整理資遣費怎麼算、非自願離職、平均工資、新舊制年資與自請離職差異，幫你先找到正確入口。',
+    keywords: ['資遣費怎麼算', '資遣費', '非自願離職', '平均工資', '新制資遣費', '舊制資遣費'],
     schemaType: 'Guide',
   },
   {
