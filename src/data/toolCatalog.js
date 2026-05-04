@@ -295,6 +295,14 @@ export const contentCatalog = [
     points: ['加班費怎麼算', '休息日倍率差異', '國定假日薪資口徑'],
   },
   {
+    to: '/annual-leave-guide',
+    label: '特休攻略',
+    eyebrow: '特休入口',
+    title: '特休怎麼算懶人包',
+    desc: '把滿半年、滿一年、未休折發與特休遞延的常見問題集中整理，先分清法定門檻再進試算。',
+    points: ['特休幾天', '滿半年門檻', '未休折發怎麼看'],
+  },
+  {
     to: '/scenarios',
     label: '情境比較',
     eyebrow: '快速判斷',
@@ -317,6 +325,14 @@ export const contentCatalog = [
     title: '資遣費怎麼算懶人包',
     desc: '把非自願離職、平均工資、新舊制年資與自請離職差異集中整理，先弄清口徑再試算。',
     points: ['資遣費怎麼算', '平均工資怎麼看', '自請離職有沒有資遣費'],
+  },
+  {
+    to: '/labor-pension-guide',
+    label: '勞退攻略',
+    eyebrow: '勞退入口',
+    title: '勞退怎麼算懶人包',
+    desc: '把雇主 6%、自提、提繳級距與勞退和勞保差異集中整理，先弄清制度再進試算。',
+    points: ['勞退 6% 怎麼算', '自提要不要開', '勞退和勞保差別'],
   },
   {
     to: '/faq',

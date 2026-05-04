@@ -35,6 +35,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/annual-leave-guide',
+    title: '特休怎麼算懶人包｜滿半年、滿一年、未休折發與遞延一次看',
+    description: '整理特休幾天、滿半年特休、未休折發工資與特休遞延的常見問題，幫你先找到正確入口。',
+    keywords: ['特休怎麼算', '特休幾天', '滿半年特休', '特休沒休完', '特休遞延', '特休折發'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/leaving-job',
     title: '離職權益懶人包｜離職預告期、資遣費、特休結清與非自願離職怎麼看',
     description: '整理離職預告期、資遣費、特休結清、非自願離職與勞資爭議的常見問題，幫你先找到正確入口。',
@@ -46,6 +53,13 @@ export const routeSeoEntries = [
     title: '資遣費怎麼算懶人包｜非自願離職、平均工資與新舊制一次看',
     description: '整理資遣費怎麼算、非自願離職、平均工資、新舊制年資與自請離職差異，幫你先找到正確入口。',
     keywords: ['資遣費怎麼算', '資遣費', '非自願離職', '平均工資', '新制資遣費', '舊制資遣費'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/labor-pension-guide',
+    title: '勞退怎麼算懶人包｜雇主 6%、自提、級距與退休規劃一次看',
+    description: '整理勞退 6% 怎麼算、勞退自提、提繳級距與勞退和勞保差異，幫你先找到正確入口。',
+    keywords: ['勞退怎麼算', '勞退 6%', '勞退自提', '勞退級距', '勞退和勞保差別', '退休金試算'],
     schemaType: 'Guide',
   },
   {
@@ -198,6 +212,11 @@ export const notFoundSeo = {
 }
 
 export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
+  const publisher = {
+    '@type': 'Person',
+    name: 'wonbadon',
+  }
+
   const baseWebsite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -207,10 +226,7 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
     description: DEFAULT_DESCRIPTION,
     inLanguage: 'zh-TW',
     image: socialImageUrl,
-    publisher: {
-      '@type': 'Person',
-      name: 'wonbadon',
-    },
+    publisher,
   }
 
   if (routePath === '/') {
@@ -224,9 +240,14 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
         name: composeDocumentTitle(homeRoute.title),
         description: homeRoute.description,
         url: pageUrl,
+        mainEntityOfPage: pageUrl,
         inLanguage: 'zh-TW',
         image: socialImageUrl,
         about: homeRoute.keywords,
+        keywords: homeRoute.keywords.join(', '),
+        author: publisher,
+        publisher,
+        isAccessibleForFree: true,
         isPartOf: {
           '@type': 'WebSite',
           name: SITE_NAME,
@@ -245,7 +266,11 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
       name: composeDocumentTitle(faqRoute.title),
       description: faqRoute.description,
       url: pageUrl,
+      mainEntityOfPage: pageUrl,
       inLanguage: 'zh-TW',
+      author: publisher,
+      publisher,
+      isAccessibleForFree: true,
       mainEntity: faqEntries.map(({ question, answers }) => ({
         '@type': 'Question',
         name: question,
@@ -287,9 +312,14 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
     name: composeDocumentTitle(routeSeo.title),
     description: routeSeo.description,
     url: pageUrl,
+    mainEntityOfPage: pageUrl,
     inLanguage: 'zh-TW',
     image: socialImageUrl,
     keywords: routeSeo.keywords.join(', '),
+    about: routeSeo.keywords,
+    author: publisher,
+    publisher,
+    isAccessibleForFree: true,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,

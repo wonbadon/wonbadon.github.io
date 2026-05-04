@@ -21,6 +21,8 @@ import RetirementPlanner from './pages/RetirementPlanner'
 import LeavingJob from './pages/LeavingJob'
 import OvertimeGuide from './pages/OvertimeGuide'
 import SeveranceGuide from './pages/SeveranceGuide'
+import AnnualLeaveGuide from './pages/AnnualLeaveGuide'
+import LaborPensionGuide from './pages/LaborPensionGuide'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -36,6 +38,8 @@ export default function App() {
         <Route path="/leaving-job" element={<LeavingJob />} />
         <Route path="/overtime-guide" element={<OvertimeGuide />} />
         <Route path="/severance-guide" element={<SeveranceGuide />} />
+        <Route path="/annual-leave-guide" element={<AnnualLeaveGuide />} />
+        <Route path="/labor-pension-guide" element={<LaborPensionGuide />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/about" element={<About />} />

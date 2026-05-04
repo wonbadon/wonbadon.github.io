@@ -159,8 +159,9 @@ async function writeRoutePages(siteUrl, adsenseClient) {
 }
 
 async function writeSitemap(siteUrl) {
+  const lastModified = new Date().toISOString().slice(0, 10)
   const urls = routeSeoEntries
-    .map((routeSeo) => `  <url>\n    <loc>${buildPageUrl(siteUrl, routeSeo.path)}</loc>\n  </url>`)
+    .map((routeSeo) => `  <url>\n    <loc>${buildPageUrl(siteUrl, routeSeo.path)}</loc>\n    <lastmod>${lastModified}</lastmod>\n  </url>`)
     .join('\n')
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
