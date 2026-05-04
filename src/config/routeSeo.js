@@ -15,9 +15,9 @@ export function composeDocumentTitle(pageTitle) {
 export const routeSeoEntries = [
   {
     path: '/',
-    title: '勞工權益計算工具｜免費試算加班費、特休、資遣費、勞退與勞健保',
+    title: '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保',
     description: DEFAULT_DESCRIPTION,
-    keywords: ['勞工權益計算工具', '加班費計算機', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算'],
+    keywords: ['勞工權益計算工具', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算'],
     schemaType: 'CollectionPage',
   },
   {
@@ -25,6 +25,13 @@ export const routeSeoEntries = [
     title: '新手指南｜勞工權益試算前要準備什麼資料',
     description: '第一次使用台灣勞工權益計算器時，先看情境怎麼分、資料怎麼準備，以及哪些地方需要人工覆核。',
     keywords: ['勞工權益新手指南', '加班費怎麼算', '資遣費怎麼算', '特休怎麼算', '勞退怎麼算'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/leaving-job',
+    title: '離職權益懶人包｜離職預告期、資遣費、特休結清與非自願離職怎麼看',
+    description: '整理離職預告期、資遣費、特休結清、非自願離職與勞資爭議的常見問題，幫你先找到正確入口。',
+    keywords: ['離職', '離職權益', '離職預告期', '資遣費怎麼算', '非自願離職', '離職特休結清'],
     schemaType: 'Guide',
   },
   {

@@ -18,6 +18,7 @@ import RightsCheck from './pages/RightsCheck'
 import SalaryCompare from './pages/SalaryCompare'
 import DisputeChecker from './pages/DisputeChecker'
 import RetirementPlanner from './pages/RetirementPlanner'
+import LeavingJob from './pages/LeavingJob'
 import Guide from './pages/Guide'
 import Scenarios from './pages/Scenarios'
 import FAQ from './pages/FAQ'
@@ -30,6 +31,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/guide" element={<Guide />} />
+        <Route path="/leaving-job" element={<LeavingJob />} />
         <Route path="/scenarios" element={<Scenarios />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/about" element={<About />} />

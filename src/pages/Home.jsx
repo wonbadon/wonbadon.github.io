@@ -127,7 +127,7 @@ export default function Home() {
   }
 
   usePageMeta(
-    '勞工權益計算工具｜免費試算薪資、加班費、特休、資遣費、勞退｜台灣勞工權益計算器',
+    '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保｜台灣勞工權益計算器',
     '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，輸入資料後立即看結果與法條重點。',
   )
 
@@ -149,7 +149,7 @@ export default function Home() {
         <div className="mt-3 max-w-3xl sm:mt-4">
           <h1 className="home-directory-title">勞工權益計算工具</h1>
           <p className="home-directory-subtitle mt-3 sm:mt-4">
-            免費試算薪資、加班費、特休、資遣費、勞退與勞健保，所有工具依據 2026 年最新勞基法與級距整理，輸入資料後立即看結果。
+            免費試算加班費、離職預告期、特休、資遣費、勞退與勞健保，所有工具依據 2026 年最新勞基法與級距整理，輸入資料後立即看結果。
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function Home() {
             <p className="home-directory-kicker">快速開始</p>
             <h2 className="home-directory-section-title mt-3">先看常用入口，再往下找完整工具總覽</h2>
             <p className="home-directory-section-desc mt-3">
-              首頁先整理常用入口，下方同時保留新手導覽、情境拆解、常見問題與站點說明。
+              首頁先整理常用入口，下方同時保留離職入口、新手導覽、情境拆解、常見問題與站點說明。
             </p>
 
             <div className="home-directory-stat-grid mt-6">

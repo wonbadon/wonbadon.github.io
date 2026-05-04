@@ -295,6 +295,14 @@ export const contentCatalog = [
     points: ['平日 vs 休息日', '國定假日 vs 例假日', '資遣 vs 自請離職'],
   },
   {
+    to: '/leaving-job',
+    label: '離職權益',
+    eyebrow: '離職入口',
+    title: '離職權益懶人包',
+    desc: '把離職預告期、資遣費、特休結清與非自願離職常見問題集中整理，先找對入口再往下算。',
+    points: ['離職要提前幾天', '被資遣可以拿多少', '特休沒休完怎麼看'],
+  },
+  {
     to: '/faq',
     label: '常見問題',
     eyebrow: '集中解答',
