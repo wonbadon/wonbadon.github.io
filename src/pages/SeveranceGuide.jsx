@@ -47,6 +47,12 @@ const severanceSearchCards = [
     to: '/guide',
     page: '新手指南',
   },
+  {
+    keyword: '非自願離職文件和失業給付怎麼接',
+    desc: '如果你已經確定是資遣或非自願離職，下一步通常不是只停在金額，而是文件名稱、時程與失業給付怎麼接。',
+    to: '/unemployment-benefits-guide',
+    page: '失業給付與非自願離職文件懶人包',
+  },
 ]
 
 const severanceMistakes = [

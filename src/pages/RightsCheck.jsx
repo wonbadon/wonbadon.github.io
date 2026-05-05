@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { RIGHTS_CHECK_QUESTIONS, evaluateRightsCheck } from '../calculators/rightsCheck'
 import usePageMeta from '../hooks/usePageMeta'
@@ -119,6 +120,37 @@ export default function RightsCheck() {
           )}
         </section>
       )}
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸入口</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">健檢後常見的下一步，不外乎這三條</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <Link
+            to="/insurance-reporting-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">低報投保與兼職投保</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">勾到勞健保、扣薪或薪資單異常時，常常最後會回到投保薪資到底怎麼報。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往低報投保懶人包 →</p>
+          </Link>
+          <Link
+            to="/unemployment-benefits-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">非自願離職與失業給付</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">勾到解僱、逼離職或交接爭議時，下一步通常就是文件、時程和失業給付資格判讀。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往失業給付懶人包 →</p>
+          </Link>
+          <Link
+            to="/flexible-schedule-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">變形工時、責任制與輪班</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">勾到工時、排班或加班費問題時，很多情況不是單純時數，而是制度本身就要先拆開看。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往變形工時懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

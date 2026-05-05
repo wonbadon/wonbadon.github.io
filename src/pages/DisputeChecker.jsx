@@ -134,6 +134,37 @@ export default function DisputeChecker() {
           )}
         </section>
       )}
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸入口</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">如果爭議已經指向這三類，直接往下看</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <Link
+            to="/insurance-reporting-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">低報投保與多份工作</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果故事裡有未保勞健保、低報投保或同時兩份工作，下一步應看申報規則、級距與保險影響。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往低報投保懶人包 →</p>
+          </Link>
+          <Link
+            to="/unemployment-benefits-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">非自願離職文件與失業給付</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果爭議已經涉及資遣、逼離職或解僱，接著通常要處理證明文件、申請時程與失業給付。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往失業給付懶人包 →</p>
+          </Link>
+          <Link
+            to="/flexible-schedule-guide"
+            className="metric-tile block h-full transition duration-200 hover:-translate-y-1 hover:bg-sky-50"
+          >
+            <h3 className="text-xl font-extrabold text-slate-950">變形工時、責任制與輪班</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果公司用責任制、排班或輪班當理由不給加班費，應直接回頭看工時制度和津貼判讀。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往變形工時懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

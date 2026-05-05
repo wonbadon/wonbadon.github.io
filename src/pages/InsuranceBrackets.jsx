@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { calcInsurancePremiums, getInsuranceBracketSummary } from '../calculators/insurance'
 import usePageMeta from '../hooks/usePageMeta'
 import { formatCurrency } from '../utils/format'
@@ -106,6 +107,31 @@ export default function InsuranceBrackets() {
           </div>
         </section>
       )}
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸判讀</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">查到級距之後，最常接著看的兩件事</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Link
+            to="/insurance-reporting-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">申報差異</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">勞健保高薪低報與兼職投保懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果你發現投保薪資和月薪對不上，或同時有兩份工作，應接著看低報、多份工作與兼職投保規則。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往低報投保懶人包 →</p>
+          </Link>
+          <Link
+            to="/salary-slip-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">薪資拆解</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">薪資單與勞健保懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果你其實是在看薪資單為什麼扣這麼多，或想釐清底薪、津貼與實領薪資差在哪，應回到薪資明細頁一起對照。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往薪資單懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

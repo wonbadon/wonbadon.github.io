@@ -47,6 +47,12 @@ const overtimeSearchCards = [
     to: '/faq',
     page: '常見問題',
   },
+  {
+    keyword: '責任制或變形工時還要算加班費嗎',
+    desc: '如果公司先拿責任制、輪班或變形工時當前提，問題通常已經不是單純倍率，而是制度本身和津貼、工時紀錄要一起看。',
+    to: '/flexible-schedule-guide',
+    page: '變形工時、責任制與輪班津貼懶人包',
+  },
 ]
 
 const overtimeMistakes = [

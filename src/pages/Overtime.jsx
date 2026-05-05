@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { calcOvertimeSummary } from '../calculators/overtime'
 import usePageMeta from '../hooks/usePageMeta'
@@ -271,6 +272,31 @@ export default function Overtime() {
           </div>
         </div>
       </div>
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸判讀</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">如果你卡的不只是金額，通常還要往下看這兩頁</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Link
+            to="/flexible-schedule-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">制度判讀</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">變形工時、責任制與輪班津貼懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果公司說你是責任制、變形工時或輪班制，所以不用照一般加班費算法，應先看制度本身是否成立。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往變形工時懶人包 →</p>
+          </Link>
+          <Link
+            to="/attendance-dispute-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">排班延伸</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">排班與出勤爭議懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果你爭議的是調班、輪班、補休或國定假日安排，單看金額還不夠，還要回到排班與出勤規則本身。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往排班爭議懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

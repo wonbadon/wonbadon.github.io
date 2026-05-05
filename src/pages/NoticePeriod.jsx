@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import usePageMeta from '../hooks/usePageMeta'
 import { formatDate, formatNumber } from '../utils/format'
 
@@ -192,6 +193,31 @@ export default function NoticePeriod() {
           </div>
         </section>
       )}
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸判讀</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">預告期算完後，最常接著卡住的是這兩題</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Link
+            to="/exit-handover-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">交接時序</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">離職交接與最後工作日懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">很多人預告期算完，下一步就卡在最後工作日、交接清單、離職文件與薪資結清怎麼排。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往離職交接懶人包 →</p>
+          </Link>
+          <Link
+            to="/unemployment-benefits-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">非自願離職文件</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">失業給付與非自願離職文件懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果這次不是自請離職，而是資遣或非自願離職，接著就要看文件名稱、申請時程和失業給付怎麼接。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往失業給付懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { calcInsurancePremiums } from '../calculators/insurance'
 import {
   DEFAULT_OCCUPATIONAL_ACCIDENT_RATE,
@@ -173,6 +174,31 @@ export default function InsurancePremium() {
           </div>
         </section>
       )}
+
+      <section className="section-card">
+        <p className="page-eyebrow">延伸判讀</p>
+        <h2 className="mt-3 text-2xl font-extrabold text-slate-950">如果你不是單純想算保費，下一步通常在這裡</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Link
+            to="/insurance-reporting-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">高意圖延伸</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">勞健保高薪低報與兼職投保懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果你是懷疑公司少保、低報，或同時有正職兼職，不要只停在保費金額，應回頭看投保薪資與申報規則。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往低報投保懶人包 →</p>
+          </Link>
+          <Link
+            to="/insurance-benefits-guide"
+            className="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-sky-50"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">給付延伸</p>
+            <h3 className="mt-3 text-xl font-extrabold text-slate-950">勞保、職災與失業給付懶人包</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">如果你在意的不只是每月扣多少，而是低報後會不會影響職災、失業給付或其他保險給付，應直接看制度差異。</p>
+            <p className="mt-4 text-sm font-semibold text-sky-700">前往勞保與給付懶人包 →</p>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }
