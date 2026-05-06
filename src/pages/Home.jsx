@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import AdSlot from '../components/AdSlot'
 import SiteSearch from '../components/SiteSearch'
+import { adsConfig } from '../config/ads'
 import usePageMeta from '../hooks/usePageMeta'
 import { contentCatalog, featuredTools, secondaryTools } from '../data/toolCatalog'
 import { faqEntries } from '../data/faqEntries'
@@ -362,6 +364,14 @@ export default function Home() {
             </Link>
             )
           })}
+        </section>
+
+        <section className="mt-8 sm:mt-10">
+          <AdSlot
+            slot={adsConfig.slots.home}
+            label="首頁內容贊助廣告"
+            minHeight={160}
+          />
         </section>
 
         <section className="home-directory-section mt-14 sm:mt-16">

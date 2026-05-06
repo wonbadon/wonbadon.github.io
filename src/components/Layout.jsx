@@ -311,14 +311,14 @@ export default function Layout({ children }) {
         <SupportCta className="mx-auto mt-2 max-w-6xl px-4 sm:px-6" />
       )}
 
-      <AdSlot
-        key={isHome ? 'home-ad-slot' : `page-ad-slot-${pathname}`}
-        slot={adSlot}
-        label={adLabel}
-        className={isHome
-          ? 'mx-auto mt-2 max-w-6xl px-4 pb-4 sm:px-6'
-          : 'mx-auto mt-2 max-w-6xl px-4 sm:px-6'}
-      />
+      {!isHome && (
+        <AdSlot
+          key={`page-ad-slot-${pathname}`}
+          slot={adSlot}
+          label={adLabel}
+          className="mx-auto mt-2 max-w-6xl px-4 sm:px-6"
+        />
+      )}
 
       {isHome ? (
         <footer className="relative border-t border-slate-200 bg-white text-slate-600">
