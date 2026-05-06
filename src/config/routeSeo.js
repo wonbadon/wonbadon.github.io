@@ -1,4 +1,5 @@
 import { faqEntries } from '../data/faqEntries.js'
+import { toolCatalog } from '../data/toolCatalog.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
 export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、失業給付文件、交接、年終、offer、低報投保、變形工時、請假、職災、排班、颱風假、兼職、試用期、育嬰與退休規劃重點。'
@@ -331,10 +332,38 @@ export const routeSeoEntries = [
 ]
 
 export const routeSeoByPath = Object.fromEntries(routeSeoEntries.map((entry) => [entry.path, entry]))
+const toolCatalogByPath = Object.fromEntries(toolCatalog.map((tool) => [tool.to, tool]))
 
 export const notFoundSeo = {
   title: '找不到頁面',
   description: '你造訪的頁面不存在，可以回到首頁重新選擇工具，或先閱讀新手指南。',
+}
+
+function buildBreadcrumbStructuredData(routePath, pageUrl, routeTitle) {
+  if (routePath === '/' || routePath === '/404') {
+    return null
+  }
+
+  const siteUrl = new URL('/', pageUrl).toString()
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '首頁',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: routeTitle.split('｜')[0],
+        item: pageUrl,
+      },
+    ],
+  }
 }
 
 export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
@@ -342,17 +371,23 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
     '@type': 'Person',
     name: 'wonbadon',
   }
+  const siteUrl = new URL('/', pageUrl).toString()
 
   const baseWebsite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: SITE_NAME,
     alternateName: ['勞工權益試算工具', '勞工權益計算工具', 'wonbadon.github.io'],
-    url: new URL('/', pageUrl).toString(),
+    url: siteUrl,
     description: DEFAULT_DESCRIPTION,
     inLanguage: 'zh-TW',
     image: socialImageUrl,
     publisher,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteUrl}?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
   }
 
   if (routePath === '/') {
@@ -377,7 +412,7 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
         isPartOf: {
           '@type': 'WebSite',
           name: SITE_NAME,
-          url: new URL('/', pageUrl).toString(),
+          url: siteUrl,
         },
       },
     ]
@@ -385,35 +420,41 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
 
   if (routePath === '/faq') {
     const faqRoute = routeSeoByPath['/faq']
+    const breadcrumb = buildBreadcrumbStructuredData(routePath, pageUrl, faqRoute.title)
 
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      name: composeDocumentTitle(faqRoute.title),
-      description: faqRoute.description,
-      url: pageUrl,
-      mainEntityOfPage: pageUrl,
-      inLanguage: 'zh-TW',
-      author: publisher,
-      publisher,
-      isAccessibleForFree: true,
-      mainEntity: faqEntries.map(({ question, answers }) => ({
-        '@type': 'Question',
-        name: question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: answers.join(' '),
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        name: composeDocumentTitle(faqRoute.title),
+        description: faqRoute.description,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        inLanguage: 'zh-TW',
+        author: publisher,
+        publisher,
+        isAccessibleForFree: true,
+        mainEntity: faqEntries.map(({ question, answers }) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answers.join(' '),
+          },
+        })),
+        isPartOf: {
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: siteUrl,
         },
-      })),
-      isPartOf: {
-        '@type': 'WebSite',
-        name: SITE_NAME,
-        url: new URL('/', pageUrl).toString(),
       },
-    }
+      breadcrumb,
+    ].filter(Boolean)
   }
 
   const routeSeo = routeSeoByPath[routePath]
+  const breadcrumb = routeSeo ? buildBreadcrumbStructuredData(routePath, pageUrl, routeSeo.title) : null
+  const toolEntry = toolCatalogByPath[routePath]
 
   if (!routeSeo) {
     return {
@@ -427,29 +468,71 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
       isPartOf: {
         '@type': 'WebSite',
         name: SITE_NAME,
-        url: new URL('/', pageUrl).toString(),
+        url: siteUrl,
       },
     }
   }
 
-  return {
-    '@context': 'https://schema.org',
-    '@type': routeSeo.schemaType || 'WebPage',
-    name: composeDocumentTitle(routeSeo.title),
-    description: routeSeo.description,
-    url: pageUrl,
-    mainEntityOfPage: pageUrl,
-    inLanguage: 'zh-TW',
-    image: socialImageUrl,
-    keywords: routeSeo.keywords.join(', '),
-    about: routeSeo.keywords,
-    author: publisher,
-    publisher,
-    isAccessibleForFree: true,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: SITE_NAME,
-      url: new URL('/', pageUrl).toString(),
-    },
+  if (toolEntry) {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: composeDocumentTitle(routeSeo.title),
+        description: routeSeo.description,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        inLanguage: 'zh-TW',
+        image: socialImageUrl,
+        keywords: routeSeo.keywords.join(', '),
+        about: routeSeo.keywords,
+        applicationCategory: `${toolEntry.category} 試算工具`,
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript. Works in modern browsers.',
+        featureList: [
+          toolEntry.suitable,
+          `輸入：${toolEntry.inputs.join('、')}`,
+          `結果：${toolEntry.output}`,
+        ],
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD',
+        },
+        author: publisher,
+        publisher,
+        isAccessibleForFree: true,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: siteUrl,
+        },
+      },
+      breadcrumb,
+    ].filter(Boolean)
   }
+
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': routeSeo.schemaType || 'WebPage',
+      name: composeDocumentTitle(routeSeo.title),
+      description: routeSeo.description,
+      url: pageUrl,
+      mainEntityOfPage: pageUrl,
+      inLanguage: 'zh-TW',
+      image: socialImageUrl,
+      keywords: routeSeo.keywords.join(', '),
+      about: routeSeo.keywords,
+      author: publisher,
+      publisher,
+      isAccessibleForFree: true,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url: siteUrl,
+      },
+    },
+    breadcrumb,
+  ].filter(Boolean)
 }
