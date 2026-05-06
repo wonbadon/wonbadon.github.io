@@ -8,6 +8,7 @@ const LaborRightsGuide = lazy(() => import('./pages/LaborRightsGuide'))
 const LaborCalculationGuide = lazy(() => import('./pages/LaborCalculationGuide'))
 const LaborToolsGuide = lazy(() => import('./pages/LaborToolsGuide'))
 const LaborProblemGuide = lazy(() => import('./pages/LaborProblemGuide'))
+const LaborSelfHelpGuide = lazy(() => import('./pages/LaborSelfHelpGuide'))
 const LeavingJob = lazy(() => import('./pages/LeavingJob'))
 const OvertimeGuide = lazy(() => import('./pages/OvertimeGuide'))
 const SeveranceGuide = lazy(() => import('./pages/SeveranceGuide'))
@@ -74,6 +75,7 @@ export default function App() {
           <Route path="/labor-calculation-guide" element={<LaborCalculationGuide />} />
           <Route path="/labor-tools-guide" element={<LaborToolsGuide />} />
           <Route path="/labor-problem-guide" element={<LaborProblemGuide />} />
+          <Route path="/labor-self-help-guide" element={<LaborSelfHelpGuide />} />
           <Route path="/leaving-job" element={<LeavingJob />} />
           <Route path="/overtime-guide" element={<OvertimeGuide />} />
           <Route path="/severance-guide" element={<SeveranceGuide />} />

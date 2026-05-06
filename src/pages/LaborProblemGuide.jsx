@@ -32,8 +32,8 @@ const problemSearchCards = [
   {
     keyword: '勞工自救',
     desc: '如果你還沒確定要不要正式申訴，先把問題類型、主張項目與證據整理順序釐清。',
-    to: '/complaint-guide',
-    page: '勞工申訴流程懶人包',
+    to: '/labor-self-help-guide',
+    page: '勞工自救懶人包',
   },
   {
     keyword: '勞工糾紛',
@@ -64,6 +64,12 @@ const problemSearchCards = [
     desc: '正式申訴前最重要的不是背法條，而是先把事件時間線、證據和你要主張的金額或權利整理好。',
     to: '/complaint-guide',
     page: '勞工申訴流程懶人包',
+  },
+  {
+    keyword: '公司違反勞基法怎麼辦',
+    desc: '如果你現在還沒分清楚第一步該做什麼，先走自救入口把文件、時序、證據與後續流程拆開。',
+    to: '/labor-self-help-guide',
+    page: '勞工自救懶人包',
   },
 ]
 

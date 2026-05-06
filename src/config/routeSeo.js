@@ -57,6 +57,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/labor-self-help-guide',
+    title: '勞工自救懶人包｜公司違反勞基法、蒐證與申訴前先做什麼',
+    description: '整理勞工自救、公司違反勞基法怎麼辦、被公司違法對待怎麼處理、申訴前蒐證與自救順序，幫你先分清先後步驟。',
+    keywords: ['勞工自救', '公司違反勞基法怎麼辦', '被公司違法對待怎麼辦', '申訴前蒐證', '先蒐證還是先申訴', '勞工自救流程'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/overtime-guide',
     title: '加班費怎麼算懶人包｜平日、休息日、國定假日加班費一次看',
     description: '整理加班費怎麼算、休息日加班費、國定假日上班薪水與月薪制假日出勤的常見問題，先分情境再進試算。',

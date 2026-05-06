@@ -319,6 +319,14 @@ export const contentCatalog = [
     points: ['先分問題類型', '自救與蒐證順序', '申訴前該看哪裡'],
   },
   {
+    to: '/labor-self-help-guide',
+    label: '勞工自救',
+    eyebrow: '自救入口',
+    title: '勞工自救懶人包',
+    desc: '把公司違反勞基法、欠薪、逼離職、低報投保與申訴前蒐證順序集中整理，先知道第一步該做什麼。',
+    points: ['先不要亂簽文件', '先留原始證據', '再決定要不要申訴'],
+  },
+  {
     to: '/overtime-guide',
     label: '加班費攻略',
     eyebrow: '加班入口',

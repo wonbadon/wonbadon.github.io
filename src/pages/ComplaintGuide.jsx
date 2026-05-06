@@ -3,10 +3,10 @@ import usePageMeta from '../hooks/usePageMeta'
 
 const complaintScenarios = [
   {
-    title: '還不確定自己是不是遇到違法',
-    desc: '先把工時、工資、保險、請假或離職問題做一次快篩，先知道爭點在哪，再決定要不要往申訴走。',
-    to: '/rights-check',
-    cta: '先做權益健檢',
+    title: '還在自救與蒐證階段',
+    desc: '如果你現在還沒確定要不要正式申訴，先把文件、時序、證據與不要先做錯的動作整理清楚。',
+    to: '/labor-self-help-guide',
+    cta: '先看勞工自救懶人包',
   },
   {
     title: '已經知道是扣薪、欠薪或逼離職',
