@@ -303,6 +303,14 @@ export const contentCatalog = [
     points: ['加班費與特休試算', '資遣費與勞退工具', '薪資單與勞健保查詢'],
   },
   {
+    to: '/labor-tools-guide',
+    label: '勞工網站',
+    eyebrow: '站點總覽',
+    title: '勞工網站與勞工工具總整理',
+    desc: '把試算工具、懶人包、查詢入口與申訴流程集中整理，先分清你要的是哪一種頁面。',
+    points: ['站內工具怎麼找', '勞工查詢入口', '申訴與爭議入口'],
+  },
+  {
     to: '/overtime-guide',
     label: '加班費攻略',
     eyebrow: '加班入口',

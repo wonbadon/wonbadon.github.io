@@ -43,6 +43,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/labor-tools-guide',
+    title: '勞工網站與勞工工具總整理｜試算工具、懶人包與查詢入口',
+    description: '整理勞工網站、勞工工具、勞工查詢常用入口，整合加班費、特休、資遣費、勞退、薪資單、申訴與懶人包頁面。',
+    keywords: ['勞工網站', '勞工工具', '勞工工具網站', '勞工查詢', '勞工查詢網站', '勞工網站推薦', '勞工工具總整理'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/overtime-guide',
     title: '加班費怎麼算懶人包｜平日、休息日、國定假日加班費一次看',
     description: '整理加班費怎麼算、休息日加班費、國定假日上班薪水與月薪制假日出勤的常見問題，先分情境再進試算。',
