@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import SiteSearch from '../components/SiteSearch'
 import usePageMeta from '../hooks/usePageMeta'
 import { contentCatalog, featuredTools, secondaryTools } from '../data/toolCatalog'
 import { faqEntries } from '../data/faqEntries'
@@ -152,6 +153,10 @@ export default function Home() {
             免費試算加班費、離職預告期、特休、資遣費、勞退與勞健保，所有工具依據 2026 年最新勞基法與級距整理，輸入資料後立即看結果。
           </p>
         </div>
+
+        <section className="mt-6 sm:mt-8">
+          <SiteSearch variant="home" syncQueryParam />
+        </section>
 
         <section className="home-directory-intro-grid">
           <div className="home-directory-summary-card">

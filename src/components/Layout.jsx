@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AdSlot from './AdSlot'
+import SiteSearch from './SiteSearch'
 import SupportCta from './SupportCta'
 import { adsConfig } from '../config/ads'
 import { contentCatalog, featuredTools, toolCatalog } from '../data/toolCatalog'
@@ -97,9 +98,19 @@ const disclaimerSections = [
   },
 ]
 
+function isTypingSurface(target) {
+  return target instanceof HTMLElement && (
+    target.tagName === 'INPUT'
+    || target.tagName === 'TEXTAREA'
+    || target.tagName === 'SELECT'
+    || target.isContentEditable
+  )
+}
+
 export default function Layout({ children }) {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const isHome = pathname === '/'
   const isToolPage = toolRouteSet.has(pathname)
   const isContentPage = contentRouteSet.has(pathname)
@@ -134,6 +145,7 @@ export default function Layout({ children }) {
 
   useLayoutEffect(() => {
     setMenuOpen(false)
+    setSearchOpen(false)
 
     resetScrollPosition()
 
@@ -150,6 +162,38 @@ export default function Layout({ children }) {
       window.clearTimeout(timeoutId)
     }
   }, [pathname])
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && searchOpen) {
+        event.preventDefault()
+        setSearchOpen(false)
+        return
+      }
+
+      if (isTypingSurface(event.target)) {
+        return
+      }
+
+      const pressedKey = event.key.toLowerCase()
+      const isSlashShortcut = event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey
+      const isSearchShortcut = pressedKey === 'k' && (event.metaKey || event.ctrlKey)
+
+      if (!isSlashShortcut && !isSearchShortcut) {
+        return
+      }
+
+      event.preventDefault()
+      setMenuOpen(false)
+      setSearchOpen(true)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [searchOpen])
 
   const desktopNavClass = (to) => {
     return pathname === to
@@ -189,20 +233,53 @@ export default function Layout({ children }) {
             ))}
           </nav>
 
-          <button
-            type="button"
-            className="rounded-full border border-slate-200 bg-slate-50 p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="開關選單"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {menuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              }
-            </svg>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm font-semibold transition ${searchOpen ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'}`}
+              onClick={() => {
+                setMenuOpen(false)
+                setSearchOpen((previousValue) => !previousValue)
+              }}
+              aria-expanded={searchOpen}
+              aria-controls="site-search-panel"
+              title="按 / 或 Ctrl+K 開啟搜尋"
+            >
+              <span className="hidden sm:inline">搜尋功能</span>
+              <span className="sm:hidden">搜尋</span>
+              <span className="hidden md:inline-flex rounded-full border border-current/15 px-2 py-0.5 text-[11px] font-bold leading-none opacity-75">/</span>
+            </button>
+
+            <button
+              type="button"
+              className="rounded-full border border-slate-200 bg-slate-50 p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
+              onClick={() => {
+                setSearchOpen(false)
+                setMenuOpen(!menuOpen)
+              }}
+              aria-label="開關選單"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {menuOpen
+                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                }
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {searchOpen && (
+          <div id="site-search-panel" className="border-t border-slate-200 bg-white px-4 py-4 sm:px-6">
+            <div className="mx-auto max-w-6xl">
+              <SiteSearch
+                variant="panel"
+                autoFocus
+                onResultSelect={() => setSearchOpen(false)}
+              />
+            </div>
+          </div>
+        )}
 
         {menuOpen && (
           <nav className="border-t border-slate-200 bg-white px-4 py-3 md:hidden">
