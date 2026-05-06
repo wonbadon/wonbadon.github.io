@@ -434,6 +434,10 @@
     box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
 
+  .home-directory-summary-card-extended {
+    @apply flex h-full self-stretch flex-col;
+  }
+
   .home-directory-summary-card::before {
     content: '';
     position: absolute;
@@ -467,6 +471,30 @@
 
   .home-directory-chip-link {
     @apply transition duration-200 hover:border-sky-200 hover:bg-white hover:text-sky-700;
+  }
+
+  .home-directory-summary-guide {
+    @apply mt-auto border-t border-slate-200 pt-5;
+  }
+
+  .home-directory-summary-guide-count {
+    @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-bold tracking-[0.16em] text-slate-500;
+  }
+
+  .home-directory-summary-guide-grid {
+    @apply mt-4 grid gap-3 sm:grid-cols-3;
+  }
+
+  .home-directory-summary-guide-card {
+    @apply rounded-[20px] border border-slate-200 bg-slate-50/90 p-4;
+  }
+
+  .home-directory-summary-guide-title {
+    @apply text-sm font-extrabold tracking-[-0.02em] text-slate-950;
+  }
+
+  .home-directory-summary-guide-desc {
+    @apply mt-2 text-sm leading-7 text-slate-500;
   }
 
   .home-directory-rail {
@@ -833,6 +861,22 @@
 
     .home-directory-stat-value {
       font-size: 1.65rem;
+    }
+
+    .home-directory-summary-guide-count {
+      letter-spacing: 0.12em;
+    }
+
+    .home-directory-summary-guide-grid {
+      @apply gap-2.5;
+    }
+
+    .home-directory-summary-guide-card {
+      @apply rounded-[18px] p-3.5;
+    }
+
+    .home-directory-summary-guide-desc {
+      line-height: 1.65;
     }
 
     .home-directory-mini-link {

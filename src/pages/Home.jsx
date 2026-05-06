@@ -91,6 +91,21 @@ const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
 
 const starterContentCatalog = contentCatalog.slice(0, 6)
 
+const quickStartGuide = [
+  {
+    title: '先找答案',
+    desc: '不知道該看哪頁時，先用上方搜尋直接輸入你的問題。',
+  },
+  {
+    title: '再選工具',
+    desc: '已經知道要算加班費、特休或資遣費，就直接走常用入口。',
+  },
+  {
+    title: '最後看導引',
+    desc: '如果你還在釐清情境，就看右側新手入口或下方完整工具庫。',
+  },
+]
+
 const featuredSearchQuestions = faqEntries.slice(0, 24)
 
 function CategoryPillButton({ label, count, isActive, onClick }) {
@@ -177,7 +192,7 @@ export default function Home() {
         </section>
 
         <section className="home-directory-intro-grid">
-          <div className="home-directory-summary-card">
+          <div className="home-directory-summary-card home-directory-summary-card-extended">
             <p className="home-directory-kicker">快速開始</p>
             <h2 className="home-directory-section-title mt-3">先看常用入口，再往下找完整工具總覽</h2>
             <p className="home-directory-section-desc mt-3">
@@ -206,6 +221,25 @@ export default function Home() {
                   <Link key={to} to={to} className="home-directory-chip home-directory-chip-link">
                     {shortLabel}
                   </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="home-directory-summary-guide">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="home-directory-detail-label">這一站怎麼用</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-500">如果你還沒決定要點哪個入口，可以先照這個順序走。</p>
+                </div>
+                <p className="home-directory-summary-guide-count">3 步快速進站</p>
+              </div>
+
+              <div className="home-directory-summary-guide-grid">
+                {quickStartGuide.map(({ title, desc }) => (
+                  <div key={title} className="home-directory-summary-guide-card">
+                    <p className="home-directory-summary-guide-title">{title}</p>
+                    <p className="home-directory-summary-guide-desc">{desc}</p>
+                  </div>
                 ))}
               </div>
             </div>
