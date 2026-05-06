@@ -6,6 +6,7 @@ import {
   composeDocumentTitle,
   DEFAULT_DESCRIPTION,
   notFoundSeo,
+  resolveOpenGraphType,
   routeSeoEntries,
   SOCIAL_IMAGE_PATH,
 } from '../src/config/routeSeo.js'
@@ -75,9 +76,8 @@ function injectStructuredData(html, structuredData) {
   )
 }
 
-function applyPageSeo(html, { title, description = DEFAULT_DESCRIPTION, keywords = [], pageUrl, socialImageUrl, structuredData, robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }) {
-  return injectStructuredData(
-    html
+function applyPageSeo(html, { title, description = DEFAULT_DESCRIPTION, keywords = [], pageUrl, socialImageUrl, structuredData, robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogType = 'website' }) {
+  const baseHtml = html
       .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
       .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
       .replace(/<meta name="keywords" content="[^"]*" \/>/, `<meta name="keywords" content="${keywords.join(',')}" />`)
@@ -89,9 +89,14 @@ function applyPageSeo(html, { title, description = DEFAULT_DESCRIPTION, keywords
       .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`)
       .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${socialImageUrl}" />`)
       .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${robots}" />`)
-      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${pageUrl}" />`),
-    structuredData,
+      .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${pageUrl}" />`)
+  const htmlWithoutOgType = baseHtml.replace(/\n?\s*<meta property="og:type" content="[^"]*"\s*\/?>/, '')
+  const htmlWithOgType = htmlWithoutOgType.replace(
+    /<meta property="og:description" content="[^"]*" \/>/,
+    `<meta property="og:description" content="${description}" />\n    <meta property="og:type" content="${ogType}" />`,
   )
+
+  return injectStructuredData(htmlWithOgType, structuredData)
 }
 
 function upsertAdsenseScript(html, adsenseClient) {
@@ -119,6 +124,7 @@ function buildPageHtml(templateHtml, routeSeo, siteUrl, adsenseClient) {
         pageUrl,
         socialImageUrl,
         structuredData,
+        ogType: resolveOpenGraphType(routeSeo.path),
       }),
       adsenseClient,
     ),

@@ -1,5 +1,5 @@
 import { faqEntries } from '../data/faqEntries.js'
-import { toolCatalog } from '../data/toolCatalog.js'
+import { contentCatalog, toolCatalog } from '../data/toolCatalog.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
 export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、失業給付文件、交接、年終、offer、低報投保、變形工時、請假、職災、排班、颱風假、兼職、試用期、育嬰與退休規劃重點。'
@@ -333,6 +333,18 @@ export const routeSeoEntries = [
 
 export const routeSeoByPath = Object.fromEntries(routeSeoEntries.map((entry) => [entry.path, entry]))
 const toolCatalogByPath = Object.fromEntries(toolCatalog.map((tool) => [tool.to, tool]))
+const homepageToolEntries = toolCatalog.filter((tool) => tool.featured)
+const homepageGuideEntries = contentCatalog.slice(0, 12)
+
+export function resolveOpenGraphType(routePath) {
+  const routeSeo = routeSeoByPath[routePath]
+
+  if (routeSeo?.schemaType === 'Guide') {
+    return 'article'
+  }
+
+  return 'website'
+}
 
 export const notFoundSeo = {
   title: '找不到頁面',
@@ -366,6 +378,32 @@ function buildBreadcrumbStructuredData(routePath, pageUrl, routeTitle) {
   }
 }
 
+function buildListItemStructuredData(position, { name, description, url, itemType = 'WebPage' }) {
+  return {
+    '@type': 'ListItem',
+    position,
+    name,
+    url,
+    item: {
+      '@type': itemType,
+      name,
+      url,
+      ...(description ? { description } : {}),
+    },
+  }
+}
+
+function buildItemListStructuredData(name, entries) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: entries.length,
+    itemListElement: entries.map((entry, index) => buildListItemStructuredData(index + 1, entry)),
+  }
+}
+
 export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
   const publisher = {
     '@type': 'Person',
@@ -392,6 +430,23 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
 
   if (routePath === '/') {
     const homeRoute = routeSeoByPath['/']
+    const featuredToolsList = buildItemListStructuredData(
+      '首頁熱門試算工具',
+      homepageToolEntries.map((tool) => ({
+        name: tool.title,
+        description: tool.desc,
+        url: new URL(tool.to.replace(/^\//, '').replace(/\/?$/, '/'), siteUrl).toString(),
+        itemType: 'WebApplication',
+      })),
+    )
+    const featuredGuidesList = buildItemListStructuredData(
+      '首頁重點內容導覽',
+      homepageGuideEntries.map((entry) => ({
+        name: entry.title,
+        description: entry.desc,
+        url: new URL(entry.to.replace(/^\//, '').replace(/\/?$/, '/'), siteUrl).toString(),
+      })),
+    )
 
     return [
       baseWebsite,
@@ -415,6 +470,8 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
           url: siteUrl,
         },
       },
+      featuredToolsList,
+      featuredGuidesList,
     ]
   }
 
@@ -499,6 +556,34 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
           price: '0',
           priceCurrency: 'TWD',
         },
+        author: publisher,
+        publisher,
+        isAccessibleForFree: true,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: siteUrl,
+        },
+      },
+      breadcrumb,
+    ].filter(Boolean)
+  }
+
+  if (routeSeo.schemaType === 'Guide') {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: routeSeo.title,
+        name: composeDocumentTitle(routeSeo.title),
+        description: routeSeo.description,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        inLanguage: 'zh-TW',
+        image: socialImageUrl,
+        keywords: routeSeo.keywords.join(', '),
+        about: routeSeo.keywords,
+        articleSection: routeSeo.title.split('｜')[0],
         author: publisher,
         publisher,
         isAccessibleForFree: true,

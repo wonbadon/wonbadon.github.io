@@ -1,5 +1,12 @@
 import { useEffect } from 'react'
-import { buildStructuredData, composeDocumentTitle, routeSeoByPath, DEFAULT_DESCRIPTION, SOCIAL_IMAGE_PATH } from '../config/routeSeo'
+import {
+  buildStructuredData,
+  composeDocumentTitle,
+  routeSeoByPath,
+  DEFAULT_DESCRIPTION,
+  resolveOpenGraphType,
+  SOCIAL_IMAGE_PATH,
+} from '../config/routeSeo'
 
 function upsertMeta(selector, createMeta) {
   let meta = document.querySelector(selector)
@@ -46,6 +53,7 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
     const title = composeDocumentTitle(resolvedPageTitle)
     const pageUrl = new URL(normalizedPath === '/' ? '/' : `${normalizedPath}/`, window.location.origin).toString()
     const socialImageUrl = new URL(SOCIAL_IMAGE_PATH, window.location.origin).toString()
+    const ogTypeValue = resolveOpenGraphType(normalizedPath)
     const structuredData = buildStructuredData(normalizedPath, pageUrl, socialImageUrl)
 
     document.title = title
@@ -65,6 +73,12 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
     const ogDescription = upsertMeta('meta[property="og:description"]', () => {
       const meta = document.createElement('meta')
       meta.setAttribute('property', 'og:description')
+      return meta
+    })
+
+    const ogType = upsertMeta('meta[property="og:type"]', () => {
+      const meta = document.createElement('meta')
+      meta.setAttribute('property', 'og:type')
       return meta
     })
 
@@ -114,6 +128,7 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
     const previousDescription = metaDescription.getAttribute('content') || ''
     const previousOgTitle = ogTitle.getAttribute('content') || ''
     const previousOgDescription = ogDescription.getAttribute('content') || ''
+    const previousOgType = ogType.getAttribute('content') || ''
     const previousTwitterTitle = twitterTitle.getAttribute('content') || ''
     const previousTwitterDescription = twitterDescription.getAttribute('content') || ''
     const previousKeywords = metaKeywords.getAttribute('content') || ''
@@ -125,6 +140,7 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
     metaDescription.setAttribute('content', resolvedDescription)
     ogTitle.setAttribute('content', title)
     ogDescription.setAttribute('content', resolvedDescription)
+    ogType.setAttribute('content', ogTypeValue)
     twitterTitle.setAttribute('content', title)
     twitterDescription.setAttribute('content', resolvedDescription)
     metaKeywords.setAttribute('content', resolvedKeywords)
@@ -138,6 +154,7 @@ export default function usePageMeta(pageTitle, description = DEFAULT_DESCRIPTION
       metaDescription.setAttribute('content', previousDescription)
       ogTitle.setAttribute('content', previousOgTitle)
       ogDescription.setAttribute('content', previousOgDescription)
+      ogType.setAttribute('content', previousOgType)
       twitterTitle.setAttribute('content', previousTwitterTitle)
       twitterDescription.setAttribute('content', previousTwitterDescription)
       metaKeywords.setAttribute('content', previousKeywords)
