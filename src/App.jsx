@@ -4,6 +4,8 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 
 const Guide = lazy(() => import('./pages/Guide'))
+const LaborRightsGuide = lazy(() => import('./pages/LaborRightsGuide'))
+const LaborCalculationGuide = lazy(() => import('./pages/LaborCalculationGuide'))
 const LeavingJob = lazy(() => import('./pages/LeavingJob'))
 const OvertimeGuide = lazy(() => import('./pages/OvertimeGuide'))
 const SeveranceGuide = lazy(() => import('./pages/SeveranceGuide'))
@@ -66,6 +68,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/guide" element={<Guide />} />
+          <Route path="/labor-rights-guide" element={<LaborRightsGuide />} />
+          <Route path="/labor-calculation-guide" element={<LaborCalculationGuide />} />
           <Route path="/leaving-job" element={<LeavingJob />} />
           <Route path="/overtime-guide" element={<OvertimeGuide />} />
           <Route path="/severance-guide" element={<SeveranceGuide />} />

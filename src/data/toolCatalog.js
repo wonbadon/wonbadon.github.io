@@ -287,6 +287,22 @@ export const contentCatalog = [
     points: ['先選工具', '整理輸入欄位', '知道哪些地方要人工覆核'],
   },
   {
+    to: '/labor-rights-guide',
+    label: '勞工權益',
+    eyebrow: '總入口',
+    title: '勞工權益懶人包',
+    desc: '把工資、工時、請假、保險、離職與申訴常見問題集中整理，先分清權益類型再往下查。',
+    points: ['工資工時怎麼分', '離職與申訴看哪裡', '保險與請假入口'],
+  },
+  {
+    to: '/labor-calculation-guide',
+    label: '勞工試算',
+    eyebrow: '工具總覽',
+    title: '勞工計算與試算工具總整理',
+    desc: '把加班費、特休、資遣費、勞退、薪資明細與勞健保工具集中整理，先找到正確試算頁再往下算。',
+    points: ['加班費與特休試算', '資遣費與勞退工具', '薪資單與勞健保查詢'],
+  },
+  {
     to: '/overtime-guide',
     label: '加班費攻略',
     eyebrow: '加班入口',

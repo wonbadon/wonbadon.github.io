@@ -29,6 +29,20 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/labor-rights-guide',
+    title: '勞工權益懶人包｜工資、工時、請假、保險、離職與申訴入口總整理',
+    description: '整理勞工權益最常見的工資、工時、請假、保險、離職、申訴與勞資爭議問題，幫你先找到正確工具與閱讀入口。',
+    keywords: ['勞工權益', '勞工權益有哪些', '勞工權益查詢', '勞工權益懶人包', '勞工權益網站', '勞工申訴', '勞基法權益'],
+    schemaType: 'Guide',
+  },
+  {
+    path: '/labor-calculation-guide',
+    title: '勞工計算與勞工試算工具總整理｜加班費、特休、資遣費、勞退與勞健保',
+    description: '整理勞工計算、勞工試算最常用的加班費、特休、資遣費、勞退、薪資明細與勞健保工具，幫你先找到對的試算頁。',
+    keywords: ['勞工計算', '勞工試算', '勞工計算網站', '勞工試算網站', '勞工計算工具', '勞工試算工具', '勞工計算機'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/overtime-guide',
     title: '加班費怎麼算懶人包｜平日、休息日、國定假日加班費一次看',
     description: '整理加班費怎麼算、休息日加班費、國定假日上班薪水與月薪制假日出勤的常見問題，先分情境再進試算。',
