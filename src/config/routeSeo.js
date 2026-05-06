@@ -2,7 +2,7 @@ import { faqEntries } from '../data/faqEntries.js'
 import { contentCatalog, toolCatalog } from '../data/toolCatalog.js'
 
 export const SITE_NAME = '台灣勞工權益計算器'
-export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具與勞工試算網站，整理勞工、勞工權益、勞工計算、勞工試算常見需求，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、失業給付文件、交接、年終、offer、低報投保、變形工時、請假、職災、排班、颱風假、兼職、試用期、育嬰與退休規劃重點。'
+export const DEFAULT_DESCRIPTION = '2026 最新勞工權益計算工具與勞工試算網站，整理勞工、勞工網站、勞工查詢、勞工權益、勞工計算、勞工試算常見需求，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、失業給付文件、交接、年終、offer、低報投保、變形工時、請假、職災、排班、颱風假、兼職、試用期、育嬰與退休規劃重點。'
 export const SOCIAL_IMAGE_PATH = 'social-card.svg'
 
 export function composeDocumentTitle(pageTitle) {
@@ -18,7 +18,7 @@ export const routeSeoEntries = [
     path: '/',
     title: '勞工權益計算工具｜勞工計算、勞工試算與加班費、離職、勞退工具總覽',
     description: DEFAULT_DESCRIPTION,
-    keywords: ['勞工', '勞工網站', '勞工權益', '勞工權益計算工具', '勞工計算', '勞工試算', '勞工工具', '勞工法規', '勞基法工具', '勞工試算網站', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦', '職災怎麼申請', '排班爭議', '勞工局申訴', '薪資單怎麼看', '颱風假有薪嗎', '打工兼職權益', '試用期可以開除嗎', '年終獎金', 'offer 比較', '離職交接清單', '失業給付文件', '高薪低報', '變形工時', '輪班津貼', '育嬰留停', '勞保老年年金'],
+    keywords: ['勞工', '勞工網站', '勞工查詢', '勞工問題查詢', '勞工權益', '勞工權益計算工具', '勞工計算', '勞工試算', '勞工工具', '勞工法規', '勞基法工具', '勞工試算網站', '加班費計算機', '離職權益', '離職預告期', '特休天數計算', '資遣費計算機', '勞退試算', '勞健保保費計算', '扣薪怎麼辦', '請假權益', '被開除怎麼辦', '職災怎麼申請', '排班爭議', '勞工局申訴', '薪資單怎麼看', '颱風假有薪嗎', '打工兼職權益', '試用期可以開除嗎', '年終獎金', 'offer 比較', '離職交接清單', '失業給付文件', '高薪低報', '變形工時', '輪班津貼', '育嬰留停', '勞保老年年金'],
     schemaType: 'CollectionPage',
   },
   {
@@ -220,8 +220,8 @@ export const routeSeoEntries = [
   {
     path: '/faq',
     title: '勞工權益常見問題｜加班費、請假、扣薪、職災、排班與申訴 FAQ',
-    description: '整理加班費、請假、扣薪、職災、排班、颱風假、兼職、試用期、年終、offer 比較、離職交接、失業給付文件、低報投保、變形工時、申訴、育嬰與退休規劃中最常見的法條口徑、輸入誤區與結果差異。',
-    keywords: ['勞工權益 FAQ', '加班費常見問題', '請假常見問題', '扣薪常見問題', '職災常見問題', '排班常見問題', '颱風假常見問題', '兼職常見問題', '試用期常見問題', '年終常見問題', 'offer 比較常見問題', '離職交接常見問題', '失業給付文件常見問題', '低報投保常見問題', '變形工時常見問題', '申訴常見問題', '育嬰留停常見問題', '退休規劃常見問題'],
+    description: '整理勞工查詢、勞工問題查詢、加班費、請假、扣薪、職災、排班、颱風假、兼職、試用期、年終、offer 比較、離職交接、失業給付文件、低報投保、變形工時、申訴、育嬰與退休規劃中最常見的法條口徑、輸入誤區與結果差異。',
+    keywords: ['勞工權益 FAQ', '勞工查詢', '勞工問題查詢', '加班費常見問題', '請假常見問題', '扣薪常見問題', '職災常見問題', '排班常見問題', '颱風假常見問題', '兼職常見問題', '試用期常見問題', '年終常見問題', 'offer 比較常見問題', '離職交接常見問題', '失業給付文件常見問題', '低報投保常見問題', '變形工時常見問題', '申訴常見問題', '育嬰留停常見問題', '退休規劃常見問題'],
     schemaType: 'FAQPage',
   },
   {
@@ -356,6 +356,7 @@ export const routeSeoByPath = Object.fromEntries(routeSeoEntries.map((entry) => 
 const toolCatalogByPath = Object.fromEntries(toolCatalog.map((tool) => [tool.to, tool]))
 const homepageToolEntries = toolCatalog.filter((tool) => tool.featured)
 const homepageGuideEntries = contentCatalog.slice(0, 12)
+const homepageSearchQuestionEntries = faqEntries.slice(0, 12)
 
 export function resolveOpenGraphType(routePath) {
   const routeSeo = routeSeoByPath[routePath]
@@ -439,8 +440,8 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
     alternateName: ['勞工權益試算工具', '勞工權益計算工具', '勞工計算網站', '勞工試算網站', '勞工工具網站', 'wonbadon.github.io'],
     url: siteUrl,
     description: DEFAULT_DESCRIPTION,
-    keywords: '勞工, 勞工網站, 勞工權益, 勞工計算, 勞工試算, 勞工工具, 勞基法工具, 勞工法規',
-    about: ['勞工', '勞工權益', '勞工計算', '勞工試算', '勞基法', '勞動法試算工具'],
+    keywords: '勞工, 勞工網站, 勞工查詢, 勞工問題查詢, 勞工權益, 勞工計算, 勞工試算, 勞工工具, 勞基法工具, 勞工法規',
+    about: ['勞工', '勞工網站', '勞工查詢', '勞工權益', '勞工計算', '勞工試算', '勞基法', '勞動法試算工具'],
     inLanguage: 'zh-TW',
     image: socialImageUrl,
     publisher,
@@ -470,6 +471,14 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
         url: new URL(entry.to.replace(/^\//, '').replace(/\/?$/, '/'), siteUrl).toString(),
       })),
     )
+    const featuredSearchQuestionsList = buildItemListStructuredData(
+      '首頁熱門搜尋問題',
+      homepageSearchQuestionEntries.map(({ question, answers, to }) => ({
+        name: question,
+        description: answers[0],
+        url: new URL(to.replace(/^\//, '').replace(/\/?$/, '/'), siteUrl).toString(),
+      })),
+    )
 
     return [
       baseWebsite,
@@ -495,6 +504,7 @@ export function buildStructuredData(routePath, pageUrl, socialImageUrl) {
       },
       featuredToolsList,
       featuredGuidesList,
+      featuredSearchQuestionsList,
     ]
   }
 
