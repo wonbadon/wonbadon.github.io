@@ -311,6 +311,14 @@ export const contentCatalog = [
     points: ['站內工具怎麼找', '勞工查詢入口', '申訴與爭議入口'],
   },
   {
+    to: '/labor-problem-guide',
+    label: '勞工問題',
+    eyebrow: '問題入口',
+    title: '勞工問題查詢懶人包',
+    desc: '把欠薪、扣薪、離職、低報投保、勞工糾紛與申訴前蒐證問題集中整理，先分清你遇到的是哪一類。',
+    points: ['先分問題類型', '自救與蒐證順序', '申訴前該看哪裡'],
+  },
+  {
     to: '/overtime-guide',
     label: '加班費攻略',
     eyebrow: '加班入口',

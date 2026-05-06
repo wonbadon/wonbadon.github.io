@@ -50,6 +50,13 @@ export const routeSeoEntries = [
     schemaType: 'Guide',
   },
   {
+    path: '/labor-problem-guide',
+    title: '勞工問題查詢懶人包｜欠薪、扣薪、離職、低報投保與申訴入口',
+    description: '整理勞工問題查詢、勞工自救、勞工糾紛與勞工申訴前最常見的欠薪、扣薪、離職、低報投保與蒐證入口，幫你先分清問題類型。',
+    keywords: ['勞工問題', '勞工問題查詢', '勞工自救', '勞工糾紛', '勞工爭議', '勞工申訴前要準備什麼', '公司違反勞基法怎麼辦'],
+    schemaType: 'Guide',
+  },
+  {
     path: '/overtime-guide',
     title: '加班費怎麼算懶人包｜平日、休息日、國定假日加班費一次看',
     description: '整理加班費怎麼算、休息日加班費、國定假日上班薪水與月薪制假日出勤的常見問題，先分情境再進試算。',
