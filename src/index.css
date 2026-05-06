@@ -426,7 +426,7 @@
   }
 
   .home-directory-intro-grid {
-    @apply mt-8 grid gap-5 sm:mt-10 xl:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.9fr)];
+    @apply mt-8 grid items-start gap-5 sm:mt-10 xl:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.9fr)];
   }
 
   .home-directory-summary-card {
@@ -478,8 +478,12 @@
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
 
+  .home-directory-mini-link-grid {
+    @apply mt-4 grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-1;
+  }
+
   .home-directory-mini-link {
-    @apply block rounded-[20px] border border-slate-200 bg-slate-50/80 p-4 transition duration-200;
+    @apply block h-full rounded-[20px] border border-slate-200 bg-slate-50/80 p-4 transition duration-200;
   }
 
   .home-directory-mini-link:hover {
@@ -779,11 +783,16 @@
     }
 
     .home-directory-mini-link {
-      @apply rounded-[18px] p-4;
+      @apply rounded-[18px] p-3.5;
     }
 
     .home-directory-mini-link-title {
-      font-size: 1.15rem;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .home-directory-mini-link-desc {
+      display: none;
     }
 
     .home-directory-icon {
@@ -801,14 +810,23 @@
     .home-directory-card-desc {
       font-size: 0.94rem;
       line-height: 1.8;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
 
     .home-directory-detail-grid {
-      @apply gap-3 pt-5;
+      display: none;
     }
 
     .home-directory-detail-text {
       line-height: 1.65;
+    }
+
+    .home-directory-card .home-directory-chip-wrap,
+    .home-tool-library-card .home-directory-chip-wrap {
+      display: none;
     }
 
     .home-directory-chip {
@@ -847,6 +865,14 @@
 
     .home-tool-library-title {
       font-size: 1.1rem;
+    }
+
+    .home-tool-library-desc {
+      display: -webkit-box;
+      overflow: hidden;
+      line-height: 1.65;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
 
     .home-directory-support-title {

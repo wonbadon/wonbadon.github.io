@@ -322,46 +322,50 @@ export default function Layout({ children }) {
 
       {isHome ? (
         <footer className="relative border-t border-slate-200 bg-white text-slate-600">
-          <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 xl:grid-cols-[1.05fr,0.8fr,0.8fr,0.95fr]">
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="brand-mark" aria-hidden="true" />
-                <div>
-                  <p className="text-sm font-semibold text-slate-950">台灣勞工權益計算器</p>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">把常見勞工權益問題整理成可立即使用的試算工具，先幫你抓到方向與大致數字。</p>
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.05fr,0.95fr,0.95fr]">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="brand-mark" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-slate-950">台灣勞工權益計算器</p>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">把常見勞工權益問題整理成可立即使用的試算工具，先幫你抓到方向與大致數字。</p>
+                  </div>
                 </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-extrabold text-slate-950">試算工具</h3>
+                <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm text-slate-600 sm:grid-cols-2">
+                  {toolLinks.map(({ to, label }) => (
+                    <li key={to}>
+                      <Link to={to} className="transition hover:text-sky-700">{label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-extrabold text-slate-950">關於本站</h3>
+                <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-600">
+                  <li>網站維護者：{ownerName}</li>
+                  <li>網站性質：公開資訊整理與前端試算工具</li>
+                  <li>正式申訴、協商或簽約前，請再用原始資料人工覆核。</li>
+                </ul>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-sm font-extrabold text-slate-950">試算工具</h3>
-              <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm text-slate-600 sm:grid-cols-2">
-                {toolLinks.map(({ to, label }) => (
-                  <li key={to}>
-                    <Link to={to} className="transition hover:text-sky-700">{label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-extrabold text-slate-950">內容導覽</h3>
-              <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                {contentLinks.map(({ to, label }) => (
-                  <li key={to}>
-                    <Link to={to} className="transition hover:text-sky-700">{label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-extrabold text-slate-950">關於本站</h3>
-              <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-600">
-                <li>網站維護者：{ownerName}</li>
-                <li>網站性質：公開資訊整理與前端試算工具</li>
-                <li>正式申訴、協商或簽約前，請再用原始資料人工覆核。</li>
-              </ul>
+            <div className="mt-8 border-t border-slate-200 pt-6">
+              <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                <h3 className="text-sm font-extrabold text-slate-950">內容導覽</h3>
+                <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[13px] leading-6 text-slate-600 sm:text-sm lg:max-w-[48rem] xl:max-w-[52rem]">
+                  {contentLinks.map(({ to, label }) => (
+                    <li key={to}>
+                      <Link to={to} className="whitespace-nowrap transition hover:text-sky-700">{label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 

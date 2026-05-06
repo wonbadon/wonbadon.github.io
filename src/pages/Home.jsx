@@ -196,7 +196,7 @@ export default function Home() {
           <aside className="home-directory-rail">
             <div className="home-directory-rail-card">
               <p className="home-directory-kicker">新手入口</p>
-              <div className="mt-4 space-y-3">
+              <div className="home-directory-mini-link-grid">
                 {contentCatalog.map(({ to, eyebrow, title, desc }) => (
                   <Link key={to} to={to} className="home-directory-mini-link">
                     <p className="home-directory-mini-link-eyebrow">{eyebrow}</p>
