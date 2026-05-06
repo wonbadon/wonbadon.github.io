@@ -128,8 +128,8 @@ export default function Home() {
   }
 
   usePageMeta(
-    '勞工權益計算工具｜免費試算加班費、離職、特休、資遣費、勞退與勞健保｜台灣勞工權益計算器',
-    '2026 最新勞工權益計算工具，免費試算薪資、加班費、特休、資遣費、勞退與勞健保，並整理扣薪、離職、失業給付文件、交接、年終、offer、低報投保、變形工時、請假、職災、排班、颱風假、兼職、試用期、育嬰與退休規劃重點。',
+    '勞工權益計算工具｜勞工計算、勞工試算與加班費、離職、勞退工具總覽｜台灣勞工權益計算器',
+    '2026 最新勞工權益計算工具與勞工試算網站，整理勞工、勞工權益、勞工計算、勞工試算常見需求，免費試算薪資、加班費、特休、資遣費、勞退與勞健保。',
   )
 
   return (
@@ -150,7 +150,7 @@ export default function Home() {
         <div className="mt-3 max-w-3xl sm:mt-4">
           <h1 className="home-directory-title">勞工權益計算工具</h1>
           <p className="home-directory-subtitle mt-3 sm:mt-4">
-            免費試算加班費、離職預告期、特休、資遣費、勞退與勞健保，所有工具依據 2026 年最新勞基法與級距整理，輸入資料後立即看結果。
+            如果你在找勞工、勞工權益、勞工計算或勞工試算相關工具，這裡已把加班費、離職預告期、特休、資遣費、勞退與勞健保整合在同一站，所有工具依據 2026 年最新勞基法與級距整理，輸入資料後立即看結果。
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default function Home() {
             <p className="home-directory-kicker">快速開始</p>
             <h2 className="home-directory-section-title mt-3">先看常用入口，再往下找完整工具總覽</h2>
             <p className="home-directory-section-desc mt-3">
-              首頁先整理常用入口，下方同時保留離職入口、新手導覽、情境拆解、常見問題與站點說明。
+              首頁先整理常用入口，讓正在查找勞工權益、勞工計算與勞工試算內容的人，可以先進到正確工具；下方同時保留離職入口、新手導覽、情境拆解、常見問題與站點說明。
             </p>
 
             <div className="home-directory-stat-grid mt-6">
