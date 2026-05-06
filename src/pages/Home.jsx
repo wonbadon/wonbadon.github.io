@@ -89,6 +89,8 @@ const categorySummary = Object.entries(toolGroups).map(([category, tools]) => ({
   count: tools.length,
 }))
 
+const starterContentCatalog = contentCatalog.slice(0, 6)
+
 const featuredSearchQuestions = faqEntries.slice(0, 24)
 
 function CategoryPillButton({ label, count, isActive, onClick }) {
@@ -105,8 +107,23 @@ function CategoryPillButton({ label, count, isActive, onClick }) {
   )
 }
 
+function StarterEntryButton({ eyebrow, title, isActive, onClick }) {
+  return (
+    <button
+      type="button"
+      className={`home-directory-starter-button${isActive ? ' home-directory-starter-button-active' : ''}`}
+      onClick={onClick}
+      aria-pressed={isActive}
+    >
+      <p className="home-directory-starter-button-eyebrow">{eyebrow}</p>
+      <p className="home-directory-starter-button-title">{title}</p>
+    </button>
+  )
+}
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedStarterEntry, setSelectedStarterEntry] = useState(starterContentCatalog[0]?.to ?? null)
   const librarySectionRef = useRef(null)
 
   const categoryFilters = [
@@ -115,6 +132,7 @@ export default function Home() {
   ]
 
   const visibleTools = selectedCategory ? toolGroups[selectedCategory] ?? [] : secondaryTools
+  const activeStarterEntry = starterContentCatalog.find(({ to }) => to === selectedStarterEntry) ?? starterContentCatalog[0]
 
   const handleCategorySelect = (category, scrollToLibrary = false) => {
     const nextCategory = selectedCategory === category ? null : category
@@ -195,15 +213,51 @@ export default function Home() {
 
           <aside className="home-directory-rail">
             <div className="home-directory-rail-card">
-              <p className="home-directory-kicker">新手入口</p>
-              <div className="home-directory-mini-link-grid">
-                {contentCatalog.map(({ to, eyebrow, title, desc }) => (
-                  <Link key={to} to={to} className="home-directory-mini-link">
-                    <p className="home-directory-mini-link-eyebrow">{eyebrow}</p>
-                    <h2 className="home-directory-mini-link-title">{title}</h2>
-                    <p className="home-directory-mini-link-desc">{desc}</p>
-                  </Link>
-                ))}
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between xl:flex-col xl:items-start">
+                <div>
+                  <p className="home-directory-kicker">新手入口</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-500">先點主題，再看對應摘要，不用一次讀完整排卡片。</p>
+                </div>
+                <p className="home-directory-starter-count">先看 {starterContentCatalog.length} 個高頻入口</p>
+              </div>
+
+              <div className="home-directory-starter-shell">
+                <div className="home-directory-starter-list">
+                  {starterContentCatalog.map(({ to, eyebrow, title }) => (
+                    <StarterEntryButton
+                      key={to}
+                      eyebrow={eyebrow}
+                      title={title}
+                      isActive={activeStarterEntry?.to === to}
+                      onClick={() => setSelectedStarterEntry(to)}
+                    />
+                  ))}
+                </div>
+
+                {activeStarterEntry ? (
+                  <div className="home-directory-starter-panel">
+                    <p className="home-directory-mini-link-eyebrow">{activeStarterEntry.eyebrow}</p>
+                    <h2 className="home-directory-starter-panel-title">{activeStarterEntry.title}</h2>
+                    <p className="home-directory-starter-panel-desc">{activeStarterEntry.desc}</p>
+
+                    <div className="mt-5">
+                      <p className="home-directory-detail-label">這頁會先幫你整理</p>
+                      <div className="home-directory-chip-wrap mt-3">
+                        {activeStarterEntry.points.map((item) => (
+                          <span key={item} className="home-directory-chip">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-5 border-t border-slate-200 pt-4">
+                      <p className="text-xs font-semibold leading-6 text-slate-500">其餘主題可從下方完整工具庫與頁尾內容導覽再往下找。</p>
+                      <Link to={activeStarterEntry.to} className="home-directory-cta mt-4">
+                        前往這個入口
+                        <ArrowIcon />
+                      </Link>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </div>
 
